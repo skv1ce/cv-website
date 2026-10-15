@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bohdan Krasokha - Portfolio</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #222222;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- КАСКАДНЕ ПЛАВНЕ ЗАВАНТАЖЕННЯ --- */
+        .fade-in-element {
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+        
+        .hero-section {
+            animation: slideUpFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+        .content-container {
+            animation: slideUpFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+        }
+        .waves-container {
+            animation: waterSwell 15s ease-in-out infinite, fadeInBase 2.5s ease 0.8s forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInBase { to { opacity: 1; } }
+
+        /* --- ПРЕМІАЛЬНЕ ЗАТЕМНЕННЯ (Blur + Vignette) --- */
+        #page-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            /* Радіальний градієнт для ефекту він'єтки (темні краї, світліший центр) */
+            background: radial-gradient(circle at center, rgba(10,10,10,0.4) 0%, rgba(5,5,5,0.95) 100%);
+            /* Ефект розмиття фону (Frosted Glass) */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 9000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out;
+            will-change: opacity;
+        }
+
+        /* Безшовний плавний сніг */
+        .black-snow {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: -3; 
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(5, 5, 5, 0.9) 1px, transparent 1.5px),
+                radial-gradient(circle at 20% 80%, rgba(10, 10, 10, 0.7) 1.5px, transparent 2px),
+                radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.8) 2px, transparent 2.5px);
+            background-size: 200px 200px, 350px 350px, 500px 500px; 
+            animation: smoothSnow 20s linear infinite, fadeInBase 2s ease forwards;
+        }
+
+        @keyframes smoothSnow {
+            0% { background-position: 0px 0px, 0px 0px, 0px 0px; }
+            100% { background-position: 200px 400px, 350px 700px, -500px 1000px; }
+        }
+
+        /* Спокійна вода */
+        .waves-container {
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 20vh; min-height: 150px;
+            z-index: -2; pointer-events: none;
+        }
+
+        @keyframes waterSwell {
+            0%, 100% { transform: translateY(0) scaleY(1); }
+            50% { transform: translateY(-10px) scaleY(1.1); } 
+        }
+
+        .parallax > use { animation: waveMove 25s cubic-bezier(.55,.5,.45,.5) infinite; will-change: transform; }
+        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 9s; opacity: 0.5; }
+        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 12s; opacity: 0.7; }
+        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 16s; opacity: 0.9; }
+        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 22s; }
+
+        @keyframes waveMove {
+            0% { transform: translate3d(-90px,0,0); }
+            100% { transform: translate3d(85px,0,0); }
+        }
+
+        /* М'який ефект кліку по екрану */
+        .dark-moon-ripple {
+            position: fixed; width: 15px; height: 15px;
+            background: radial-gradient(circle, rgba(10, 10, 10, 0.5) 0%, rgba(20, 20, 20, 0) 80%);
+            border-radius: 50%; transform: translate(-50%, -50%) scale(1);
+            pointer-events: none; animation: softRipple 0.5s ease-out forwards; z-index: 9999;
+        }
+
+        @keyframes softRipple {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(4); opacity: 0; } 
+        }
+
+        /* Головний блок */
+        .hero-section {
+            display: flex; justify-content: center; align-items: center;
+            gap: 50px; margin-top: 80px; margin-bottom: 30px; flex-wrap: wrap;
+        }
+
+        /* Обгортка для кнопок і вогників */
+        .nav-item-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px; /* Відстань між текстом і лінією вогника */
+        }
+
+        .nav-item {
+            position: relative; color: #888888; text-decoration: none;
+            font-family: 'Playfair Display', serif; font-size: 24px; font-style: italic;
+            padding: 10px 20px; border-radius: 25px; overflow: hidden; 
+            transition: color 0.4s ease, transform 0.1s ease; 
+            z-index: 2; display: inline-block; cursor: pointer;
+        }
+
+        .nav-item::before {
+            content: ''; position: absolute; bottom: -60%; left: 50%;
+            width: 120%; height: 150%; background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%; transform: translateX(-50%) translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: -1;
+        }
+
+        .nav-item:hover { color: #ffffff; text-shadow: 0 0 15px rgba(255,255,255,0.3); }
+        .nav-item:hover::before { transform: translateX(-50%) translateY(30%); }
+        .nav-item:active { transform: scale(0.92); }
+
+        /* --- АНІМАЦІЯ ЧОРНОГО ВОГНИКА (СВІТЛЯЧКА) --- */
+        .spark-track-wrapper {
+            width: 80%; /* Вогник бігає рівно під літерами */
+            height: 1px;
+            background: rgba(255, 255, 255, 0.05); /* Ледь помітна лінія */
+            border-radius: 2px;
+            position: relative;
+        }
+
+        /* Анімація вильоту з-за екрану */
+        .fly-in-left {
+            animation: flyInLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+        .fly-in-right {
+            animation: flyInRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+        }
+
+        @keyframes flyInLeft {
+            0% { transform: translateX(-50vw); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes flyInRight {
+            0% { transform: translateX(50vw); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Контейнер, який рухається по лінії */
+        .spark-mover {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Сам вогник: темне ядро + біле світіння + пульсація */
+        .spark {
+            width: 7px;
+            height: 7px;
+            background: #111111; /* Чорний вогник */
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 4px rgba(255, 255, 255, 1);
+            transform: translateX(-50%);
+            animation: pulseSpark 1.5s ease-in-out infinite alternate;
+        }
+
+        /* Безкінечний рух під текстом */
+        .patrol-left {
+            left: 0;
+            animation: patrol 3.5s ease-in-out 1.7s infinite alternate;
+        }
+        
+        .patrol-right {
+            left: 100%;
+            animation: patrolRev 3.5s ease-in-out 1.7s infinite alternate;
+        }
+
+        @keyframes patrol {
+            0% { left: 0%; }
+            100% { left: 100%; }
+        }
+        @keyframes patrolRev {
+            0% { left: 100%; }
+            100% { left: 0%; }
+        }
+
+        @keyframes pulseSpark {
+            0% { transform: translateX(-50%) scale(0.85); box-shadow: 0 0 5px rgba(255,255,255,0.7); }
+            100% { transform: translateX(-50%) scale(1.15); box-shadow: 0 0 12px rgba(255,255,255,1), 0 0 6px #fff; }
+        }
+
+        /* --- ФОТОГРАФІЯ ТА ФІШКА ЗІ СМАЙЛИКОМ --- */
+        .profile-wrapper {
+            position: relative; width: 220px; height: 220px;
+            display: flex; justify-content: center; align-items: center;
+            cursor: pointer;
+        }
+
+        .profile-photo {
+            width: 190px; height: 190px; border-radius: 50%;
+            object-fit: cover; z-index: 2;
+            transition: filter 0.4s ease; 
+        }
+
+        /* Мінімалістичний смайлик */
+        .smiley-icon {
+            position: absolute;
+            width: 45px; height: 45px;
+            opacity: 0;
+            transform: translateY(15px) scale(0.8);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .profile-wrapper:hover .profile-photo {
+            filter: brightness(0.4); 
+        }
+
+        .profile-wrapper:hover .smiley-icon {
+            opacity: 1; 
+            transform: translateY(0) scale(1);
+        }
+
+        /* Лінії навколо фото */
+        .profile-wrapper::before, .profile-wrapper::after {
+            content: ''; position: absolute; width: 100%; height: 100%;
+            border: 2px solid #ffffff; border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morphWaves 10s linear infinite; z-index: 1;
+        }
+
+        .profile-wrapper::after {
+            width: 110%; height: 110%; border: 1.5px solid rgba(255, 255, 255, 0.3);
+            animation: morphWaves 15s linear infinite reverse;
+        }
+
+        @keyframes morphWaves {
+            0% { transform: rotate(0deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            50% { transform: rotate(180deg); border-radius: 70% 30% 50% 70% / 30% 60% 40% 70%; }
+            100% { transform: rotate(360deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+        }
+
+        /* Основний контент */
+        .content-container {
+            position: relative; max-width: 700px; margin: 0 auto 160px auto;
+            text-align: center; padding: 20px; z-index: 10;
+        }
+
+        h1, h2 {
+            font-family: 'Playfair Display', serif; color: #d1d1d1;
+            font-weight: 600; letter-spacing: 1.5px; margin-bottom: 15px;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+        h1 { font-size: 2.6rem; }
+        
+        h1:hover, h2:hover {
+            color: #ffffff; text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Плавне підсвічування тексту */
+        .text-block {
+            font-family: 'Montserrat', sans-serif; line-height: 1.9;
+            font-weight: 300; font-size: 1.15rem; letter-spacing: 0.5px;
+            color: #aaaaaa; padding: 15px 25px; border-radius: 10px;
+            background-color: transparent; 
+            transition: background-color 0.4s ease, color 0.4s ease, text-shadow 0.4s ease; 
+            cursor: default;
+        }
+
+        .text-block:hover { 
+            color: #ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.15); 
+            background-color: rgba(255, 255, 255, 0.03); 
+        }
+
+        .contact-link {
+            color: #aaaaaa; text-decoration: none; font-weight: 500;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #ffffff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Кнопка аудіо */
+        .audio-btn {
+            position: fixed; bottom: 40px; right: 40px;
+            background-color: transparent; color: #aaaaaa;
+            border: 1px solid #555; padding: 12px 25px;
+            border-radius: 30px; cursor: pointer;
+            font-size: 15px; font-weight: 500; font-family: 'Montserrat', sans-serif;
+            overflow: hidden; 
+            transition: color 0.4s ease, border-color 0.4s ease, transform 0.1s ease; 
+            z-index: 10;
+        }
+
+        .audio-btn::before {
+            content: ''; position: absolute; bottom: -60%; left: 50%;
+            width: 120%; height: 150%; background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%; transform: translateX(-50%) translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: -1;
+        }
+
+        .audio-btn:hover { color: #fff; border-color: #aaa; }
+        .audio-btn:hover::before { transform: translateX(-50%) translateY(20%); }
+        .audio-btn:active { transform: scale(0.92); }
+
+    </style>
+</head>
+<body>
+
+    <!-- Дизайнерське розмите затемнення -->
+    <div id="page-overlay"></div>
+
+    <div class="black-snow"></div>
+
+    <svg class="waves-container fade-in-element" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(30, 30, 30, 0.8)" />
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(20, 20, 20, 0.6)" />
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(15, 15, 15, 0.4)" />
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="#0c0c0c" />
+        </g>
+    </svg>
+
+    <div class="hero-section fade-in-element">
+        
+        <!-- Ліва кнопка + Чорний вогник -->
+        <div class="nav-item-container">
+            <a href="#bio" class="nav-item smooth-link">Biography</a>
+            <div class="spark-track-wrapper fly-in-left">
+                <div class="spark-mover patrol-left">
+                    <div class="spark"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Фотографія зі смайликом -->
+        <div class="profile-wrapper">
+            <img class="profile-photo" src="photo.jpg" alt="Bohdan Krasokha">
+            <!-- Смайлик -->
+            <svg class="smiley-icon" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 9h.01M16 9h.01" />
+                <path d="M8 14c1.5 2.5 4.5 2.5 6 0" />
+            </svg>
+        </div>
+        
+        <!-- Права кнопка + Чорний вогник -->
+        <div class="nav-item-container">
+            <a href="#contacts" class="nav-item smooth-link">Contacts</a>
+            <div class="spark-track-wrapper fly-in-right">
+                <div class="spark-mover patrol-right">
+                    <div class="spark"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="content-container fade-in-element">
+        <h1 id="bio">Hello, I'm Bohdan Krasokha</h1>
+        
+        <div class="text-block">
+            <p>I am an 18-year-old tech enthusiast with a lifelong passion for digital creation. My journey began in childhood with video editing in After Effects and Alight Motion, which naturally evolved into a deep fascination with IT, system integration, and the fundamentals of programming. I thrive on creativity and pride myself on my ability to quickly master new software and technologies.</p>
+            
+            <p>Backed by a strong foundation in exact sciences like algebra and geometry, I possess a sharp spatial imagination and a strong memory. My current tech stack includes VS Code, GitHub, HTML, and CSS, and I am constantly expanding my skill set. My work philosophy is simple: extreme attention to detail and a methodical, step-by-step approach to project construction. I don't just write code or configure systems; my goal is to deliver high-quality, unique, and polished results.</p>
+            
+            <p>Currently based in Germany, my main objective is to start an <strong>Ausbildung as a Fachinformatiker für Systemintegration</strong>. I am highly driven, open to complex challenges, and constantly pushing myself to grow into a top-tier professional. I am ready for the future, and I am ready to build it.</p>
+        </div>
+
+        <h2 id="contacts" style="margin-top: 50px;">Let's Connect</h2>
+        <div class="text-block">
+            <p>I am always open to new opportunities, challenges, and interesting conversations.</p>
+            <p>
+                Email: <a href="mailto:krasokhade@gmail.com" class="contact-link">krasokhade@gmail.com</a><br>
+                GitHub: <a href="https://github.com/skv1ce" target="_blank" class="contact-link">github.com/skv1ce</a><br>
+                Telegram: <a href="https://t.me/skv1ce" target="_blank" class="contact-link">@skv1ce</a><br>
+                Instagram: <a href="https://instagram.com/skv1ce" target="_blank" class="contact-link">@skv1ce</a>
+            </p>
+        </div>
+    </div>
+
+    <audio id="bg-music" src="music.mp3"></audio>
+
+    <button class="audio-btn" onclick="toggleMusic()">🎵 Play Music</button>
+
+    <script>
+        function toggleMusic() {
+            var music = document.getElementById("bg-music");
+            music.volume = 0.15; 
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+
+        // Ефект кліку по екрану
+        document.addEventListener('click', function(e) {
+            let moon = document.createElement('div');
+            moon.className = 'dark-moon-ripple';
+            moon.style.left = e.clientX + 'px';
+            moon.style.top = e.clientY + 'px';
+            document.body.appendChild(moon);
+            setTimeout(() => { moon.remove(); }, 500); 
+        });
+
+        // Ідеально плавний і швидший скрол
+        function smoothScrollTo(targetPosition, duration) {
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                
+                const run = easeInOut(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                }
+            }
+
+            function easeInOut(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            }
+
+            requestAnimationFrame(animation);
+        }
+
+        // Логіка кліку з дизайнерським розмиттям і він'єткою
+        document.querySelectorAll('.smooth-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); 
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                const overlay = document.getElementById('page-overlay');
+
+                // 1. Вмикаємо розмите затемнення
+                overlay.style.opacity = '1';
+
+                // 2. Скрол (тривалість зменшено до 850 мс для динаміки)
+                const targetPos = targetElement.getBoundingClientRect().top + window.pageYOffset - 40;
+                smoothScrollTo(targetPos, 850);
+
+                // 3. Знімаємо затемнення після завершення скролу
+                setTimeout(() => {
+                    overlay.style.opacity = '0';
+                }, 800); 
+            });
+        });
+    </script>
+
+</body>
+</html>
