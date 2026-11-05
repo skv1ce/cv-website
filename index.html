@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bohdan Krasokha - Portfolio</title>
-    <meta name="description" content="Bohdan Krasokha is looking for an Ausbildung as a Fachinformatiker für Systemintegration in Germany.">
+    <meta name="description" content="Bohdan Krasokha sucht eine Ausbildung zum Fachinformatiker für Systemintegration in Hamburg.">
     <meta name="theme-color" content="#1B2A4A">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,6 +71,10 @@
             padding-inline: var(--gutter);
         }
 
+        /* ---------- Language: every text exists twice, only one is shown ---------- */
+        html[lang="de"] body [lang="en"],
+        html[lang="en"] body [lang="de"] { display: none; }
+
         /* ---------- Top navigation ---------- */
         .topbar {
             position: relative;
@@ -91,9 +95,48 @@
             white-space: nowrap;
         }
 
+        .topbar-right {
+            display: flex;
+            align-items: baseline;
+            gap: 1.75rem;
+        }
+
         .topbar nav {
             display: flex;
             gap: 1.75rem;
+        }
+
+        .lang-switch {
+            display: none;
+            gap: .15rem;
+        }
+
+        .scripted .lang-switch { display: flex; }
+
+        .lang-switch button {
+            padding: .2rem .4rem;
+            background: none;
+            border: 0;
+            border-bottom: 2px solid transparent;
+            color: var(--mist);
+            font: inherit;
+            font-size: .9375rem;
+            cursor: pointer;
+            transition: color .2s ease;
+        }
+
+        .lang-switch button:hover { color: var(--beige); }
+
+        .lang-switch button[aria-pressed="true"] {
+            color: var(--beige);
+            font-weight: 700;
+            border-bottom-color: var(--gold);
+        }
+
+        .lang-switch button:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+            border-radius: 2px;
         }
 
         .topbar nav a {
@@ -478,6 +521,9 @@
 
             body { font-size: 1rem; }
 
+            .topbar-right,
+            .topbar nav { gap: 1rem; }
+
             .hero {
                 grid-template-columns: minmax(0, 1fr);
                 gap: 2.5rem;
@@ -518,11 +564,22 @@
         }
     </style>
 
-    <!-- Runs before the page draws, so unlit ports never flash on load -->
+    <!-- Runs before the page draws, so the wrong language or unlit ports never flash on load -->
     <script>
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            document.documentElement.classList.add('js');
-        }
+        (function () {
+            var root = document.documentElement;
+            root.classList.add('scripted');
+
+            // German is the default. A visitor's own choice is remembered.
+            try {
+                var saved = localStorage.getItem('site-lang');
+                if (saved === 'de' || saved === 'en') root.lang = saved;
+            } catch (e) {}
+
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                root.classList.add('js');
+            }
+        })();
     </script>
 </head>
 <body id="top">
@@ -550,10 +607,16 @@
     <header class="wrap">
         <div class="topbar">
             <a class="topbar-name" href="#top">Bohdan Krasokha</a>
-            <nav aria-label="Main">
-                <a href="#bio">Biography</a>
-                <a href="#contacts">Contacts</a>
-            </nav>
+            <div class="topbar-right">
+                <nav aria-label="Navigation">
+                    <a href="#bio"><span lang="de">Über mich</span><span lang="en">Biography</span></a>
+                    <a href="#contacts"><span lang="de">Kontakt</span><span lang="en">Contacts</span></a>
+                </nav>
+                <div class="lang-switch" role="group" aria-label="Sprache / Language">
+                    <button type="button" data-set-lang="de" aria-pressed="true" title="Deutsch">DE</button>
+                    <button type="button" data-set-lang="en" aria-pressed="false" title="English">EN</button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -561,16 +624,16 @@
         <div class="wrap">
             <div class="hero">
                 <div>
-                    <h1>Hello, I'm <span class="name">Bohdan Krasokha</span></h1>
-                    <p class="hero-goal">Looking for an Ausbildung as a Fachinformatiker für Systemintegration in Germany.</p>
+                    <h1><span lang="de">Hallo, ich bin</span><span lang="en">Hello, I'm</span> <span class="name">Bohdan Krasokha</span></h1>
+                    <p class="hero-goal"><span lang="de">Ich suche eine Ausbildung zum Fachinformatiker für Systemintegration in Hamburg.</span><span lang="en">Looking for an Ausbildung as a Fachinformatiker für Systemintegration in Hamburg.</span></p>
                     <div class="hero-actions">
-                        <a class="button" href="#contacts">Contact me</a>
-                        <a class="text-link" href="https://github.com/skv1ce" target="_blank" rel="noopener">See my GitHub</a>
+                        <a class="button" href="#contacts"><span lang="de">Kontakt aufnehmen</span><span lang="en">Contact me</span></a>
+                        <a class="text-link" href="https://github.com/skv1ce" target="_blank" rel="noopener"><span lang="de">Mein GitHub ansehen</span><span lang="en">See my GitHub</span></a>
                     </div>
                 </div>
 
                 <figure class="photo">
-                    <img src="photo.jpg" alt="Portrait of Bohdan Krasokha" width="832" height="910">
+                    <img src="photo.jpg" alt="Bohdan Krasokha" width="832" height="910">
                     <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M8 9h.01M16 9h.01" />
                         <path d="M8 14c1.5 2.5 6.5 2.5 8 0" />
@@ -581,22 +644,22 @@
 
             <section class="section" id="bio">
                 <span class="port" aria-hidden="true"></span>
-                <h2>Biography</h2>
+                <h2><span lang="de">Über mich</span><span lang="en">Biography</span></h2>
                 <div>
-                    <p>I am an 18-year-old tech enthusiast with a lifelong passion for digital creation. My journey began in childhood with video editing in After Effects and Alight Motion, which naturally evolved into a deep fascination with IT, system integration, and the fundamentals of programming. I thrive on creativity and pride myself on my ability to quickly master new software and technologies.</p>
+                    <p><span lang="de">Ich bin 18 Jahre alt, technikbegeistert und habe schon immer gern digital gestaltet. Angefangen hat alles in meiner Kindheit mit Videobearbeitung in After Effects und Alight Motion. Daraus entwickelte sich ganz von selbst eine große Faszination für IT, Systemintegration und die Grundlagen des Programmierens. Ich arbeite gern kreativ und bin stolz darauf, dass ich neue Software und Technologien schnell lerne.</span><span lang="en">I am an 18-year-old tech enthusiast with a lifelong passion for digital creation. My journey began in childhood with video editing in After Effects and Alight Motion, which naturally evolved into a deep fascination with IT, system integration, and the fundamentals of programming. I thrive on creativity and pride myself on my ability to quickly master new software and technologies.</span></p>
                 </div>
             </section>
 
             <section class="section" id="work">
                 <span class="port" aria-hidden="true"></span>
-                <h2>How I work</h2>
+                <h2><span lang="de">So arbeite ich</span><span lang="en">How I work</span></h2>
                 <div>
-                    <p>Backed by a strong foundation in exact sciences like algebra and geometry, I possess a sharp spatial imagination and a strong memory. My current tech stack includes VS Code, GitHub, HTML, and CSS, and I am constantly expanding my skill set. My work philosophy is simple: extreme attention to detail and a methodical, step-by-step approach to project construction. I don't just write code or configure systems; my goal is to deliver high-quality, unique, and polished results.</p>
+                    <p><span lang="de">Ich habe starke Grundlagen in exakten Fächern wie Algebra und Geometrie, ein gutes räumliches Vorstellungsvermögen und ein starkes Gedächtnis. Zu meinen aktuellen Tools gehören VS Code, GitHub, HTML und CSS, und ich erweitere meine Kenntnisse ständig. Meine Arbeitsweise ist einfach: größte Sorgfalt im Detail und ein methodisches Vorgehen, Schritt für Schritt. Ich schreibe nicht nur Code oder konfiguriere Systeme, sondern will hochwertige, einzigartige und sorgfältig ausgearbeitete Ergebnisse liefern.</span><span lang="en">Backed by a strong foundation in exact sciences like algebra and geometry, I possess a sharp spatial imagination and a strong memory. My current tech stack includes VS Code, GitHub, HTML, and CSS, and I am constantly expanding my skill set. My work philosophy is simple: extreme attention to detail and a methodical, step-by-step approach to project construction. I don't just write code or configure systems; my goal is to deliver high-quality, unique, and polished results.</span></p>
                 </div>
 
                 <div class="panel" id="panel">
                     <div class="panel-group">
-                        <h3>Current stack</h3>
+                        <h3><span lang="de">Aktuelle Tools</span><span lang="en">Current stack</span></h3>
                         <ul>
                             <li class="panel-port" style="--i:0"><svg viewBox="0 0 56 52" aria-hidden="true"><use href="#rj45" /><circle class="led" cx="28" cy="3.5" r="3" /></svg>VS Code</li>
                             <li class="panel-port" style="--i:1"><svg viewBox="0 0 56 52" aria-hidden="true"><use href="#rj45" /><circle class="led" cx="28" cy="3.5" r="3" /></svg>GitHub</li>
@@ -605,7 +668,7 @@
                         </ul>
                     </div>
                     <div class="panel-group">
-                        <h3>Video editing</h3>
+                        <h3><span lang="de">Videobearbeitung</span><span lang="en">Video editing</span></h3>
                         <ul>
                             <li class="panel-port" style="--i:4"><svg viewBox="0 0 56 52" aria-hidden="true"><use href="#rj45" /><circle class="led" cx="28" cy="3.5" r="3" /></svg>After Effects</li>
                             <li class="panel-port" style="--i:5"><svg viewBox="0 0 56 52" aria-hidden="true"><use href="#rj45" /><circle class="led" cx="28" cy="3.5" r="3" /></svg>Alight Motion</li>
@@ -616,9 +679,9 @@
 
             <section class="section" id="goal">
                 <span class="port" aria-hidden="true"></span>
-                <h2>My goal</h2>
+                <h2><span lang="de">Mein Ziel</span><span lang="en">My goal</span></h2>
                 <div>
-                    <p>Currently based in Germany, my main objective is to start an <strong>Ausbildung as a Fachinformatiker für Systemintegration</strong>. I am highly driven, open to complex challenges, and constantly pushing myself to grow into a top-tier professional. I am ready for the future, and I am ready to build it.</p>
+                    <p><span lang="de">Ich lebe in Hamburg und spreche Deutsch auf Niveau B1. Mein wichtigstes Ziel ist eine <strong>Ausbildung zum Fachinformatiker für Systemintegration</strong>. Ich bin hoch motiviert, offen für anspruchsvolle Aufgaben und arbeite ständig daran, mich zu einem erstklassigen Fachmann zu entwickeln. Ich bin bereit für die Zukunft, und ich bin bereit, sie mitzugestalten.</span><span lang="en">Currently based in Hamburg, with German at B1 level, my main objective is to start an <strong>Ausbildung as a Fachinformatiker für Systemintegration</strong>. I am highly driven, open to complex challenges, and constantly pushing myself to grow into a top-tier professional. I am ready for the future, and I am ready to build it.</span></p>
                 </div>
             </section>
         </div>
@@ -629,12 +692,12 @@
                 <div class="link-status" id="link-status" aria-hidden="true">Link down</div>
 
                 <div class="contact-body">
-                    <h2>Let's Connect</h2>
-                    <p class="contact-intro">I am always open to new opportunities, challenges, and interesting conversations.</p>
+                    <h2><span lang="de">Verbindung herstellen</span><span lang="en">Let's Connect</span></h2>
+                    <p class="contact-intro"><span lang="de">Ich bin immer offen für neue Möglichkeiten, Herausforderungen und interessante Gespräche.</span><span lang="en">I am always open to new opportunities, challenges, and interesting conversations.</span></p>
 
                     <dl class="contact-list">
                         <div>
-                            <dt>Email</dt>
+                            <dt><span lang="de">E-Mail</span><span lang="en">Email</span></dt>
                             <dd><a href="mailto:krasokhade@gmail.com">krasokhade@gmail.com</a></dd>
                         </div>
                         <div>
@@ -646,6 +709,31 @@
             </div>
         </section>
     </main>
+
+    <script>
+        /* The DE/EN switch in the top bar. */
+        (function () {
+            var buttons = document.querySelectorAll('[data-set-lang]');
+
+            function show(lang) {
+                document.documentElement.lang = lang;
+                buttons.forEach(function (button) {
+                    button.setAttribute('aria-pressed', button.dataset.setLang === lang ? 'true' : 'false');
+                });
+                // The two languages have different text lengths, so the cable must re-route
+                window.dispatchEvent(new Event('resize'));
+            }
+
+            buttons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    show(button.dataset.setLang);
+                    try { localStorage.setItem('site-lang', button.dataset.setLang); } catch (e) {}
+                });
+            });
+
+            show(document.documentElement.lang);
+        })();
+    </script>
 
     <script>
         /*
