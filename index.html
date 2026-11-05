@@ -4,479 +4,798 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bohdan Krasokha - Portfolio</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    
+    <meta name="description" content="Bohdan Krasokha is looking for an Ausbildung as a Fachinformatiker für Systemintegration in Germany.">
+    <meta name="theme-color" content="#1B2A4A">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
     <style>
+        /* ---------- Tokens (same colours and fonts as the application PDFs) ---------- */
+        :root {
+            --navy: #1B2A4A;
+            --navy-deep: #131E36;
+            --navy-lift: #2A3D66;
+            --gold: #C9A227;
+            --beige: #F6F0E1;
+            --mist: #C3CBDA;
+            --signal: #5FD38D;
+
+            --serif: 'Source Serif 4', Georgia, serif;
+            --sans: 'Lato', 'Segoe UI', Arial, sans-serif;
+
+            --gutter: 1.5rem;   /* page edge to content */
+            --indent: 5.5rem;   /* room on the left for the cable */
+            --port-left: 1rem;  /* cable position inside the indent */
+            --port-size: 14px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        @media (prefers-reduced-motion: no-preference) {
+            html { scroll-behavior: smooth; }
+        }
+
         body {
-            background-color: #222222;
-            color: #e0e0e0;
+            position: relative;
             margin: 0;
-            padding: 0;
+            background: var(--navy);
+            color: var(--beige);
+            font-family: var(--sans);
+            font-size: 1.0625rem;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        /* --- КАСКАДНЕ ПЛАВНЕ ЗАВАНТАЖЕННЯ --- */
-        .fade-in-element {
-            opacity: 0;
-            will-change: transform, opacity;
-        }
-        
-        .hero-section {
-            animation: slideUpFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
-        }
-        .content-container {
-            animation: slideUpFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
-        }
-        .waves-container {
-            animation: waterSwell 15s ease-in-out infinite, fadeInBase 2.5s ease 0.8s forwards;
-        }
-
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInBase { to { opacity: 1; } }
-
-        /* --- ПРЕМІАЛЬНЕ ЗАТЕМНЕННЯ (Blur + Vignette) --- */
-        #page-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            /* Радіальний градієнт для ефекту він'єтки (темні краї, світліший центр) */
-            background: radial-gradient(circle at center, rgba(10,10,10,0.4) 0%, rgba(5,5,5,0.95) 100%);
-            /* Ефект розмиття фону (Frosted Glass) */
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 9000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease-in-out;
-            will-change: opacity;
-        }
-
-        /* Безшовний плавний сніг */
-        .black-snow {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none; z-index: -3; 
-            background-image: 
-                radial-gradient(circle at 50% 50%, rgba(5, 5, 5, 0.9) 1px, transparent 1.5px),
-                radial-gradient(circle at 20% 80%, rgba(10, 10, 10, 0.7) 1.5px, transparent 2px),
-                radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.8) 2px, transparent 2.5px);
-            background-size: 200px 200px, 350px 350px, 500px 500px; 
-            animation: smoothSnow 20s linear infinite, fadeInBase 2s ease forwards;
-        }
-
-        @keyframes smoothSnow {
-            0% { background-position: 0px 0px, 0px 0px, 0px 0px; }
-            100% { background-position: 200px 400px, 350px 700px, -500px 1000px; }
-        }
-
-        /* Спокійна вода */
-        .waves-container {
-            position: fixed; bottom: 0; left: 0; width: 100%; height: 20vh; min-height: 150px;
-            z-index: -2; pointer-events: none;
-        }
-
-        @keyframes waterSwell {
-            0%, 100% { transform: translateY(0) scaleY(1); }
-            50% { transform: translateY(-10px) scaleY(1.1); } 
-        }
-
-        .parallax > use { animation: waveMove 25s cubic-bezier(.55,.5,.45,.5) infinite; will-change: transform; }
-        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 9s; opacity: 0.5; }
-        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 12s; opacity: 0.7; }
-        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 16s; opacity: 0.9; }
-        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 22s; }
-
-        @keyframes waveMove {
-            0% { transform: translate3d(-90px,0,0); }
-            100% { transform: translate3d(85px,0,0); }
-        }
-
-        /* М'який ефект кліку по екрану */
-        .dark-moon-ripple {
-            position: fixed; width: 15px; height: 15px;
-            background: radial-gradient(circle, rgba(10, 10, 10, 0.5) 0%, rgba(20, 20, 20, 0) 80%);
-            border-radius: 50%; transform: translate(-50%, -50%) scale(1);
-            pointer-events: none; animation: softRipple 0.5s ease-out forwards; z-index: 9999;
-        }
-
-        @keyframes softRipple {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(4); opacity: 0; } 
-        }
-
-        /* Головний блок */
-        .hero-section {
-            display: flex; justify-content: center; align-items: center;
-            gap: 50px; margin-top: 80px; margin-bottom: 30px; flex-wrap: wrap;
-        }
-
-        /* Обгортка для кнопок і вогників */
-        .nav-item-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px; /* Відстань між текстом і лінією вогника */
-        }
-
-        .nav-item {
-            position: relative; color: #888888; text-decoration: none;
-            font-family: 'Playfair Display', serif; font-size: 24px; font-style: italic;
-            padding: 10px 20px; border-radius: 25px; overflow: hidden; 
-            transition: color 0.4s ease, transform 0.1s ease; 
-            z-index: 2; display: inline-block; cursor: pointer;
-        }
-
-        .nav-item::before {
-            content: ''; position: absolute; bottom: -60%; left: 50%;
-            width: 120%; height: 150%; background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%; transform: translateX(-50%) translateY(100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: -1;
-        }
-
-        .nav-item:hover { color: #ffffff; text-shadow: 0 0 15px rgba(255,255,255,0.3); }
-        .nav-item:hover::before { transform: translateX(-50%) translateY(30%); }
-        .nav-item:active { transform: scale(0.92); }
-
-        /* --- АНІМАЦІЯ ЧОРНОГО ВОГНИКА (СВІТЛЯЧКА) --- */
-        .spark-track-wrapper {
-            width: 80%; /* Вогник бігає рівно під літерами */
-            height: 1px;
-            background: rgba(255, 255, 255, 0.05); /* Ледь помітна лінія */
-            border-radius: 2px;
-            position: relative;
-        }
-
-        /* Анімація вильоту з-за екрану */
-        .fly-in-left {
-            animation: flyInLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
-        }
-        .fly-in-right {
-            animation: flyInRight 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
-        }
-
-        @keyframes flyInLeft {
-            0% { transform: translateX(-50vw); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes flyInRight {
-            0% { transform: translateX(50vw); opacity: 0; }
-            100% { transform: translateX(0); opacity: 1; }
-        }
-
-        /* Контейнер, який рухається по лінії */
-        .spark-mover {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        /* Сам вогник: темне ядро + біле світіння + пульсація */
-        .spark {
-            width: 7px;
-            height: 7px;
-            background: #111111; /* Чорний вогник */
-            border-radius: 50%;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.9), 0 0 4px rgba(255, 255, 255, 1);
-            transform: translateX(-50%);
-            animation: pulseSpark 1.5s ease-in-out infinite alternate;
-        }
-
-        /* Безкінечний рух під текстом */
-        .patrol-left {
-            left: 0;
-            animation: patrol 3.5s ease-in-out 1.7s infinite alternate;
-        }
-        
-        .patrol-right {
-            left: 100%;
-            animation: patrolRev 3.5s ease-in-out 1.7s infinite alternate;
-        }
-
-        @keyframes patrol {
-            0% { left: 0%; }
-            100% { left: 100%; }
-        }
-        @keyframes patrolRev {
-            0% { left: 100%; }
-            100% { left: 0%; }
-        }
-
-        @keyframes pulseSpark {
-            0% { transform: translateX(-50%) scale(0.85); box-shadow: 0 0 5px rgba(255,255,255,0.7); }
-            100% { transform: translateX(-50%) scale(1.15); box-shadow: 0 0 12px rgba(255,255,255,1), 0 0 6px #fff; }
-        }
-
-        /* --- ФОТОГРАФІЯ ТА ФІШКА ЗІ СМАЙЛИКОМ --- */
-        .profile-wrapper {
-            position: relative; width: 220px; height: 220px;
-            display: flex; justify-content: center; align-items: center;
-            cursor: pointer;
-        }
-
-        .profile-photo {
-            width: 190px; height: 190px; border-radius: 50%;
-            object-fit: cover; z-index: 2;
-            transition: filter 0.4s ease; 
-        }
-
-        /* Мінімалістичний смайлик */
-        .smiley-icon {
-            position: absolute;
-            width: 45px; height: 45px;
-            opacity: 0;
-            transform: translateY(15px) scale(0.8);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .profile-wrapper:hover .profile-photo {
-            filter: brightness(0.4); 
-        }
-
-        .profile-wrapper:hover .smiley-icon {
-            opacity: 1; 
-            transform: translateY(0) scale(1);
-        }
-
-        /* Лінії навколо фото */
-        .profile-wrapper::before, .profile-wrapper::after {
-            content: ''; position: absolute; width: 100%; height: 100%;
-            border: 2px solid #ffffff; border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            animation: morphWaves 10s linear infinite; z-index: 1;
-        }
-
-        .profile-wrapper::after {
-            width: 110%; height: 110%; border: 1.5px solid rgba(255, 255, 255, 0.3);
-            animation: morphWaves 15s linear infinite reverse;
-        }
-
-        @keyframes morphWaves {
-            0% { transform: rotate(0deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-            50% { transform: rotate(180deg); border-radius: 70% 30% 50% 70% / 30% 60% 40% 70%; }
-            100% { transform: rotate(360deg); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
-        }
-
-        /* Основний контент */
-        .content-container {
-            position: relative; max-width: 700px; margin: 0 auto 160px auto;
-            text-align: center; padding: 20px; z-index: 10;
-        }
-
         h1, h2 {
-            font-family: 'Playfair Display', serif; color: #d1d1d1;
-            font-weight: 600; letter-spacing: 1.5px; margin-bottom: 15px;
-            transition: color 0.5s ease, text-shadow 0.5s ease;
-        }
-        h1 { font-size: 2.6rem; }
-        
-        h1:hover, h2:hover {
-            color: #ffffff; text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            margin: 0;
+            font-family: var(--serif);
+            font-weight: 600;
+            line-height: 1.12;
         }
 
-        /* Плавне підсвічування тексту */
-        .text-block {
-            font-family: 'Montserrat', sans-serif; line-height: 1.9;
-            font-weight: 300; font-size: 1.15rem; letter-spacing: 0.5px;
-            color: #aaaaaa; padding: 15px 25px; border-radius: 10px;
-            background-color: transparent; 
-            transition: background-color 0.4s ease, color 0.4s ease, text-shadow 0.4s ease; 
+        p { margin: 0; }
+
+        a { color: inherit; }
+
+        a:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+
+        .wrap {
+            max-width: 72rem;
+            margin-inline: auto;
+            padding-inline: var(--gutter);
+        }
+
+        /* ---------- Top navigation ---------- */
+        .topbar {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: .25rem 1rem;
+            padding-block: 1.75rem;
+        }
+
+        .topbar-name {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 1.125rem;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .topbar nav {
+            display: flex;
+            gap: 1.75rem;
+        }
+
+        .topbar nav a {
+            color: var(--mist);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: color .2s ease, border-color .2s ease;
+        }
+
+        .topbar nav a:hover {
+            color: var(--beige);
+            border-color: var(--gold);
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 3rem;
+            padding-block: 3.5rem 10rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.75rem, 7vw, 5.5rem);
+            font-weight: 400;
+            letter-spacing: -0.015em;
+            line-height: 1.04;
+        }
+
+        .hero h1 .name { display: inline-block; }
+
+        .hero-goal {
+            margin-top: 1.75rem;
+            max-width: 32em;
+            font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+            line-height: 1.5;
+            text-wrap: balance;
+            color: var(--mist);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .75rem 1.75rem;
+            align-items: center;
+            margin-top: 2.25rem;
+        }
+
+        .button {
+            display: inline-block;
+            padding: .7rem 1.5rem;
+            background: var(--gold);
+            color: var(--navy-deep);
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: background-color .2s ease;
+        }
+
+        .button:hover { background: #DDB534; }
+
+        .text-link {
+            text-decoration: underline;
+            text-decoration-color: var(--gold);
+            text-underline-offset: .3em;
+        }
+
+        /* Photo with the hover smiley */
+        .photo {
+            position: relative;
+            width: clamp(190px, 25vw, 320px);
+            margin: 0;
             cursor: default;
         }
 
-        .text-block:hover { 
-            color: #ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.15); 
-            background-color: rgba(255, 255, 255, 0.03); 
+        .photo img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 832 / 910;
+            object-fit: cover;
+            border-radius: 4px;
+            transition: filter .35s ease;
         }
 
-        .contact-link {
-            color: #aaaaaa; text-decoration: none; font-weight: 500;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-        
-        .contact-link:hover {
-            color: #ffffff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-
-        /* Кнопка аудіо */
-        .audio-btn {
-            position: fixed; bottom: 40px; right: 40px;
-            background-color: transparent; color: #aaaaaa;
-            border: 1px solid #555; padding: 12px 25px;
-            border-radius: 30px; cursor: pointer;
-            font-size: 15px; font-weight: 500; font-family: 'Montserrat', sans-serif;
-            overflow: hidden; 
-            transition: color 0.4s ease, border-color 0.4s ease, transform 0.1s ease; 
-            z-index: 10;
+        .photo svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 3rem;
+            height: 3rem;
+            opacity: 0;
+            transform: translate(-50%, calc(-50% + 12px)) scale(.85);
+            transition: opacity .35s ease, transform .35s cubic-bezier(.16, 1, .3, 1);
+            pointer-events: none;
         }
 
-        .audio-btn::before {
-            content: ''; position: absolute; bottom: -60%; left: 50%;
-            width: 120%; height: 150%; background: rgba(255, 255, 255, 0.15);
-            border-radius: 50%; transform: translateX(-50%) translateY(100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: -1;
+        .photo:hover img { filter: brightness(.4); }
+
+        .photo:hover svg {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
         }
 
-        .audio-btn:hover { color: #fff; border-color: #aaa; }
-        .audio-btn:hover::before { transform: translateX(-50%) translateY(20%); }
-        .audio-btn:active { transform: scale(0.92); }
+        /* Where the cable leaves the photo */
+        .cable-start {
+            display: none;
+            position: absolute;
+            left: 50%;
+            bottom: -7px;
+            width: var(--port-size);
+            height: var(--port-size);
+            margin-left: calc(var(--port-size) / -2);
+            border-radius: 50%;
+            background: var(--gold);
+            border: 3px solid var(--navy);
+        }
 
+        /* ---------- The cable (drawn by the script at the bottom) ---------- */
+        #cable {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1;
+            pointer-events: none;
+            display: none;
+        }
+
+        .js #cable,
+        .js .cable-start { display: block; }
+
+        #cable-track {
+            fill: none;
+            stroke: var(--beige);
+            stroke-opacity: .16;
+            stroke-width: 1.5;
+        }
+
+        #cable-live {
+            fill: none;
+            stroke: var(--gold);
+            stroke-width: 3;
+            stroke-linecap: round;
+        }
+
+        /* ---------- Content sections ---------- */
+        .section {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 12rem minmax(0, 40rem);
+            column-gap: 2.5rem;
+            row-gap: 2.5rem;
+            padding-left: var(--indent);
+            padding-bottom: 7.5rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            font-weight: 400;
+        }
+
+        .section p + p { margin-top: 1.25rem; }
+
+        .section strong { font-weight: 700; }
+
+        /* Port on the cable. Lit by default so the page is complete without JavaScript. */
+        .port {
+            position: absolute;
+            left: var(--port-left);
+            top: .55rem;
+            width: var(--port-size);
+            height: var(--port-size);
+            border-radius: 50%;
+            background: var(--gold);
+            border: 3px solid var(--navy);
+            box-shadow: 0 0 0 1.5px var(--gold);
+            transition: background-color .25s ease, box-shadow .25s ease;
+        }
+
+        .js .port:not(.lit) {
+            background: var(--navy);
+            box-shadow: 0 0 0 1.5px rgba(246, 240, 225, .3);
+        }
+
+        /* ---------- Patch panel showing the tools ---------- */
+        .panel {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 1.5rem 3rem;
+            position: relative;
+            padding: 1.75rem 3.25rem 1.5rem;
+            background: var(--navy-deep);
+            border: 1px solid var(--navy-lift);
+            border-radius: 4px;
+        }
+
+        /* Rack mounting holes, one in each corner */
+        .panel::before,
+        .panel::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            background:
+                radial-gradient(circle, var(--navy) 3.5px, var(--navy-lift) 4px, transparent 4.5px) center 16px / 8px 8px no-repeat,
+                radial-gradient(circle, var(--navy) 3.5px, var(--navy-lift) 4px, transparent 4.5px) center calc(100% - 16px) / 8px 8px no-repeat;
+        }
+
+        .panel::before { left: 1.1rem; }
+        .panel::after { right: 1.1rem; }
+
+        .panel-group h3 {
+            margin: 0 0 1rem;
+            font-size: .9375rem;
+            font-weight: 400;
+            color: var(--mist);
+        }
+
+        .panel-group ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .panel-port {
+            width: 5.25rem;
+            font-size: .9375rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .panel-port svg {
+            display: block;
+            width: 3.5rem;
+            height: auto;
+            margin-bottom: .6rem;
+            overflow: visible;
+        }
+
+        .led {
+            fill: var(--signal);
+            transition: fill .2s ease;
+            transition-delay: calc(var(--i, 0) * 70ms);
+        }
+
+        .js .panel:not(.lit) .led { fill: var(--navy-lift); }
+
+        /* ---------- Contact band ---------- */
+        .contact {
+            position: relative;
+            z-index: 2;
+            background: var(--beige);
+            color: var(--navy);
+            --band-pad: 4.5rem;
+            padding-block: var(--band-pad) 5.5rem;
+            scroll-margin-top: 3rem;
+        }
+
+        .contact .wrap { position: relative; }
+
+        .contact-body { padding-left: var(--indent); }
+
+        .contact h2 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .contact-intro {
+            margin-top: 1.25rem;
+            max-width: 34em;
+            font-size: 1.125rem;
+        }
+
+        .contact-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(16rem, max-content));
+            gap: 2rem 5rem;
+            margin: 3rem 0 0;
+        }
+
+        .contact-list dt {
+            font-size: .9375rem;
+            color: #4A5875;
+        }
+
+        .contact-list dd {
+            margin: .15rem 0 0;
+            font-family: var(--serif);
+            font-size: clamp(1.375rem, 2.6vw, 1.875rem);
+            line-height: 1.3;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-list a {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: .2em;
+            transition: text-decoration-thickness .15s ease;
+        }
+
+        .contact-list a:hover { text-decoration-thickness: 3px; }
+
+        .contact a:focus-visible { outline-color: var(--navy); }
+
+        /* Socket the cable plugs into, sitting on the edge of the band */
+        .socket {
+            display: none;
+            position: absolute;
+            top: calc(-1 * var(--band-pad) - 2.75rem);
+            left: calc(var(--gutter) + var(--port-left) + var(--port-size) / 2);
+            width: 2.5rem;
+            height: 3.25rem;
+            margin-left: -1.25rem;
+            background: var(--navy-deep);
+            border: 1px solid var(--navy-lift);
+            border-radius: 4px 4px 2px 2px;
+        }
+
+        .js .socket { display: block; }
+
+        .socket-led {
+            position: absolute;
+            left: 50%;
+            bottom: .55rem;
+            width: 8px;
+            height: 8px;
+            margin-left: -4px;
+            border-radius: 50%;
+            background: var(--navy-lift);
+            transition: background-color .2s ease, box-shadow .2s ease;
+        }
+
+        .connected .socket-led {
+            background: var(--signal);
+            box-shadow: 0 0 10px var(--signal);
+        }
+
+        .link-status {
+            display: none;
+            position: absolute;
+            top: calc(-1 * var(--band-pad) + 1rem);
+            left: calc(var(--gutter) + var(--indent));
+            font-size: .9375rem;
+            color: #4A5875;
+            white-space: nowrap;
+        }
+
+        .js .link-status { display: block; }
+
+        .connected .link-status { color: var(--navy); font-weight: 700; }
+
+        /* ---------- Tablet and phone ---------- */
+        @media (max-width: 860px) {
+            .section {
+                grid-template-columns: minmax(0, 1fr);
+                row-gap: 1rem;
+                padding-bottom: 5rem;
+            }
+
+            .panel { margin-top: 1rem; }
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --gutter: 1rem;
+                --indent: 2.25rem;
+                --port-left: 0rem;
+            }
+
+            body { font-size: 1rem; }
+
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 2.5rem;
+                padding-block: 1.5rem 7rem;
+            }
+
+            .photo {
+                width: 200px;
+                justify-self: end;
+            }
+
+            .panel {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .panel::before,
+            .panel::after { display: none; }
+
+            .panel-group { width: 100%; }
+
+            .panel-group ul {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(3.75rem, 1fr));
+                gap: 1rem .75rem;
+            }
+
+            .panel-port { width: auto; }
+
+            .panel-port svg { width: 3rem; }
+
+            .contact { --band-pad: 4rem; padding-bottom: 4rem; }
+
+            .contact-list { grid-template-columns: minmax(0, 1fr); margin-top: 2.25rem; }
+        }
+
+        @media print {
+            #cable, .socket, .link-status { display: none !important; }
+        }
     </style>
+
+    <!-- Runs before the page draws, so unlit ports never flash on load -->
+    <script>
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.documentElement.classList.add('js');
+        }
+    </script>
 </head>
-<body>
+<body id="top">
 
-    <!-- Дизайнерське розмите затемнення -->
-    <div id="page-overlay"></div>
-
-    <div class="black-snow"></div>
-
-    <svg class="waves-container fade-in-element" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="parallax">
-            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(30, 30, 30, 0.8)" />
-            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(20, 20, 20, 0.6)" />
-            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(15, 15, 15, 0.4)" />
-            <use xlink:href="#gentle-wave" x="48" y="7" fill="#0c0c0c" />
+    <svg id="cable" aria-hidden="true" focusable="false">
+        <path id="cable-track" />
+        <path id="cable-live" />
+        <!-- RJ45 plug. Point (0,0) is the nose, the body extends upwards. -->
+        <g id="plug">
+            <rect x="-10" y="-30" width="20" height="23" rx="2" fill="#C9A227" />
+            <rect x="-8" y="-8" width="16" height="8" rx="1" fill="#F6F0E1" />
+            <path d="M-5 -6v5M-2 -6v5M2 -6v5M5 -6v5" stroke="#1B2A4A" stroke-width="1" />
         </g>
     </svg>
 
-    <div class="hero-section fade-in-element">
-        
-        <!-- Ліва кнопка + Чорний вогник -->
-        <div class="nav-item-container">
-            <a href="#bio" class="nav-item smooth-link">Biography</a>
-            <div class="spark-track-wrapper fly-in-left">
-                <div class="spark-mover patrol-left">
-                    <div class="spark"></div>
+    <!-- One shape reused by every port on the patch panel -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <symbol id="rj45" viewBox="0 0 56 52">
+            <rect x="1" y="9" width="54" height="42" rx="3" fill="#2A3D66" />
+            <path d="M9 15H47V37H39V44H17V37H9Z" fill="#0B1222" />
+            <path d="M15 15v6M19 15v6M23 15v6M27 15v6M31 15v6M35 15v6M39 15v6M43 15v6" stroke="#C9A227" stroke-width="1.5" />
+        </symbol>
+    </svg>
+
+    <header class="wrap">
+        <div class="topbar">
+            <a class="topbar-name" href="#top">Bohdan Krasokha</a>
+            <nav aria-label="Main">
+                <a href="#bio">Biography</a>
+                <a href="#contacts">Contacts</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap">
+            <div class="hero">
+                <div>
+                    <h1>Hello, I'm <span class="name">Bohdan Krasokha</span></h1>
+                    <p class="hero-goal">Looking for an Ausbildung as a Fachinformatiker für Systemintegration in Germany.</p>
+                    <div class="hero-actions">
+                        <a class="button" href="#contacts">Contact me</a>
+                        <a class="text-link" href="https://github.com/skv1ce" target="_blank" rel="noopener">See my GitHub</a>
+                    </div>
+                </div>
+
+                <figure class="photo">
+                    <img src="photo.jpg" alt="Portrait of Bohdan Krasokha" width="832" height="910">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M8 9h.01M16 9h.01" />
+                        <path d="M8 14c1.5 2.5 6.5 2.5 8 0" />
+                    </svg>
+                    <span class="cable-start" id="cable-start"></span>
+                </figure>
+            </div>
+
+            <section class="section" id="bio">
+                <span class="port" aria-hidden="true"></span>
+                <h2>Biography</h2>
+                <div>
+                    <p>I am an 18-year-old tech enthusiast with a lifelong passion for digital creation. My journey began in childhood with video editing in After Effects and Alight Motion, which naturally evolved into a deep fascination with IT, system integration, and the fundamentals of programming. I thrive on creativity and pride myself on my ability to quickly master new software and technologies.</p>
+                </div>
+            </section>
+
+            <section class="section" id="work">
+                <span class="port" aria-hidden="true"></span>
+                <h2>How I work</h2>
+                <div>
+                    <p>Backed by a strong foundation in exact sciences like algebra and geometry, I possess a sharp spatial imagination and a strong memory. My current tech stack includes VS Code, GitHub, HTML, and CSS, and I am constantly expanding my skill set. My work philosophy is simple: extreme attention to detail and a methodical, step-by-step approach to project construction. I don't just write code or configure systems; my goal is to deliver high-quality, unique, and polished results.</p>
+                </div>
+
+                <div class="panel" id="panel">
+                    <div class="panel-group">
+                        <h3>Current stack</h3>
+                        <ul>
+                            <li class="panel-port" style="--i:0"><svg viewBox="0 0 56 52" aria-hidden="true"><use href="#rj45" /><circle class="led" cx="28" cy="3.5" r="3" /></svg>VS Code</li>
+                            <li class="panel-port" style="--i:1"><svg viewBox="0 0 56 52" aria-hidden="true"><use href="#rj45" /><circle class="led" cx="28" cy="3.5" r="3" /></svg>GitHub</li>
+                            <li class="panel-port" style="--i:2"><svg viewBox="0 0 56 52" aria-hidden="true"><use href="#rj45" /><circle class="led" cx="28" cy="3.5" r="3" /></svg>HTML</li>
+                            <li class="panel-port" style="--i:3"><svg viewBox="0 0 56 52" aria-hidden="true"><use href="#rj45" /><circle class="led" cx="28" cy="3.5" r="3" /></svg>CSS</li>
+                        </ul>
+                    </div>
+                    <div class="panel-group">
+                        <h3>Video editing</h3>
+                        <ul>
+                            <li class="panel-port" style="--i:4"><svg viewBox="0 0 56 52" aria-hidden="true"><use href="#rj45" /><circle class="led" cx="28" cy="3.5" r="3" /></svg>After Effects</li>
+                            <li class="panel-port" style="--i:5"><svg viewBox="0 0 56 52" aria-hidden="true"><use href="#rj45" /><circle class="led" cx="28" cy="3.5" r="3" /></svg>Alight Motion</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="goal">
+                <span class="port" aria-hidden="true"></span>
+                <h2>My goal</h2>
+                <div>
+                    <p>Currently based in Germany, my main objective is to start an <strong>Ausbildung as a Fachinformatiker für Systemintegration</strong>. I am highly driven, open to complex challenges, and constantly pushing myself to grow into a top-tier professional. I am ready for the future, and I am ready to build it.</p>
+                </div>
+            </section>
+        </div>
+
+        <section class="contact" id="contacts">
+            <div class="wrap">
+                <div class="socket" id="socket" aria-hidden="true"><span class="socket-led"></span></div>
+                <div class="link-status" id="link-status" aria-hidden="true">Link down</div>
+
+                <div class="contact-body">
+                    <h2>Let's Connect</h2>
+                    <p class="contact-intro">I am always open to new opportunities, challenges, and interesting conversations.</p>
+
+                    <dl class="contact-list">
+                        <div>
+                            <dt>Email</dt>
+                            <dd><a href="mailto:krasokhade@gmail.com">krasokhade@gmail.com</a></dd>
+                        </div>
+                        <div>
+                            <dt>GitHub</dt>
+                            <dd><a href="https://github.com/skv1ce" target="_blank" rel="noopener">github.com/skv1ce</a></dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
-        </div>
-        
-        <!-- Фотографія зі смайликом -->
-        <div class="profile-wrapper">
-            <img class="profile-photo" src="photo.jpg" alt="Bohdan Krasokha">
-            <!-- Смайлик -->
-            <svg class="smiley-icon" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M8 9h.01M16 9h.01" />
-                <path d="M8 14c1.5 2.5 4.5 2.5 6 0" />
-            </svg>
-        </div>
-        
-        <!-- Права кнопка + Чорний вогник -->
-        <div class="nav-item-container">
-            <a href="#contacts" class="nav-item smooth-link">Contacts</a>
-            <div class="spark-track-wrapper fly-in-right">
-                <div class="spark-mover patrol-right">
-                    <div class="spark"></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="content-container fade-in-element">
-        <h1 id="bio">Hello, I'm Bohdan Krasokha</h1>
-        
-        <div class="text-block">
-            <p>I am an 18-year-old tech enthusiast with a lifelong passion for digital creation. My journey began in childhood with video editing in After Effects and Alight Motion, which naturally evolved into a deep fascination with IT, system integration, and the fundamentals of programming. I thrive on creativity and pride myself on my ability to quickly master new software and technologies.</p>
-            
-            <p>Backed by a strong foundation in exact sciences like algebra and geometry, I possess a sharp spatial imagination and a strong memory. My current tech stack includes VS Code, GitHub, HTML, and CSS, and I am constantly expanding my skill set. My work philosophy is simple: extreme attention to detail and a methodical, step-by-step approach to project construction. I don't just write code or configure systems; my goal is to deliver high-quality, unique, and polished results.</p>
-            
-            <p>Currently based in Germany, my main objective is to start an <strong>Ausbildung as a Fachinformatiker für Systemintegration</strong>. I am highly driven, open to complex challenges, and constantly pushing myself to grow into a top-tier professional. I am ready for the future, and I am ready to build it.</p>
-        </div>
-
-        <h2 id="contacts" style="margin-top: 50px;">Let's Connect</h2>
-        <div class="text-block">
-            <p>I am always open to new opportunities, challenges, and interesting conversations.</p>
-            <p>
-                Email: <a href="mailto:krasokhade@gmail.com" class="contact-link">krasokhade@gmail.com</a><br>
-                GitHub: <a href="https://github.com/skv1ce" target="_blank" class="contact-link">github.com/skv1ce</a><br>
-                Telegram: <a href="https://t.me/skv1ce" target="_blank" class="contact-link">@skv1ce</a><br>
-                Instagram: <a href="https://instagram.com/skv1ce" target="_blank" class="contact-link">@skv1ce</a>
-            </p>
-        </div>
-    </div>
-
-    <audio id="bg-music" src="music.mp3"></audio>
-
-    <button class="audio-btn" onclick="toggleMusic()">🎵 Play Music</button>
+        </section>
+    </main>
 
     <script>
-        function toggleMusic() {
-            var music = document.getElementById("bg-music");
-            music.volume = 0.15; 
-            if (music.paused) {
-                music.play();
-            } else {
-                music.pause();
+        /*
+         * The cable: a gold line from the photo down to the contact section.
+         * It grows as the visitor scrolls, lights each port it passes, and at
+         * the end the plug reaches the socket and the link comes up.
+         *
+         * Skipped for visitors who asked their system for reduced motion:
+         * they get the plain page with everything lit.
+         */
+        (function () {
+            if (!document.documentElement.classList.contains('js')) return;
+
+            var svg = document.getElementById('cable');
+            var track = document.getElementById('cable-track');
+            var live = document.getElementById('cable-live');
+            var plug = document.getElementById('plug');
+            var panel = document.getElementById('panel');
+            var ports = Array.prototype.slice.call(document.querySelectorAll('.port'));
+            var contact = document.getElementById('contacts');
+            var status = document.getElementById('link-status');
+
+            var total = 0;        // full length of the cable in px
+            var table = [];       // samples of [y on the page, length along the cable]
+            var marks = [];       // things to switch on, each at a certain length
+            var current = 0;      // length drawn right now
+            var target = 0;       // length the current scroll position asks for
+            var frame = null;
+
+            // Centre of an element, measured from the top-left of the page
+            function centre(el) {
+                var box = el.getBoundingClientRect();
+                return {
+                    x: box.left + box.width / 2 + window.scrollX,
+                    y: box.top + box.height / 2 + window.scrollY
+                };
             }
-        }
 
-        // Ефект кліку по екрану
-        document.addEventListener('click', function(e) {
-            let moon = document.createElement('div');
-            moon.className = 'dark-moon-ripple';
-            moon.style.left = e.clientX + 'px';
-            moon.style.top = e.clientY + 'px';
-            document.body.appendChild(moon);
-            setTimeout(() => { moon.remove(); }, 500); 
-        });
+            // A curve that leaves and arrives vertically, like a hanging cable
+            function curve(a, b) {
+                var bend = (b.y - a.y) / 2;
+                return 'C' + a.x + ' ' + (a.y + bend) + ' ' + b.x + ' ' + (b.y - bend) + ' ' + b.x + ' ' + b.y;
+            }
 
-        // Ідеально плавний і швидший скрол
-        function smoothScrollTo(targetPosition, duration) {
-            const startPosition = window.pageYOffset;
-            const distance = targetPosition - startPosition;
-            let startTime = null;
+            // Length along the cable at a given page height
+            function lengthAtY(y) {
+                if (y <= table[0][0]) return 0;
+                for (var i = 1; i < table.length; i++) {
+                    if (table[i][0] >= y) {
+                        var a = table[i - 1], b = table[i];
+                        return a[1] + (b[1] - a[1]) * (y - a[0]) / ((b[0] - a[0]) || 1);
+                    }
+                }
+                return total;
+            }
 
-            function animation(currentTime) {
-                if (startTime === null) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                
-                const run = easeInOut(timeElapsed, startPosition, distance, duration);
-                window.scrollTo(0, run);
-                
-                if (timeElapsed < duration) {
-                    requestAnimationFrame(animation);
+            // Measure the page and work out the route. Runs again on any resize.
+            function layout() {
+                svg.style.height = '0';
+                var height = document.body.offsetHeight;
+                svg.style.height = height + 'px';
+                svg.setAttribute('height', height);
+
+                var sway = window.innerWidth <= 640 ? 6 : 26;
+                var start = centre(document.getElementById('cable-start'));
+                var socket = document.getElementById('socket').getBoundingClientRect();
+                var end = {
+                    x: socket.left + socket.width / 2 + window.scrollX,
+                    y: socket.top + window.scrollY + 14
+                };
+
+                var stops = ports.map(centre);
+                var d = 'M' + start.x + ' ' + start.y + curve(start, stops[0]);
+
+                // Between two ports the cable drifts to one side, then back
+                var route = stops.concat([end]);
+                for (var i = 1; i < route.length; i++) {
+                    var from = route[i - 1], to = route[i];
+                    var mid = { x: from.x + (i % 2 ? sway : sway * .6), y: (from.y + to.y) / 2 };
+                    d += curve(from, mid) + curve(mid, to);
+                }
+
+                track.setAttribute('d', d);
+                live.setAttribute('d', d);
+
+                total = live.getTotalLength();
+                live.style.strokeDasharray = total;
+
+                table = [];
+                for (var len = 0; len <= total; len += 8) {
+                    table.push([live.getPointAtLength(len).y, len]);
+                }
+                table.push([live.getPointAtLength(total).y, total]);
+
+                marks = ports.map(function (port) {
+                    return { el: port, at: lengthAtY(centre(port).y) };
+                });
+                marks.push({ el: panel, at: lengthAtY(centre(panel).y - panel.offsetHeight / 2 + 30) });
+
+                updateTarget();
+                draw();
+            }
+
+            // The tip of the cable follows a line partway down the screen. That
+            // line slides to the bottom edge on the way down, so the cable always
+            // finishes by the time the visitor reaches the end of the page.
+            function updateTarget() {
+                var room = document.documentElement.scrollHeight - window.innerHeight;
+                var progress = room > 0 ? Math.min(window.scrollY / room, 1) : 1;
+                var line = window.scrollY + window.innerHeight * (0.82 + 0.18 * progress);
+                target = lengthAtY(line);
+                if (frame === null) frame = requestAnimationFrame(tick);
+            }
+
+            // Ease towards the target so that scrolling never makes the tip jump
+            function tick() {
+                frame = null;
+                var gap = target - current;
+                current = Math.abs(gap) < 0.5 ? target : current + gap * 0.12;
+                draw();
+                if (current !== target) frame = requestAnimationFrame(tick);
+            }
+
+            function draw() {
+                live.style.strokeDashoffset = total - current;
+
+                var tip = live.getPointAtLength(current);
+                var back = live.getPointAtLength(Math.max(current - 2, 0));
+                var angle = current < 2 ? 0 : Math.atan2(tip.y - back.y, tip.x - back.x) * 180 / Math.PI - 90;
+                plug.setAttribute('transform', 'translate(' + tip.x + ' ' + tip.y + ') rotate(' + angle + ')');
+
+                marks.forEach(function (mark) {
+                    mark.el.classList.toggle('lit', current >= mark.at);
+                });
+
+                var connected = current >= total - 0.5;
+                if (connected !== contact.classList.contains('connected')) {
+                    contact.classList.toggle('connected', connected);
+                    status.textContent = connected ? 'Link up' : 'Link down';
                 }
             }
 
-            function easeInOut(t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t + b;
-                t--;
-                return -c / 2 * (t * (t - 2) - 1) + b;
-            }
+            window.addEventListener('scroll', updateTarget, { passive: true });
+            window.addEventListener('resize', layout);
+            window.addEventListener('load', layout);
+            if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+            if (window.ResizeObserver) new ResizeObserver(layout).observe(document.body);
 
-            requestAnimationFrame(animation);
-        }
-
-        // Логіка кліку з дизайнерським розмиттям і він'єткою
-        document.querySelectorAll('.smooth-link').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault(); 
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                const overlay = document.getElementById('page-overlay');
-
-                // 1. Вмикаємо розмите затемнення
-                overlay.style.opacity = '1';
-
-                // 2. Скрол (тривалість зменшено до 850 мс для динаміки)
-                const targetPos = targetElement.getBoundingClientRect().top + window.pageYOffset - 40;
-                smoothScrollTo(targetPos, 850);
-
-                // 3. Знімаємо затемнення після завершення скролу
-                setTimeout(() => {
-                    overlay.style.opacity = '0';
-                }, 800); 
-            });
-        });
+            layout();
+        })();
     </script>
 
 </body>
