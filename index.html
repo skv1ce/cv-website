@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bohdan Krasokha - Portfolio</title>
-    <meta name="description" content="Bohdan Krasokha sucht eine Ausbildung zum Fachinformatiker für Systemintegration in Hamburg.">
+    <title>Bohdan Krasokha – Ausbildung Fachinformatiker Systemintegration</title>
+    <meta name="description" content="Bohdan Krasokha sucht eine Ausbildung zum Fachinformatiker für Systemintegration in Hamburg, Start 2027.">
+    <meta name="author" content="Bohdan Krasokha">
     <meta name="theme-color" content="#1B2A4A">
+
+    <!-- Vorschau, wenn der Link in E-Mail, WhatsApp oder LinkedIn geteilt wird -->
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Bohdan Krasokha – Ausbildung Fachinformatiker Systemintegration">
+    <meta property="og:description" content="Ich suche eine Ausbildung zum Fachinformatiker für Systemintegration in Hamburg.">
+    <meta property="og:url" content="https://skv1ce.github.io/cv-website/">
+    <meta property="og:image" content="https://skv1ce.github.io/cv-website/photo.jpg">
+    <meta property="og:locale" content="de_DE">
+
+    <!-- Icon im Browser-Tab -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231B2A4A'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' font-weight='600' text-anchor='middle' fill='%23C9A227'%3EBK%3C/text%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,7 +83,27 @@
             padding-inline: var(--gutter);
         }
 
+        /* ---------- Skip link: appears only when using the keyboard ---------- */
+        .skip {
+            position: absolute;
+            left: 1rem;
+            top: -4rem;
+            z-index: 10;
+            padding: .6rem 1.1rem;
+            background: var(--gold);
+            color: var(--navy-deep);
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 3px;
+            transition: top .15s ease;
+        }
+
+        .skip:focus { top: 1rem; }
+
+        main:focus { outline: none; }
+
         /* ---------- Language: every text exists twice, only one is shown ---------- */
+        /* Note: any element with a lang attribute is hidden in the other language. */
         html[lang="de"] body [lang="en"],
         html[lang="en"] body [lang="de"] { display: none; }
 
@@ -114,7 +146,8 @@
         .scripted .lang-switch { display: flex; }
 
         .lang-switch button {
-            padding: .2rem .4rem;
+            min-width: 2.5rem;
+            padding: .45rem .55rem;
             background: none;
             border: 0;
             border-bottom: 2px solid transparent;
@@ -237,11 +270,14 @@
             pointer-events: none;
         }
 
-        .photo:hover img { filter: brightness(.4); }
+        /* Only on devices with a real mouse: on phones a tap would leave the photo dark */
+        @media (hover: hover) {
+            .photo:hover img { filter: brightness(.55); }
 
-        .photo:hover svg {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
+            .photo:hover svg {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
         }
 
         /* Where the cable leaves the photo */
@@ -308,6 +344,8 @@
 
         .section strong { font-weight: 700; }
 
+        .section .text-link { text-underline-offset: .2em; }
+
         /* Port on the cable. Lit by default so the page is complete without JavaScript. */
         .port {
             position: absolute;
@@ -325,6 +363,110 @@
         .js .port:not(.lit) {
             background: var(--navy);
             box-shadow: 0 0 0 1.5px rgba(246, 240, 225, .3);
+        }
+
+        /* ---------- Key facts (goal section) ---------- */
+        .facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+            gap: 1.5rem 2rem;
+            margin: 2.25rem 0 0;
+        }
+
+        .facts div {
+            padding-top: .85rem;
+            border-top: 1px solid var(--navy-lift);
+        }
+
+        .facts dt {
+            font-size: .875rem;
+            color: var(--mist);
+        }
+
+        .facts dd {
+            margin: .2rem 0 0;
+            font-family: var(--serif);
+            font-size: 1.25rem;
+            line-height: 1.35;
+        }
+
+        /* ---------- Skills: what I can do / what I'm learning ---------- */
+        .skills {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-col {
+            padding: 1.5rem 1.75rem 1.75rem;
+            background: var(--navy-deep);
+            border: 1px solid var(--navy-lift);
+            border-radius: 4px;
+        }
+
+        .skill-col h3 {
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+            margin: 0 0 1.25rem;
+            padding-bottom: .9rem;
+            border-bottom: 1px solid var(--navy-lift);
+            font-family: var(--serif);
+            font-size: 1.25rem;
+            font-weight: 400;
+        }
+
+        /* Status light in the heading: green = link up, gold ring = in progress */
+        .status {
+            flex: none;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .status-up {
+            background: var(--signal);
+            box-shadow: 0 0 8px rgba(95, 211, 141, .55);
+        }
+
+        .status-next { border: 2px solid var(--gold); }
+
+        .skill-col ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .skill-col li {
+            position: relative;
+            padding-left: 1.35rem;
+            line-height: 1.45;
+        }
+
+        .skill-col li + li { margin-top: .95rem; }
+
+        .skill-col li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: .5em;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+
+        .skills-done li::before { background: var(--signal); }
+
+        .skills-next li::before { border: 1.5px solid var(--gold); }
+
+        .skill-col strong { font-weight: 700; }
+
+        .skill-detail {
+            display: block;
+            margin-top: .15rem;
+            font-size: .9375rem;
+            color: var(--mist);
         }
 
         /* ---------- Patch panel showing the tools ---------- */
@@ -535,6 +677,12 @@
                 justify-self: end;
             }
 
+            .facts { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.25rem 1.25rem; }
+
+            .facts dd { font-size: 1.125rem; }
+
+            .skill-col { padding: 1.25rem 1.25rem 1.5rem; }
+
             .panel {
                 padding: 1.5rem 1.25rem;
             }
@@ -560,7 +708,7 @@
         }
 
         @media print {
-            #cable, .socket, .link-status { display: none !important; }
+            #cable, .socket, .link-status, .skip, .lang-switch { display: none !important; }
         }
     </style>
 
@@ -583,6 +731,8 @@
     </script>
 </head>
 <body id="top">
+
+    <a class="skip" href="#inhalt"><span lang="de">Zum Inhalt springen</span><span lang="en">Skip to content</span></a>
 
     <svg id="cable" aria-hidden="true" focusable="false">
         <path id="cable-track" />
@@ -609,26 +759,27 @@
             <a class="topbar-name" href="#top">Bohdan Krasokha</a>
             <div class="topbar-right">
                 <nav aria-label="Navigation">
-                    <a href="#bio"><span lang="de">Über mich</span><span lang="en">Biography</span></a>
-                    <a href="#contacts"><span lang="de">Kontakt</span><span lang="en">Contacts</span></a>
+                    <a href="#bio"><span lang="de">Über mich</span><span lang="en">About</span></a>
+                    <a href="#contacts"><span lang="de">Kontakt</span><span lang="en">Contact</span></a>
                 </nav>
+                <!-- The buttons carry no lang attribute on purpose: the language CSS would hide one of them -->
                 <div class="lang-switch" role="group" aria-label="Sprache / Language">
-                    <button type="button" data-set-lang="de" aria-pressed="true" title="Deutsch">DE</button>
-                    <button type="button" data-set-lang="en" aria-pressed="false" title="English">EN</button>
+                    <button type="button" data-set-lang="de" aria-pressed="true" aria-label="Deutsch">DE</button>
+                    <button type="button" data-set-lang="en" aria-pressed="false" aria-label="English">EN</button>
                 </div>
             </div>
         </div>
     </header>
 
-    <main>
+    <main id="inhalt" tabindex="-1">
         <div class="wrap">
             <div class="hero">
                 <div>
                     <h1><span lang="de">Hallo, ich bin</span><span lang="en">Hello, I'm</span> <span class="name">Bohdan Krasokha</span></h1>
-                    <p class="hero-goal"><span lang="de">Ich suche eine Ausbildung zum Fachinformatiker für Systemintegration in Hamburg.</span><span lang="en">Looking for an Ausbildung as a Fachinformatiker für Systemintegration in Hamburg.</span></p>
+                    <p class="hero-goal"><span lang="de">Ich suche eine Ausbildung zum Fachinformatiker für Systemintegration in Hamburg.</span><span lang="en">I'm looking for an apprenticeship (Ausbildung) as an IT specialist for system integration in Hamburg.</span></p>
                     <div class="hero-actions">
-                        <a class="button" href="#contacts"><span lang="de">Kontakt aufnehmen</span><span lang="en">Contact me</span></a>
-                        <a class="text-link" href="https://github.com/skv1ce" target="_blank" rel="noopener"><span lang="de">Mein GitHub ansehen</span><span lang="en">See my GitHub</span></a>
+                        <a class="button" href="#contacts"><span lang="de">Kontakt aufnehmen</span><span lang="en">Get in touch</span></a>
+                        <a class="text-link" href="https://github.com/skv1ce" target="_blank" rel="noopener"><span lang="de">Mein GitHub ansehen</span><span lang="en">View my GitHub</span></a>
                     </div>
                 </div>
 
@@ -644,9 +795,9 @@
 
             <section class="section" id="bio">
                 <span class="port" aria-hidden="true"></span>
-                <h2><span lang="de">Über mich</span><span lang="en">Biography</span></h2>
+                <h2><span lang="de">Über mich</span><span lang="en">About me</span></h2>
                 <div>
-                    <p><span lang="de">Ich bin 18 Jahre alt, technikbegeistert und habe schon immer gern digital gestaltet. Angefangen hat alles in meiner Kindheit mit Videobearbeitung in After Effects und Alight Motion. Daraus entwickelte sich ganz von selbst eine große Faszination für IT, Systemintegration und die Grundlagen des Programmierens. Ich arbeite gern kreativ und bin stolz darauf, dass ich neue Software und Technologien schnell lerne.</span><span lang="en">I am an 18-year-old tech enthusiast with a lifelong passion for digital creation. My journey began in childhood with video editing in After Effects and Alight Motion, which naturally evolved into a deep fascination with IT, system integration, and the fundamentals of programming. I thrive on creativity and pride myself on my ability to quickly master new software and technologies.</span></p>
+                    <p><span lang="de">Angefangen hat alles mit Videobearbeitung: Schon als Kind habe ich in After Effects und Alight Motion geschnitten und animiert. Daraus ist mein Interesse an IT entstanden – heute vor allem an Systemintegration und an den Grundlagen des Programmierens. Neue Software und Technologien lerne ich schnell.</span><span lang="en">It all started with video editing: as a kid I was cutting and animating in After Effects and Alight Motion. That grew into an interest in IT – today mainly system integration and the basics of programming. I pick up new software and technologies quickly.</span></p>
                 </div>
             </section>
 
@@ -654,12 +805,12 @@
                 <span class="port" aria-hidden="true"></span>
                 <h2><span lang="de">So arbeite ich</span><span lang="en">How I work</span></h2>
                 <div>
-                    <p><span lang="de">Ich habe starke Grundlagen in exakten Fächern wie Algebra und Geometrie, ein gutes räumliches Vorstellungsvermögen und ein starkes Gedächtnis. Zu meinen aktuellen Tools gehören VS Code, GitHub, HTML und CSS, und ich erweitere meine Kenntnisse ständig. Meine Arbeitsweise ist einfach: größte Sorgfalt im Detail und ein methodisches Vorgehen, Schritt für Schritt. Ich schreibe nicht nur Code oder konfiguriere Systeme, sondern will hochwertige, einzigartige und sorgfältig ausgearbeitete Ergebnisse liefern.</span><span lang="en">Backed by a strong foundation in exact sciences like algebra and geometry, I possess a sharp spatial imagination and a strong memory. My current tech stack includes VS Code, GitHub, HTML, and CSS, and I am constantly expanding my skill set. My work philosophy is simple: extreme attention to detail and a methodical, step-by-step approach to project construction. I don't just write code or configure systems; my goal is to deliver high-quality, unique, and polished results.</span></p>
+                    <p><span lang="de">Ich arbeite sorgfältig und Schritt für Schritt – lieber einmal mehr prüfen als später den Fehler suchen. Mathe liegt mir, besonders Algebra und Geometrie, und ich habe ein gutes räumliches Vorstellungsvermögen. Diese Website habe ich selbst gestaltet; den Quellcode finden Sie auf <a class="text-link" href="https://github.com/skv1ce/cv-website" target="_blank" rel="noopener">GitHub</a>.</span><span lang="en">I work carefully and step by step – better to double-check now than to hunt for the bug later. Maths comes easily to me, especially algebra and geometry, and I have good spatial awareness. I designed this website myself; the source code is on <a class="text-link" href="https://github.com/skv1ce/cv-website" target="_blank" rel="noopener">GitHub</a>.</span></p>
                 </div>
 
                 <div class="panel" id="panel">
                     <div class="panel-group">
-                        <h3><span lang="de">Aktuelle Tools</span><span lang="en">Current stack</span></h3>
+                        <h3><span lang="de">Aktuelle Tools</span><span lang="en">Current tools</span></h3>
                         <ul>
                             <li class="panel-port" style="--i:0"><svg viewBox="0 0 56 52" aria-hidden="true"><use href="#rj45" /><circle class="led" cx="28" cy="3.5" r="3" /></svg>VS Code</li>
                             <li class="panel-port" style="--i:1"><svg viewBox="0 0 56 52" aria-hidden="true"><use href="#rj45" /><circle class="led" cx="28" cy="3.5" r="3" /></svg>GitHub</li>
@@ -677,11 +828,66 @@
                 </div>
             </section>
 
+            <section class="section" id="skills">
+                <span class="port" aria-hidden="true"></span>
+                <h2><span lang="de">Kenntnisse</span><span lang="en">Skills</span></h2>
+                <div>
+                    <p><span lang="de">Was ich schon kann – und woran ich bis zum Ausbildungsstart arbeite.</span><span lang="en">What I can already do – and what I'm working on before my apprenticeship starts.</span></p>
+                </div>
+
+                <div class="skills">
+                    <div class="skill-col skills-done">
+                        <h3><span class="status status-up" aria-hidden="true"></span><span lang="de">Das kann ich</span><span lang="en">What I can do</span></h3>
+                        <ul>
+                            <li><strong>Windows</strong>
+                                <span class="skill-detail"><span lang="de">Installieren und einrichten, Treiber und Updates</span><span lang="en">Installation and setup, drivers and updates</span></span></li>
+                            <li><strong>PC-Hardware</strong>
+                                <span class="skill-detail"><span lang="de">Rechner zusammenbauen, Komponenten wie RAM und SSD tauschen</span><span lang="en">Building PCs, swapping components like RAM and SSDs</span></span></li>
+                            <li><strong><span lang="de">Heimnetzwerk</span><span lang="en">Home network</span></strong>
+                                <span class="skill-detail"><span lang="de">Router und WLAN einrichten, IP-Adressen von Geräten finden</span><span lang="en">Setting up routers and Wi-Fi, finding device IP addresses</span></span></li>
+                            <li><strong><span lang="de">Kommandozeile</span><span lang="en">Command line</span></strong>
+                                <span class="skill-detail"><span lang="de">Grundbefehle wie ping und ipconfig in cmd, PowerShell und im Linux-Terminal</span><span lang="en">Basic commands like ping and ipconfig in cmd, PowerShell and the Linux terminal</span></span></li>
+                            <li><strong>Office</strong>
+                                <span class="skill-detail"><span lang="de">Word und Excel bzw. Google Docs und Sheets</span><span lang="en">Word and Excel, or Google Docs and Sheets</span></span></li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-col skills-next">
+                        <h3><span class="status status-next" aria-hidden="true"></span><span lang="de">Das lerne ich gerade</span><span lang="en">What I'm learning now</span></h3>
+                        <ul>
+                            <li><strong><span lang="de">Linux-Grundlagen</span><span lang="en">Linux basics</span></strong>
+                                <span class="skill-detail"><span lang="de">Ubuntu, Terminal, Dateisystem und Rechte</span><span lang="en">Ubuntu, the terminal, file system and permissions</span></span></li>
+                            <li><strong><span lang="de">Netzwerke</span><span lang="en">Networking</span></strong>
+                                <span class="skill-detail"><span lang="de">IP, DNS, DHCP, Subnetting und das OSI-Modell</span><span lang="en">IP, DNS, DHCP, subnetting and the OSI model</span></span></li>
+                            <li><strong>Windows Server &amp; Active Directory</strong>
+                                <span class="skill-detail"><span lang="de">Benutzer, Gruppen und Domänen verwalten</span><span lang="en">Managing users, groups and domains</span></span></li>
+                            <li><strong><span lang="de">Skripte</span><span lang="en">Scripting</span></strong>
+                                <span class="skill-detail"><span lang="de">Aufgaben automatisieren mit Bash, PowerShell und Python</span><span lang="en">Automating tasks with Bash, PowerShell and Python</span></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
             <section class="section" id="goal">
                 <span class="port" aria-hidden="true"></span>
                 <h2><span lang="de">Mein Ziel</span><span lang="en">My goal</span></h2>
                 <div>
-                    <p><span lang="de">Ich lebe in Hamburg und spreche Deutsch auf Niveau B1. Mein wichtigstes Ziel ist eine <strong>Ausbildung zum Fachinformatiker für Systemintegration</strong>. Ich bin hoch motiviert, offen für anspruchsvolle Aufgaben und arbeite ständig daran, mich zu einem erstklassigen Fachmann zu entwickeln. Ich bin bereit für die Zukunft, und ich bin bereit, sie mitzugestalten.</span><span lang="en">Currently based in Hamburg, with German at B1 level, my main objective is to start an <strong>Ausbildung as a Fachinformatiker für Systemintegration</strong>. I am highly driven, open to complex challenges, and constantly pushing myself to grow into a top-tier professional. I am ready for the future, and I am ready to build it.</span></p>
+                    <p><span lang="de">Ich suche einen Ausbildungsplatz als <strong>Fachinformatiker für Systemintegration</strong> in Hamburg. Gern lerne ich Ihr Unternehmen vorher bei einem Praktikum oder Probetag kennen.</span><span lang="en">I'm looking for an apprenticeship as an <strong>IT specialist for system integration</strong> (Fachinformatiker für Systemintegration) in Hamburg. I'd be glad to get to know your company first through an internship or a trial day.</span></p>
+
+                    <dl class="facts">
+                        <div>
+                            <dt><span lang="de">Ausbildungsstart</span><span lang="en">Start</span></dt>
+                            <dd>2027</dd>
+                        </div>
+                        <div>
+                            <dt><span lang="de">Wohnort</span><span lang="en">Based in</span></dt>
+                            <dd>Hamburg</dd>
+                        </div>
+                        <div>
+                            <dt><span lang="de">Deutsch</span><span lang="en">German</span></dt>
+                            <dd><span lang="de">B1 (DTZ), nächstes Ziel B2</span><span lang="en">B1 (DTZ), working towards B2</span></dd>
+                        </div>
+                    </dl>
                 </div>
             </section>
         </div>
@@ -692,8 +898,8 @@
                 <div class="link-status" id="link-status" aria-hidden="true">Link down</div>
 
                 <div class="contact-body">
-                    <h2><span lang="de">Verbindung herstellen</span><span lang="en">Let's Connect</span></h2>
-                    <p class="contact-intro"><span lang="de">Ich bin immer offen für neue Möglichkeiten, Herausforderungen und interessante Gespräche.</span><span lang="en">I am always open to new opportunities, challenges, and interesting conversations.</span></p>
+                    <h2><span lang="de">Verbindung herstellen</span><span lang="en">Get in touch</span></h2>
+                    <p class="contact-intro"><span lang="de">Ich freue mich über Ihre Nachricht – am besten per E-Mail.</span><span lang="en">I'd be happy to hear from you – email works best.</span></p>
 
                     <dl class="contact-list">
                         <div>
@@ -714,9 +920,14 @@
         /* The DE/EN switch in the top bar. */
         (function () {
             var buttons = document.querySelectorAll('[data-set-lang]');
+            var titles = {
+                de: 'Bohdan Krasokha – Ausbildung Fachinformatiker Systemintegration',
+                en: 'Bohdan Krasokha – Apprenticeship in IT System Integration'
+            };
 
             function show(lang) {
                 document.documentElement.lang = lang;
+                document.title = titles[lang];
                 buttons.forEach(function (button) {
                     button.setAttribute('aria-pressed', button.dataset.setLang === lang ? 'true' : 'false');
                 });
