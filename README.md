@@ -58,3 +58,4 @@ Repository klonen und im Ordner einen kleinen Webserver starten, z. B. `python -
 ## Status
 
 Die Seite wird laufend weiterentwickelt.
+Feedback ist willkommen, gern als Issue.
