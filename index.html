@@ -1,8 +1,23 @@
 <!DOCTYPE html>
+<!--
+     .-""""-.
+   .'  .--.  '.      Hallo! Sie lesen den Quelltext?
+  /   /  _ \   \     Dann sind wir schon zu zweit.
+ |   |  (_) |   |
+  \   '.__.'   /     Bohdan Krasokha · angehender Fachinformatiker für Systemintegration
+   '.        .'      Kein Framework, keine Vorlage: HTML, CSS, JavaScript – Code zusammen mit KI (Claude).
+     '-....-'
+
+     Lebenslauf im Terminal:   curl https://skv1ce.github.io/cv-website/lebenslauf.txt
+     Im Browser:               F12 → Konsole → hire()
+-->
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Security: only this site may load scripts, styles, fonts and images. No trackers, no third parties. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-SaRnxOEmtsNYISrKZ9FdOe0IikAifCowSHYOMqHTZY8='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Bohdan Krasokha – Ausbildung Fachinformatiker Systemintegration</title>
     <meta name="description" content="Bohdan Krasokha, angehender Fachinformatiker für Systemintegration, sucht einen Ausbildungsplatz in Hamburg für 2027.">
     <meta name="author" content="Bohdan Krasokha">
@@ -10,634 +25,37 @@
 
     <meta property="og:type" content="profile">
     <meta property="og:title" content="Bohdan Krasokha – Ausbildung Fachinformatiker Systemintegration">
-    <meta property="og:description" content="Was ich kann, was ich lerne und mein Plan bis zur Ausbildung 2027.">
+    <meta property="og:description" content="Was ich kann, was ich gebaut und repariert habe – und mein Plan bis zur Ausbildung 2027.">
     <meta property="og:url" content="https://skv1ce.github.io/cv-website/">
-    <meta property="og:image" content="https://skv1ce.github.io/cv-website/photo.jpg">
+    <meta property="og:image" content="https://skv1ce.github.io/cv-website/img/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Bohdan Krasokha – angehender Fachinformatiker für Systemintegration">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://skv1ce.github.io/cv-website/">
+    <link rel="apple-touch-icon" href="img/touch-icon.png">
+    <link rel="manifest" href="manifest.webmanifest">
     <meta property="og:locale" content="de_DE">
 
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000'/%3E%3Cpath d='M32 10c12 0 20 8 20 18s-8 16-16 16-12-6-12-11 4-8 8-8 5 3 5 5' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <!-- Fonts are served from this site itself: no request to Google or any other third party (DSGVO) -->
+    <link rel="preload" href="fonts/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
 
-    <style>
-        /* =========================================================
-           Tokens: black, white and the greys between them
-           ========================================================= */
-        :root {
-            --black: #000000;
-            --white: #FFFFFF;
-            --silver: #D1D1D6;
-            --steel: #8E8E93;
-            --line: rgba(255, 255, 255, .13);
-            --panel: rgba(12, 12, 14, .86);
-
-            --sans: 'Geist', 'Segoe UI', system-ui, sans-serif;
-            --mono: 'Geist Mono', Consolas, monospace;
-            --math: 'Instrument Serif', 'Times New Roman', serif;
-
-            --gutter: clamp(1.25rem, 4vw, 3rem);
-            --radius: 18px;
-            --ease: cubic-bezier(.16, 1, .3, 1);
-        }
-
-        @property --ang {
-            syntax: '<angle>';
-            initial-value: 0deg;
-            inherits: false;
-        }
-
-        *, *::before, *::after { box-sizing: border-box; }
-
-        html:not(.js) { scroll-behavior: smooth; }
-        section:focus { outline: none; }
-
-        body {
-            margin: 0;
-            background: var(--black);
-            color: var(--silver);
-            font-family: var(--sans);
-            font-size: 1.0625rem;
-            line-height: 1.65;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1, h2, h3 { margin: 0; color: var(--white); font-weight: 600; }
-        p { margin: 0; }
-        a { color: inherit; }
-        sup, sub { font-size: .62em; line-height: 0; }
-
-        :focus-visible { outline: 2px solid var(--white); outline-offset: 4px; border-radius: 8px; }
-
-        .wrap { position: relative; max-width: 76rem; margin-inline: auto; padding-inline: var(--gutter); }
-
-        .skip {
-            position: absolute; left: 1rem; top: -4rem; z-index: 30;
-            padding: .6rem 1.1rem; border-radius: 10px;
-            background: var(--white); color: var(--black); font-weight: 600; text-decoration: none;
-            transition: top .15s ease;
-        }
-        .skip:focus { top: 1rem; }
-        main:focus { outline: none; }
-
-        html[lang="de"] body [lang="en"],
-        html[lang="en"] body [lang="de"] { display: none; }
-
-        /* =========================================================
-           Background: one particle field behind everything
-           ========================================================= */
-        #field { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-        main, footer { position: relative; z-index: 1; }
-
-        /* =========================================================
-           Shared pieces
-           ========================================================= */
-
-        /* A light runs round the edge on hover */
-        .shine { position: relative; isolation: isolate; }
-        .shine::before {
-            content: '';
-            position: absolute; inset: 0; z-index: 1;
-            padding: 1px; border-radius: inherit;
-            background: conic-gradient(from var(--ang),
-                rgba(255,255,255,.1) 0deg, rgba(255,255,255,.95) 40deg, rgba(255,255,255,.1) 90deg,
-                rgba(255,255,255,.1) 180deg, rgba(255,255,255,.6) 220deg, rgba(255,255,255,.1) 270deg);
-            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-            -webkit-mask-composite: xor; mask-composite: exclude;
-            opacity: 0; transition: opacity .35s ease; pointer-events: none;
-        }
-        .shine:hover::before, .shine:focus-visible::before { opacity: 1; }
-
-        @keyframes orbit { to { --ang: 360deg; } }
-
-        /* Metal-like headline with a slow light passing over it */
-        .sheen {
-            background:
-                linear-gradient(100deg, rgba(255,255,255,0) 44%, rgba(255,255,255,.95) 50%, rgba(255,255,255,0) 56%),
-                linear-gradient(180deg, #FFFFFF 25%, #9C9CA3 100%);
-            background-size: 300% 100%, 100% 100%;
-            background-position: 150% 0, 0 0;
-            -webkit-background-clip: text; background-clip: text;
-            color: transparent;
-        }
-        @keyframes sheen {
-            0% { background-position: 150% 0, 0 0; }
-            40%, 100% { background-position: -50% 0, 0 0; }
-        }
-
-        .dot { flex: none; width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-        .dot-done { background: var(--white); }
-        .dot-now { background: var(--white); }
-        .dot-next { border: 1.5px solid var(--white); }
-        .dot-planned { border: 1.5px dashed var(--steel); }
-
-        @keyframes beat {
-            0% { box-shadow: 0 0 0 0 rgba(255,255,255,.6); }
-            70%, 100% { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
-        }
-
-        /* Floating formulas */
-        .f {
-            position: absolute; z-index: 0;
-            color: #fff;
-            opacity: calc(.3 + var(--glow, 0) * .55);
-            font-family: var(--math); font-style: italic; font-size: 1.35rem; line-height: 1;
-            white-space: nowrap; pointer-events: none; user-select: none;
-            translate: 0 var(--py, 0px);
-            transition: opacity .4s ease;
-        }
-        .f.mono { font-family: var(--mono); font-style: normal; font-size: .9rem; }
-        .f > span { display: inline-block; }
-        @keyframes drift {
-            0% { transform: translate(0, 0) rotate(-3deg); }
-            33% { transform: translate(16px, -14px) rotate(2deg); }
-            66% { transform: translate(-10px, -22px) rotate(-1deg); }
-            100% { transform: translate(-14px, 10px) rotate(2.5deg); }
-        }
-
-        /* Small math figures next to the section headings */
-        .fig { margin: 1.75rem 0 0; width: 13rem; }
-        .fig canvas { display: block; width: 100%; aspect-ratio: 1; }
-        .fig figcaption { margin-top: .4rem; font-size: .8125rem; line-height: 1.45; color: var(--steel); }
-
-        /* =========================================================
-           Header: glass bar once you scroll
-           ========================================================= */
-        .site-header {
-            position: sticky; top: 0; z-index: 20;
-            transition: background-color .4s ease, box-shadow .4s ease, backdrop-filter .4s ease;
-        }
-        .site-header.scrolled {
-            background: rgba(0,0,0,.55);
-            -webkit-backdrop-filter: blur(18px) saturate(1.4);
-                    backdrop-filter: blur(18px) saturate(1.4);
-            box-shadow: 0 1px 0 var(--line);
-        }
-        .topbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; height: 4.25rem; }
-        .brand {
-            display: inline-flex; align-items: center; gap: .6rem;
-            color: var(--white); font-weight: 600; letter-spacing: -.01em; text-decoration: none;
-        }
-        .brand svg { width: 24px; height: 24px; }
-        @keyframes turn { to { transform: rotate(360deg); } }
-
-        .topbar-right { display: flex; align-items: center; gap: 1.75rem; }
-        .topbar nav { display: flex; gap: 1.6rem; font-size: .9375rem; }
-        .topbar nav a { color: var(--steel); text-decoration: none; transition: color .2s ease; }
-        .topbar nav a:hover { color: var(--white); }
-
-        .lang-switch { display: none; padding: 3px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); }
-        .scripted .lang-switch { display: flex; }
-        .lang-switch button {
-            min-width: 2.5rem; padding: .25rem .6rem; border: 0; border-radius: 999px;
-            background: none; color: var(--steel); font: inherit; font-size: .8125rem; cursor: pointer;
-            transition: color .2s ease, background-color .3s var(--ease);
-        }
-        .lang-switch button[aria-pressed="true"] { background: var(--white); color: var(--black); font-weight: 600; }
-
-        /* =========================================================
-           Hero: text on the left, the photo as the core of an orbit system
-           ========================================================= */
-        .hero {
-            position: relative;
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) auto;
-            align-items: center;
-            gap: 2rem clamp(2rem, 5vw, 5rem);
-            min-height: calc(100svh - 4.25rem);
-            padding-block: 1.5rem 4.5rem;
-        }
-
-        .status {
-            display: inline-flex; align-items: center; gap: .6rem;
-            padding: .4rem .85rem .4rem .7rem; border-radius: 999px;
-            background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px var(--line);
-            font-family: var(--mono); font-size: .8125rem; color: var(--silver);
-        }
-
-        .hello { margin-top: 1.75rem; font-size: 1.125rem; color: var(--steel); }
-
-        .name {
-            margin-top: .25rem;
-            font-size: clamp(2.6rem, min(6.1vw, 10.5vh), 5.75rem);
-            font-weight: 600;
-            letter-spacing: -.045em;
-            line-height: 1;
-            padding-bottom: .08em;
-        }
-
-        .role {
-            margin-top: 1rem;
-            font-size: clamp(1.15rem, 1.7vw, 1.5rem);
-            font-weight: 500;
-            letter-spacing: -.015em;
-            line-height: 1.3;
-            color: var(--white);
-        }
-
-        .intro { margin-top: .9rem; max-width: 31em; color: var(--steel); }
-
-        .hero-actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
-
-        /* Buttons: the fill grows from where the pointer enters */
-        .button {
-            display: inline-flex; align-items: center;
-            padding: .85rem 1.5rem; border-radius: 999px;
-            background: var(--white); color: var(--black);
-            font-weight: 600; font-size: 1rem; text-decoration: none;
-            transition: color .35s ease;
-        }
-        .button::after {
-            content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
-            background: var(--black);
-            clip-path: circle(0% at var(--x, 50%) var(--y, 50%));
-            transition: clip-path .6s var(--ease);
-        }
-        .button:hover { color: var(--white); }
-        .button:hover::after { clip-path: circle(150% at var(--x, 50%) var(--y, 50%)); }
-        .button-ghost { background: rgba(255,255,255,.05); color: var(--white); box-shadow: inset 0 0 0 1px var(--line); }
-        .button-ghost::after { background: var(--white); }
-        .button-ghost:hover { color: var(--black); }
-
-        /* The core */
-        .core {
-            position: relative;
-            width: clamp(17rem, min(33vw, 64vh), 29rem);
-            aspect-ratio: 1;
-        }
-
-        .orbits { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-        .orbits.back { z-index: 1; }
-        .orbits.front { z-index: 3; }
-        .orbits ellipse, .orbits path { fill: none; stroke: rgba(255,255,255,.22); stroke-width: .45; vector-effect: non-scaling-stroke; }
-        .orbits .dashed { stroke-dasharray: 2 5; }
-        .orbits.front path { stroke: rgba(255,255,255,.4); }
-
-        .portrait-wrap {
-            position: absolute; z-index: 2;
-            left: 24%; top: 24%; width: 52%; aspect-ratio: 1;
-            border-radius: 50%;
-        }
-        /* Rotating light on the ring around the photo */
-        .portrait-wrap::before {
-            content: ''; position: absolute; inset: -7px; border-radius: 50%; padding: 1.5px;
-            background: conic-gradient(from var(--ang), rgba(255,255,255,0) 0deg, rgba(255,255,255,0) 200deg, rgba(255,255,255,.95) 300deg, rgba(255,255,255,0) 360deg);
-            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-            -webkit-mask-composite: xor; mask-composite: exclude;
-        }
-        .portrait-wrap::after {
-            content: ''; position: absolute; inset: -7px; border-radius: 50%;
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,.14);
-        }
-        .portrait {
-            position: absolute; inset: 0; border-radius: 50%; overflow: hidden;
-            background: #1a1a1c;
-            box-shadow: 0 30px 80px rgba(0,0,0,.7);
-        }
-        .portrait img {
-            display: block; width: 100%; height: 100%;
-            object-fit: cover; object-position: 50% 22%;
-            transform: scale(1.22); transform-origin: 50% 30%;
-        }
-        /* Darkens the edge of the photo so it melts into the black */
-        .portrait::after {
-            content: ''; position: absolute; inset: 0; border-radius: 50%;
-            background: radial-gradient(circle at 50% 42%, rgba(0,0,0,0) 58%, rgba(0,0,0,.55) 100%);
-        }
-
-        .chip {
-            position: absolute; left: 0; top: 0; z-index: 1;
-            padding: .28rem .65rem; border-radius: 999px;
-            background: rgba(0,0,0,.62);
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,.28);
-            font-family: var(--mono); font-size: .75rem; font-weight: 500; color: var(--white);
-            white-space: nowrap; will-change: transform, opacity;
-            opacity: 0;
-        }
-        .no-orbit .chip { display: none; }
-
-        .core .f-a { left: -10%; top: 2%; }
-        .core .f-b { right: -8%; bottom: 3%; }
-
-        /* Scroll cue */
-        .scroll-cue {
-            position: absolute; left: 50%; bottom: 1.25rem; width: 1px; height: 2.75rem;
-            background: linear-gradient(rgba(255,255,255,.35), rgba(255,255,255,0));
-            overflow: hidden;
-        }
-        .scroll-cue::after {
-            content: ''; position: absolute; left: -1px; top: -10px; width: 3px; height: 10px; border-radius: 2px;
-            background: var(--white);
-        }
-        @keyframes fall { 0% { top: -10px; opacity: 0; } 20% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
-
-        /* =========================================================
-           Sections
-           ========================================================= */
-        .section {
-            position: relative;
-            display: grid;
-            grid-template-columns: 15rem minmax(0, 1fr);
-            gap: 2rem 4rem;
-            padding-block: 5.5rem;
-            scroll-margin-top: 4rem;
-        }
-        .section h2 { font-size: clamp(1.75rem, 2.6vw, 2.25rem); letter-spacing: -.03em; line-height: 1.1; }
-        .section-body { max-width: 40rem; }
-        .section-body p + p { margin-top: 1.2rem; }
-        .section-body strong { color: var(--white); font-weight: 600; }
-        .lead { font-size: clamp(1.2rem, 2vw, 1.45rem); line-height: 1.45; letter-spacing: -.012em; color: var(--white); }
-
-        /* Plan spans the full width */
-        .section-wide { display: block; }
-        .section-head { display: grid; grid-template-columns: 15rem minmax(0, 40rem); gap: 2rem 4rem; }
-
-        .legend { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 1.5rem 0 0; padding: 0; list-style: none; font-size: .875rem; color: var(--steel); }
-        .legend li { display: flex; align-items: center; gap: .5rem; }
-
-        /* ---------- Plan tree ---------- */
-        .tree {
-            position: relative;
-            display: grid;
-            grid-template-columns: 1fr 1.15fr 1fr 1.05fr 1fr 1.3fr;
-            align-items: center;
-            gap: 1.75rem;
-            margin-top: 3rem;
-        }
-        .tree-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-        .edge { fill: none; stroke: rgba(255,255,255,.22); stroke-width: 1.5; transition: stroke .3s ease, opacity .5s ease; }
-        .edge.solid { stroke: rgba(255,255,255,.55); }
-        .edge.dashed { stroke-dasharray: 4 6; }
-        .flow { fill: none; stroke: var(--white); stroke-width: 2.25; stroke-linecap: round; stroke-dasharray: 2.5 97.5; opacity: .9; transition: opacity .5s ease; }
-        @keyframes flow { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
-
-        .stage { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1rem; }
-        .node {
-            padding: .85rem 1rem .95rem; border-radius: 14px;
-            background: var(--panel); box-shadow: inset 0 0 0 1px var(--line);
-            transition: opacity .7s ease, translate .7s var(--ease), box-shadow .3s ease, transform .4s var(--ease);
-            cursor: default;
-        }
-        .node:hover { transform: translateY(-3px); }
-        .node .state { display: flex; align-items: center; gap: .5rem; font-size: .78rem; font-family: var(--mono); color: var(--steel); }
-        .node h3 { margin-top: .4rem; font-size: 1rem; line-height: 1.3; letter-spacing: -.01em; }
-        .node p { margin-top: .3rem; font-size: .8125rem; line-height: 1.45; color: var(--steel); }
-        .node.done { box-shadow: inset 0 0 0 1px rgba(255,255,255,.45); }
-        .node.now { box-shadow: inset 0 0 0 1px rgba(255,255,255,.7); }
-        .node.planned { background: rgba(0,0,0,.5); box-shadow: none; outline: 1.5px dashed rgba(255,255,255,.3); outline-offset: -1.5px; }
-        .node.goal {
-            padding: 1.4rem 1.35rem 1.5rem;
-            background: var(--white); color: var(--black);
-            box-shadow: 0 0 0 6px rgba(255,255,255,.08), 0 0 60px rgba(255,255,255,.2);
-        }
-        .node.goal .state { color: #48484A; }
-        .node.goal h3 { color: var(--black); font-size: 1.25rem; line-height: 1.15; letter-spacing: -.025em; }
-        .node.goal p { color: #48484A; font-size: .875rem; }
-
-        /* ---------- Skills ---------- */
-        .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.1rem; }
-        .card {
-            padding: 1.5rem 1.55rem 1.65rem; border-radius: var(--radius);
-            background: var(--panel); box-shadow: inset 0 0 0 1px var(--line);
-            transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-            transition: transform .5s var(--ease), opacity .9s ease, translate .9s var(--ease);
-        }
-        .card h3 { display: flex; align-items: center; gap: .6rem; margin-bottom: 1.1rem; font-size: 1.0625rem; letter-spacing: -.01em; }
-        .card ul { margin: 0; padding: 0; list-style: none; }
-        .card li + li { margin-top: .85rem; }
-        .card li strong { display: block; color: var(--white); font-weight: 500; line-height: 1.35; }
-        .card li .detail { display: block; font-size: .9rem; color: var(--steel); line-height: 1.45; }
-
-        /* ---------- Terminal ---------- */
-        .terminal {
-            display: none;
-            border-radius: var(--radius);
-            background: rgba(6, 6, 8, .86);
-            box-shadow: inset 0 0 0 1px var(--line), 0 30px 80px rgba(0,0,0,.6);
-            font-family: var(--mono);
-            overflow: hidden;
-        }
-        .scripted .terminal { display: block; }
-        .terminal:focus-within { box-shadow: inset 0 0 0 1px rgba(255,255,255,.45), 0 30px 80px rgba(0,0,0,.6); }
-        .terminal-bar { display: flex; align-items: center; gap: .45rem; padding: .8rem 1.1rem; border-bottom: 1px solid var(--line); color: var(--steel); font-size: .78rem; }
-        .terminal-bar i { width: 11px; height: 11px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(255,255,255,.35); }
-        .terminal-bar i:first-child { background: rgba(255,255,255,.85); box-shadow: none; }
-        .terminal-bar span { margin-left: .6rem; }
-        .terminal-out {
-            height: 22rem; overflow-y: auto;
-            padding: 1.2rem 1.4rem .4rem;
-            font-size: .9rem; line-height: 1.75; color: var(--silver);
-            white-space: pre-wrap; word-break: break-word;
-            scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.2) transparent;
-        }
-        .terminal-out .cmd { color: var(--white); margin-top: .85rem; }
-        .terminal-out .cmd:first-child { margin-top: 0; }
-        .terminal-out .dim { color: var(--steel); }
-        .terminal-out .hi { color: var(--white); font-weight: 500; }
-        .terminal-out a { color: var(--white); text-underline-offset: .25em; }
-        .terminal-out .caret { display: inline-block; width: .55em; height: 1.1em; vertical-align: -.2em; background: var(--white); margin-left: 1px; }
-        @keyframes blink { 50% { opacity: 0; } }
-        .neo { display: flex; gap: 1.75rem; flex-wrap: wrap; white-space: pre; margin-top: .4rem; }
-        .neo-art { color: var(--white); line-height: 1.3; }
-        .neo-info { white-space: pre-wrap; }
-        .terminal-form { display: flex; align-items: center; gap: .6rem; padding: .5rem 1.4rem 1.2rem; font-size: .9rem; }
-        .terminal-form label { color: var(--white); white-space: nowrap; }
-        .terminal-form label span { color: var(--steel); }
-        .terminal-form input { flex: 1; min-width: 0; padding: .3rem 0; border: 0; background: none; color: var(--white); font: inherit; caret-color: var(--white); }
-        .terminal-form input:focus { outline: none; }
-        .chips { display: none; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
-        .scripted .chips { display: flex; }
-        .chips button {
-            padding: .42rem .9rem; border: 0; border-radius: 999px;
-            background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px var(--line);
-            color: var(--silver); font-family: var(--mono); font-size: .8125rem; cursor: pointer;
-            transition: color .2s ease, background-color .2s ease, transform .3s var(--ease);
-        }
-        .chips button:hover { color: var(--white); background: rgba(255,255,255,.1); transform: translateY(-2px); }
-        .no-js-note { color: var(--steel); }
-        .scripted .no-js-note { display: none; }
-
-        /* ---------- Contact ---------- */
-        .contact { position: relative; padding-block: 7rem 5rem; scroll-margin-top: 4rem; }
-        .contact h2 { font-size: clamp(2.5rem, 6.5vw, 5.5rem); letter-spacing: -.045em; line-height: 1; padding-bottom: .06em; }
-        .contact-intro { margin-top: 1.25rem; max-width: 34em; font-size: 1.125rem; }
-        /* Contact as three orbs: icon in a ring, a slow dashed orbit around it */
-        .contact-orbs {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 15rem));
-            gap: 2rem;
-            margin-top: 3.25rem;
-        }
-        .orb-link {
-            display: flex; flex-direction: column; align-items: flex-start; gap: 1.15rem;
-            text-decoration: none;
-        }
-        .orb {
-            position: relative; isolation: isolate;
-            display: grid; place-items: center;
-            width: 5.5rem; height: 5.5rem; border-radius: 50%;
-            background: rgba(255,255,255,.04);
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,.2);
-            color: var(--white);
-            transition: transform .5s var(--ease), color .35s ease;
-        }
-        .orb::after {
-            content: ''; position: absolute; inset: 0; z-index: -1; border-radius: 50%;
-            background: var(--white);
-            transform: scale(0);
-            transition: transform .55s var(--ease);
-        }
-        .orb svg { width: 1.75rem; height: 1.75rem; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-        .orb-ring {
-            position: absolute; inset: -.6rem; border-radius: 50%;
-            border: 1px dashed rgba(255,255,255,.2);
-            animation: turn var(--spin, 40s) linear infinite;
-        }
-        .orb-ring::after {
-            content: ''; position: absolute; top: -3px; left: 50%; width: 5px; height: 5px; margin-left: -2.5px;
-            border-radius: 50%; background: var(--white);
-        }
-        .orb-link:hover .orb, .orb-link:focus-visible .orb { transform: translateY(-4px); color: var(--black); }
-        .orb-link:hover .orb::after, .orb-link:focus-visible .orb::after { transform: scale(1); }
-        .orb-link:hover .orb-ring { border-color: rgba(255,255,255,.45); }
-        .orb-text small { display: block; font-family: var(--mono); font-size: .8125rem; color: var(--steel); }
-        .orb-text .value { display: block; margin-top: .2rem; color: var(--white); font-size: clamp(1.02rem, 1.6vw, 1.2rem); font-weight: 500; overflow-wrap: anywhere; }
-
-        .copy {
-            display: inline-flex; align-items: center; gap: .5rem;
-            margin-top: 2.25rem; padding: .5rem 1rem; border: 0; border-radius: 999px;
-            background: rgba(255,255,255,.05); box-shadow: inset 0 0 0 1px var(--line);
-            color: var(--silver); font: inherit; font-family: var(--mono); font-size: .8125rem; cursor: pointer;
-            transition: color .2s ease, background-color .2s ease;
-        }
-        .copy:hover { color: var(--white); background: rgba(255,255,255,.1); }
-        .copy .ok-label { display: none; }
-        .copy.ok .ok-label { display: inline; }
-        .copy.ok .copy-label { display: none; }
-        .copy.ok { color: var(--white); box-shadow: inset 0 0 0 1px rgba(255,255,255,.5); }
-
-        footer { padding-block: 2rem 3rem; border-top: 1px solid var(--line); color: var(--steel); font-size: .8125rem; }
-        footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; }
-
-        /* =========================================================
-           Motion (only for people who have not asked for less)
-           ========================================================= */
-        /* Always on: a "less motion" system setting only slows the JavaScript parts down */
-            .shine:hover::before { animation: orbit 2.6s linear infinite; }
-            .sheen { animation: sheen 8s ease-in-out 1.8s infinite; }
-            .brand svg { animation: turn 14s linear infinite; }
-            .status .dot, .node.now .dot-now, .legend .dot-now { animation: beat 2.2s ease-out infinite; }
-            .portrait-wrap::before { animation: orbit 7s linear infinite; }
-            .f > span { animation: drift var(--dur, 16s) ease-in-out var(--del, 0s) infinite alternate; }
-            .flow { animation: flow 3s linear infinite; }
-            .scroll-cue::after { animation: fall 2.2s ease-in infinite; }
-            .terminal-out .caret { animation: blink 1s steps(1) infinite; }
-
-            /* Load sequence for the first screen */
-            .js .hero-text > *, .js .core { opacity: 0; animation: rise 1.1s var(--ease) forwards; }
-            .js .hero-text > :nth-child(1) { animation-delay: .1s; }
-            .js .hero-text > :nth-child(2) { animation-delay: .2s; }
-            .js .hero-text > :nth-child(3) { animation-delay: .3s; }
-            .js .hero-text > :nth-child(4) { animation-delay: .45s; }
-            .js .hero-text > :nth-child(5) { animation-delay: .55s; }
-            .js .hero-text > :nth-child(6) { animation-delay: .65s; }
-            .js .core { animation-name: grow; animation-duration: 1.6s; animation-delay: .2s; }
-
-            /* Things fade in as you scroll to them */
-            .js .reveal { opacity: 0; translate: 0 24px; transition: opacity .9s ease, translate .9s var(--ease), transform .5s var(--ease); transition-delay: var(--d, 0s); }
-            .js .reveal.in { opacity: 1; translate: 0 0; }
-
-            /* The plan grows from left to right */
-            .js .tree .node { opacity: 0; translate: 0 14px; transition-delay: calc(var(--stage, 0) * .17s); }
-            .js .tree.in .node { opacity: 1; translate: 0 0; }
-            .js .tree:not(.in) .edge, .js .tree:not(.in) .flow { opacity: 0; }
-            .js .tree.settled .node { transition-delay: 0s; }
-
-        @keyframes rise { from { opacity: 0; translate: 0 20px; filter: blur(6px); } to { opacity: 1; translate: 0 0; filter: blur(0); } }
-        @keyframes grow { from { opacity: 0; scale: .9; filter: blur(10px); } to { opacity: 1; scale: 1; filter: blur(0); } }
-
-        /* Floating figures and photo, arrival after a jump, language swap */
-        .fig canvas { animation: hover-y 6s ease-in-out infinite; }
-        .portrait-wrap { animation: hover-y 7s ease-in-out infinite; }
-        @keyframes hover-y { 0%, 100% { translate: 0 -5px; } 50% { translate: 0 5px; } }
-
-        .arrive h2 { animation: arrive 1.1s var(--ease); }
-        @keyframes arrive { 0% { opacity: .2; translate: 0 16px; filter: blur(6px); } 100% { opacity: 1; translate: 0 0; filter: blur(0); } }
-
-        main, footer, .topbar nav { transition: opacity .22s ease, filter .22s ease; }
-        .lang-swap main, .lang-swap footer, .lang-swap .topbar nav { opacity: 0; filter: blur(6px); }
-
-        /* Hovering a plan step lights its way to the goal (after the motion rules on purpose) */
-        .tree.focus .node:not(.lit) { opacity: .3; }
-        .tree.focus .edge:not(.lit) { opacity: .12; }
-        .tree.focus .flow:not(.lit) { opacity: 0; }
-        .edge.lit { stroke: var(--white); }
-
-        /* =========================================================
-           Smaller screens
-           ========================================================= */
-        @media (max-width: 1080px) {
-            .tree { grid-template-columns: minmax(0, 1fr); gap: 2.6rem; }
-            .stage { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-            .stage .node { flex: 1 1 11rem; max-width: 20rem; }
-            .stage .node.goal { max-width: 26rem; }
-            .tree-lines { display: none; }
-            /* One spine through the stacked plan, with a light travelling down it */
-            .tree::before {
-                content: ''; position: absolute; left: 50%; top: 1rem; bottom: 1rem; width: 1px;
-                background: linear-gradient(rgba(255,255,255,.55), rgba(255,255,255,.12));
-            }
-            .tree::after {
-                content: ''; position: absolute; left: calc(50% - 1px); top: 0; width: 3px; height: 3.5rem; border-radius: 3px;
-                background: linear-gradient(rgba(255,255,255,0), #fff);
-                animation: spine 5s linear infinite;
-            }
-            .node { background: #0C0C0E; }
-            .node.planned { background: #000; }
-        }
-        @keyframes spine { from { top: 0; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } to { top: calc(100% - 3.5rem); opacity: 0; } }
-
-        @media (max-width: 860px) {
-            .hero { grid-template-columns: minmax(0, 1fr); min-height: auto; padding-block: 1rem 5rem; justify-items: start; }
-            .core { order: -1; justify-self: center; width: min(78vw, 21rem); margin-bottom: .5rem; }
-            .hello { margin-top: 1.25rem; }
-            .section, .section-head { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
-            .section { padding-block: 4.5rem; }
-            .side { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
-            .fig { margin: 0; width: 7rem; flex: none; }
-            .fig figcaption { font-size: .72rem; }
-        }
-
-        @media (max-width: 640px) {
-            body { font-size: 1rem; }
-            .topbar nav { display: none; }
-            .name { font-size: clamp(2.35rem, 10.5vw, 3rem); }
-            .chip { font-size: .66rem; padding: .22rem .5rem; }
-            .core .f { font-size: 1.05rem; }
-            .core .f-a { left: -2%; top: -2%; }
-            .core .f-b { right: -2%; bottom: 0; }
-            .stage .node { flex-basis: 100%; max-width: none; }
-            .terminal-out { height: 21rem; font-size: .78rem; padding-inline: 1rem; }
-            .terminal-form { padding-inline: 1rem; font-size: .8125rem; }
-            .neo { gap: 1rem; }
-            .f.hide-sm { display: none; }
-            .contact-orbs { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; margin-top: 2.5rem; }
-            .orb-link { flex-direction: row; align-items: center; gap: 1.4rem; }
-            .orb { width: 4rem; height: 4rem; flex: none; }
-            .orb svg { width: 1.4rem; height: 1.4rem; }
-            .orb-ring { inset: -.45rem; }
-        }
-
-        @media print {
-            #field, .terminal, .chips, .lang-switch, .skip, .tree-lines, .f, .fig, .orbits, .chip, .scroll-cue { display: none !important; }
-            body { background: #fff; color: #000; }
-            h1, h2, h3, .lead, .role { color: #000; }
-            .sheen { background: none; color: #000; }
-            .site-header { position: static; }
-        }
-    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Bohdan Krasokha",
+        "jobTitle": "Angehender Fachinformatiker für Systemintegration",
+        "address": { "@type": "PostalAddress", "addressLocality": "Hamburg", "addressCountry": "DE" },
+        "url": "https://skv1ce.github.io/cv-website/",
+        "image": "https://skv1ce.github.io/cv-website/img/portrait-720.webp",
+        "sameAs": ["https://www.linkedin.com/in/bohdan-krasokha", "https://github.com/skv1ce"],
+        "knowsLanguage": ["uk", "de", "en", "ru"]
+    }
+    </script>
 
     <script>
         (function () {
@@ -668,16 +86,39 @@
                     <a href="#story"><span lang="de">Über mich</span><span lang="en">About</span></a>
                     <a href="#plan">Plan</a>
                     <a href="#skills"><span lang="de">Kenntnisse</span><span lang="en">Skills</span></a>
+                    <a href="#projects"><span lang="de">Projekte</span><span lang="en">Projects</span></a>
                     <a href="#terminal">Terminal</a>
                     <a href="#contacts"><span lang="de">Kontakt</span><span lang="en">Contact</span></a>
                 </nav>
                 <div class="lang-switch" role="group" aria-label="Sprache / Language">
-                    <button type="button" data-set-lang="de" aria-pressed="true" aria-label="Deutsch">DE</button>
-                    <button type="button" data-set-lang="en" aria-pressed="false" aria-label="English">EN</button>
+                    <button type="button" data-set-lang="de" aria-pressed="true" aria-label="DE – Deutsch">DE</button>
+                    <button type="button" data-set-lang="en" aria-pressed="false" aria-label="EN – English">EN</button>
                 </div>
+                <button class="menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="sheet">
+                    <span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
+                    <span class="sr"><span lang="de">Menü</span><span lang="en">Menu</span></span>
+                </button>
             </div>
         </div>
+        <span class="progress" id="progress" aria-hidden="true"></span>
     </header>
+
+    <!-- Phone menu: opens from the button in the header -->
+    <div class="sheet" id="sheet" hidden>
+        <nav class="sheet-nav" aria-label="Menü / Menu">
+            <a href="#story"><small>01</small><span lang="de">Über mich</span><span lang="en">About</span></a>
+            <a href="#plan"><small>02</small>Plan</a>
+            <a href="#skills"><small>03</small><span lang="de">Kenntnisse</span><span lang="en">Skills</span></a>
+            <a href="#projects"><small>04</small><span lang="de">Projekte</span><span lang="en">Projects</span></a>
+            <a href="#terminal"><small>05</small>Terminal</a>
+            <a href="#contacts"><small>06</small><span lang="de">Kontakt</span><span lang="en">Contact</span></a>
+        </nav>
+        <a class="sheet-cv cv-link" href="Lebenslauf_Bohdan_Krasokha.pdf" data-en="CV_Bohdan_Krasokha_EN.pdf" download>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></svg>
+            <span lang="de">Lebenslauf als PDF</span><span lang="en">CV as PDF</span>
+        </a>
+        <p class="sheet-foot">gast@bohdan:~$ <span lang="de">wohin soll's gehen?</span><span lang="en">where to?</span><span class="caret"></span></p>
+    </div>
 
     <main id="inhalt" tabindex="-1">
 
@@ -696,6 +137,10 @@
                     <a class="button shine fillable" href="#contacts"><span lang="de">Kontakt aufnehmen</span><span lang="en">Get in touch</span></a>
                     <a class="button button-ghost shine fillable" href="#plan"><span lang="de">Meinen Plan ansehen</span><span lang="en">See my plan</span></a>
                 </div>
+                <a class="cv-link" href="Lebenslauf_Bohdan_Krasokha.pdf" data-en="CV_Bohdan_Krasokha_EN.pdf" download>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></svg>
+                    <span lang="de">Lebenslauf als PDF</span><span lang="en">CV as PDF</span>
+                </a>
             </div>
 
             <div class="core" id="core">
@@ -703,15 +148,17 @@
                     <ellipse rx="98" ry="29" transform="rotate(-16)" />
                     <ellipse class="dashed" rx="88" ry="26" transform="rotate(22)" />
                 </svg>
-                <div class="portrait-wrap">
+                <div class="portrait-wrap" id="portrait-wrap">
                     <div class="portrait">
-                        <img src="photo.jpg" alt="Bohdan Krasokha" width="832" height="910">
+                        <img id="portrait-img" src="img/portrait-720.webp" srcset="img/portrait-400.webp 400w, img/portrait-720.webp 720w" sizes="(max-width: 860px) 40vw, 16rem" alt="Bohdan Krasokha" width="720" height="720" fetchpriority="high" decoding="async">
                     </div>
+                    <canvas class="portrait-fx" id="portrait-fx" aria-hidden="true"></canvas>
                 </div>
                 <svg class="orbits front" viewBox="-100 -100 200 200" aria-hidden="true">
                     <path d="M98 0 A98 29 0 0 1 -98 0" transform="rotate(-16)" />
                     <path class="dashed" d="M88 0 A88 26 0 0 1 -88 0" transform="rotate(22)" />
                 </svg>
+                <span class="live" aria-hidden="true"><i></i>online · Hamburg</span>
                 <span class="chip" data-orbit="0" data-phase="0" aria-hidden="true">Linux</span>
                 <span class="chip" data-orbit="0" data-phase="2.1" aria-hidden="true">Python</span>
                 <span class="chip" data-orbit="0" data-phase="4.2" aria-hidden="true">DNS</span>
@@ -753,6 +200,22 @@
                         <span lang="de"><strong>Wie ich lerne:</strong> mit Online-Kursen und mit KI. Claude ist mein Lernpartner – ich lasse mir Themen wie Subnetting erklären, plane damit meine Vorbereitung und habe diese Website zusammen mit der KI gebaut. Design und Inhalt kommen von mir, beim Code hilft mir die KI, und ich frage nach, bis ich verstehe, was passiert.</span>
                         <span lang="en"><strong>How I learn:</strong> with online courses and with AI. Claude is my learning partner – it explains topics like subnetting, helps me plan my preparation, and I built this website together with it. Design and content are mine, the AI helps with the code, and I keep asking until I understand what's going on.</span>
                     </p>
+
+                    <div class="de-panel reveal" style="--d:.3s">
+                        <div class="dtz">
+                            <p class="dtz-head"><span>DTZ · B1</span><span lang="de">Prüfung 09/2026</span><span lang="en">exam 09/2026</span></p>
+                            <ul class="bars">
+                                <li style="--v:1"><span class="bl"><span lang="de">Sprechen</span><span lang="en">Speaking</span></span><span class="bt"><i></i></span><b>100/100</b></li>
+                                <li style="--v:.889"><span class="bl"><span lang="de">Hören &amp; Lesen</span><span lang="en">Listening &amp; reading</span></span><span class="bt"><i></i></span><b>40/45</b></li>
+                                <li style="--v:.9"><span class="bl"><span lang="de">Schreiben</span><span lang="en">Writing</span></span><span class="bt"><i></i></span><b>18/20</b></li>
+                            </ul>
+                            <p class="dtz-foot"><span lang="de">Als Nächstes: B2. Gelernt im Kurs, im Sprachclub – und …</span><span lang="en">Next: B2. Learned in class, in a language club – and …</span></p>
+                        </div>
+                        <figure class="mc">
+                            <img src="img/projects/minecraft-700.webp" srcset="img/projects/minecraft-700.webp 700w, img/projects/minecraft-1200.webp 1200w" sizes="(max-width: 860px) 92vw, 22rem" width="700" height="394" loading="lazy" decoding="async" alt="Minecraft mit dem Mod „Learn or Die: Language Teacher“: 31 Wörter gelernt, 0 Tode">
+                            <figcaption><span lang="de">… in Minecraft: Der Mod „Learn or Die“ fragt Vokabeln ab. Falsche Antwort = ein Herz weniger.</span><span lang="en">… in Minecraft: the mod “Learn or Die” quizzes vocabulary. Wrong answer = one heart less.</span></figcaption>
+                        </figure>
+                    </div>
                 </div>
                 <span class="f hide-sm" style="right:2%;top:14%;--dur:17s" aria-hidden="true"><span>F<sub>n</sub> = F<sub>n−1</sub> + F<sub>n−2</sub></span></span>
             </section>
@@ -782,15 +245,15 @@
                         <div class="node done" id="n-b1" data-to="n-orient n-google" tabindex="0">
                             <span class="state"><span class="dot dot-done"></span><span lang="de">Geschafft</span><span lang="en">Done</span></span>
                             <h3><span lang="de">Deutsch B1 (DTZ)</span><span lang="en">German B1 (DTZ)</span></h3>
-                            <p><span lang="de">Bestanden im September 2026</span><span lang="en">Passed in September 2026</span></p>
+                            <p><span lang="de">Bestanden 09/2026 · Sprechen 100/100</span><span lang="en">Passed 09/2026 · speaking 100/100</span></p>
                         </div>
                     </div>
 
                     <div class="stage">
                         <div class="node now" id="n-orient" data-to="n-job" tabindex="0">
                             <span class="state"><span class="dot dot-now"></span><span lang="de">Läuft gerade</span><span lang="en">In progress</span></span>
-                            <h3><span lang="de">Orientierungsschule</span><span lang="en">Orientation school</span></h3>
-                            <p><span lang="de">Berufsorientierung in Hamburg</span><span lang="en">Career orientation in Hamburg</span></p>
+                            <h3><span lang="de">Berufsorientierung (MOVE)</span><span lang="en">Career orientation (MOVE)</span></h3>
+                            <p><span lang="de">Coaching und Bewerbungen, Hamburg</span><span lang="en">Coaching and applications, Hamburg</span></p>
                         </div>
                         <div class="node now" id="n-google" data-to="n-job" tabindex="0">
                             <span class="state"><span class="dot dot-now"></span><span lang="de">Läuft gerade</span><span lang="en">In progress</span></span>
@@ -800,7 +263,7 @@
                     </div>
 
                     <div class="stage">
-                        <div class="node" id="n-job" data-to="n-b2 n-python n-cisco" tabindex="0">
+                        <div class="node" id="n-job" data-to="n-b2 n-cisco n-homelab n-python" tabindex="0">
                             <span class="state"><span class="dot dot-next"></span><span lang="de">Als Nächstes</span><span lang="en">Next</span></span>
                             <h3><span lang="de">Nebenjob</span><span lang="en">Part-time job</span></h3>
                             <p><span lang="de">Arbeiten – und nach der Arbeit weiterlernen</span><span lang="en">Work – and keep learning after hours</span></p>
@@ -812,6 +275,11 @@
                             <span class="state"><span class="dot dot-next"></span><span lang="de">Parallel</span><span lang="en">In parallel</span></span>
                             <h3><span lang="de">Deutsch B2</span><span lang="en">German B2</span></h3>
                             <p><span lang="de">Kurs nach der Arbeit</span><span lang="en">Evening course</span></p>
+                        </div>
+                        <div class="node" id="n-homelab" data-to="n-intern" tabindex="0">
+                            <span class="state"><span class="dot dot-next"></span><span lang="de">Als Nächstes</span><span lang="en">Next</span></span>
+                            <h3>Homelab</h3>
+                            <p><span lang="de">Ubuntu Server, Windows Server, AD in VirtualBox</span><span lang="en">Ubuntu Server, Windows Server, AD in VirtualBox</span></p>
                         </div>
                         <div class="node" id="n-python" data-to="n-intern" tabindex="0">
                             <span class="state"><span class="dot dot-next"></span><span lang="de">Parallel</span><span lang="en">In parallel</span></span>
@@ -860,17 +328,18 @@
                         <ul>
                             <li><strong>Windows</strong><span class="detail"><span lang="de">Installieren, einrichten, Treiber und Updates</span><span lang="en">Install, set up, drivers and updates</span></span></li>
                             <li><strong>PC-Hardware</strong><span class="detail"><span lang="de">Rechner zusammenbauen, RAM und SSD tauschen</span><span lang="en">Build PCs, swap RAM and SSDs</span></span></li>
+                            <li><strong><span lang="de">Laptop-Wartung</span><span lang="en">Laptop service</span></strong><span class="detail"><span lang="de">Paste und Putty erneuern, Akku prüfen</span><span lang="en">Renew paste and putty, check the battery</span></span></li>
                             <li><strong><span lang="de">Heimnetzwerk</span><span lang="en">Home network</span></strong><span class="detail"><span lang="de">Router und WLAN einrichten, IP-Adressen finden</span><span lang="en">Set up routers and Wi-Fi, find IP addresses</span></span></li>
                             <li><strong><span lang="de">Kommandozeile</span><span lang="en">Command line</span></strong><span class="detail"><span lang="de">ping, ipconfig und Co. in cmd, PowerShell und Linux</span><span lang="en">ping, ipconfig and friends in cmd, PowerShell and Linux</span></span></li>
-                            <li><strong>Websites</strong><span class="detail"><span lang="de">HTML, CSS, VS Code, GitHub Pages – diese Seite</span><span lang="en">HTML, CSS, VS Code, GitHub Pages – this site</span></span></li>
+                            <li><strong>Websites</strong><span class="detail"><span lang="de">HTML, CSS, JavaScript, Git, GitHub Pages – diese Seite</span><span lang="en">HTML, CSS, JavaScript, Git, GitHub Pages – this site</span></span></li>
                             <li><strong><span lang="de">Video und Animation</span><span lang="en">Video and animation</span></strong><span class="detail">After Effects, Alight Motion</span></li>
                         </ul>
                     </div>
                     <div class="card shine tilt reveal" style="--d:.1s">
                         <h3><span class="dot dot-now" aria-hidden="true"></span><span lang="de">Das lerne ich</span><span lang="en">What I'm learning</span></h3>
                         <ul>
-                            <li><strong><span lang="de">Linux-Grundlagen</span><span lang="en">Linux basics</span></strong><span class="detail"><span lang="de">Ubuntu, Terminal, Dateisystem und Rechte</span><span lang="en">Ubuntu, terminal, file system and permissions</span></span></li>
-                            <li><strong><span lang="de">Netzwerke</span><span lang="en">Networking</span></strong><span class="detail"><span lang="de">IP, DNS, DHCP, Subnetting, OSI-Modell</span><span lang="en">IP, DNS, DHCP, subnetting, OSI model</span></span></li>
+                            <li><strong><span lang="de">Linux-Grundlagen</span><span lang="en">Linux basics</span></strong><span class="detail"><span lang="de">Ubuntu, Terminal, Rechte, Kernel-Grundlagen</span><span lang="en">Ubuntu, terminal, permissions, kernel basics</span></span></li>
+                            <li><strong><span lang="de">Netzwerke</span><span lang="en">Networking</span></strong><span class="detail"><span lang="de">IPv4/IPv6, DNS, DHCP, Subnetting – Fehlersuche nach OSI ab Layer 1</span><span lang="en">IPv4/IPv6, DNS, DHCP, subnetting – OSI troubleshooting from layer 1</span></span></li>
                             <li><strong>Windows Server &amp; Active Directory</strong><span class="detail"><span lang="de">Benutzer, Gruppen und Domänen</span><span lang="en">Users, groups and domains</span></span></li>
                             <li><strong><span lang="de">Skripte</span><span lang="en">Scripting</span></strong><span class="detail">Bash, PowerShell, Python</span></li>
                         </ul>
@@ -878,7 +347,7 @@
                     <div class="card shine tilt reveal" style="--d:.2s">
                         <h3><span class="dot dot-next" aria-hidden="true"></span><span lang="de">Sprachen und Stärken</span><span lang="en">Languages and strengths</span></h3>
                         <ul>
-                            <li><strong><span lang="de">Sprachen</span><span lang="en">Languages</span></strong><span class="detail"><span lang="de">Ukrainisch, Deutsch B1 (Ziel B2), Englisch</span><span lang="en">Ukrainian, German B1 (aiming for B2), English</span></span></li>
+                            <li><strong><span lang="de">Sprachen</span><span lang="en">Languages</span></strong><span class="detail"><span lang="de">Ukrainisch, Russisch, Englisch B2, Deutsch B1 (Ziel B2)</span><span lang="en">Ukrainian, Russian, English B2, German B1 (aiming for B2)</span></span></li>
                             <li><strong><span lang="de">Lernen mit KI</span><span lang="en">Learning with AI</span></strong><span class="detail"><span lang="de">Claude für Erklärungen, Planung und Code</span><span lang="en">Claude for explanations, planning and code</span></span></li>
                             <li><strong><span lang="de">Mathe und Raumdenken</span><span lang="en">Maths and spatial thinking</span></strong><span class="detail"><span lang="de">Besonders Algebra und Geometrie</span><span lang="en">Especially algebra and geometry</span></span></li>
                             <li><strong><span lang="de">Anpacken</span><span lang="en">Hands-on</span></strong><span class="detail"><span lang="de">Ausdauer und Teamarbeit vom Bau</span><span lang="en">Stamina and teamwork from construction</span></span></li>
@@ -886,6 +355,144 @@
                     </div>
                 </div>
                 <span class="f hide-sm" style="right:4%;top:4%;--dur:19s" aria-hidden="true"><span>sin²x + cos²x = 1</span></span>
+            </section>
+
+            <!-- ================= Projects ================= -->
+            <section class="section" id="projects" data-shape="circuit" aria-labelledby="projects-title">
+                <div class="side reveal">
+                    <h2 id="projects-title"><span lang="de">Projekte</span><span lang="en">Projects</span></h2>
+                    <figure class="fig" aria-hidden="true">
+                        <canvas data-fig="chip"></canvas>
+                        <figcaption><span lang="de">Ein Chip im BGA-Gehäuse, wie auf meiner Platine</span><span lang="en">A chip in a BGA package, like on my board</span></figcaption>
+                    </figure>
+                </div>
+
+                <div class="projects">
+                    <p class="lead reveal">
+                        <span lang="de">Dinge, die ich wirklich gemacht habe – nicht nur gelernt.</span>
+                        <span lang="en">Things I have actually done – not just studied.</span>
+                    </p>
+
+                    <!-- Laptop repair -->
+                    <article class="project project-main reveal" aria-labelledby="p-repair">
+                        <div class="compare" id="compare">
+                            <img class="compare-img" src="img/projects/repair-after-1400.webp" srcset="img/projects/repair-after-800.webp 800w, img/projects/repair-after-1400.webp 1400w" sizes="(max-width: 860px) 92vw, 52rem" width="1400" height="1050" loading="lazy" decoding="async" alt="Nachher: Grafikchip, Grafikspeicher und Spannungswandler gereinigt">
+                            <div class="compare-before">
+                                <img class="compare-img" src="img/projects/repair-before-1400.webp" srcset="img/projects/repair-before-800.webp 800w, img/projects/repair-before-1400.webp 1400w" sizes="(max-width: 860px) 92vw, 52rem" width="1400" height="1050" loading="lazy" decoding="async" alt="Vorher: ausgetrocknete Wärmeleitpaste und alte Wärmeleitmasse">
+                            </div>
+                            <span class="ticks" aria-hidden="true"></span>
+                            <span class="meta" aria-hidden="true">MSI GE75 · GPU / VRAM / VRM</span>
+                            <div class="compare-line" aria-hidden="true"><span class="compare-knob"><svg viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></span></div>
+                            <span class="compare-tag before" aria-hidden="true"><span lang="de">Vorher</span><span lang="en">Before</span></span>
+                            <span class="compare-tag after" aria-hidden="true"><span lang="de">Gereinigt</span><span lang="en">Cleaned</span></span>
+                            <input class="compare-range" id="compare-range" type="range" min="0" max="100" value="50" aria-label="Vorher und nachher vergleichen / compare before and after">
+                        </div>
+                        <div class="project-body">
+                            <p class="kicker"><span lang="de">Hardware · Wartung · Diagnose</span><span lang="en">Hardware · maintenance · diagnostics</span></p>
+                            <h3 id="p-repair"><span lang="de">Laptop-Wartung: MSI GE75 Raider</span><span lang="en">Laptop service: MSI GE75 Raider</span></h3>
+                            <p>
+                                <span lang="de">Mein Gaming-Laptop ist rund sechs Jahre alt. Ich habe ihn selbst geöffnet, die ausgetrocknete Wärmeleitpaste und die alte Wärmeleitmasse von Prozessor, Grafikchip (RTX 2070), Grafikspeicher und Spannungswandlern entfernt, Staub mit Druckgas herausgeblasen und alles neu aufgetragen. Das Ziel: weniger Hitze, weniger Lärm.</span>
+                                <span lang="en">My gaming laptop is about six years old. I opened it myself, removed the dried-out thermal paste and the old thermal putty from the CPU, the graphics chip (RTX 2070), the video memory and the voltage regulators, blew out the dust with compressed gas and applied everything new. The goal: less heat, less noise.</span>
+                            </p>
+
+                            <ol class="steps">
+                                <li><span lang="de">Öffnen, Akku abklemmen, Kühler abschrauben</span><span lang="en">Open it, disconnect the battery, unscrew the cooler</span></li>
+                                <li><span lang="de">Alte Paste und Masse entfernen</span><span lang="en">Remove old paste and putty</span></li>
+                                <li><span lang="de">Chips und Kühlkörper reinigen</span><span lang="en">Clean the chips and the heatsink</span></li>
+                                <li><span lang="de">Neue Paste und Putty</span><span lang="en">New paste and putty</span></li>
+                                <li><span lang="de">Zusammenbauen und testen</span><span lang="en">Reassemble and test</span></li>
+                            </ol>
+
+                            <ul class="kit" aria-label="Werkzeug und Material / Tools and materials">
+                                <li><img src="img/projects/kit-mx2.webp" width="240" height="240" loading="lazy" alt=""><span><b>Arctic MX-2</b><span lang="de">Paste für CPU &amp; GPU</span><span lang="en">paste for CPU &amp; GPU</span></span></li>
+                                <li><img src="img/projects/kit-putty.webp" width="240" height="240" loading="lazy" alt=""><span><b>TG Putty Pro</b><span lang="de">für Speicher &amp; Wandler</span><span lang="en">for VRAM &amp; VRMs</span></span></li>
+                                <li><img src="img/projects/kit-druckgas.webp" width="240" height="240" loading="lazy" alt=""><span><b><span lang="de">Druckgas</span><span lang="en">Compressed gas</span></b><span lang="de">gegen Staub im Kühler</span><span lang="en">for dust in the cooler</span></span></li>
+                            </ul>
+
+                            <div class="project-split">
+                                <figure class="detail">
+                                    <span class="loupe">
+                                    <img src="img/projects/repair-gpu-600.webp" srcset="img/projects/repair-gpu-600.webp 600w, img/projects/repair-gpu-1000.webp 1000w" sizes="(max-width: 640px) 92vw, 18rem" width="600" height="450" loading="lazy" decoding="async" alt="Nahaufnahme: der gereinigte Grafikchip">
+                                    <span class="ticks" aria-hidden="true"></span></span>
+                                    <figcaption><span lang="de">Der Grafikchip nach der Reinigung</span><span lang="en">The graphics chip after cleaning</span></figcaption>
+                                </figure>
+                                <div>
+                                    <p class="mini-title"><span lang="de">Danach habe ich weiter geprüft</span><span lang="en">Then I kept checking</span></p>
+                                    <ul class="checks">
+                                        <li><span lang="de">Akku-Report mit <code>powercfg /batteryreport</code> ausgewertet: noch rund 68&nbsp;% der ursprünglichen Kapazität</span><span lang="en">Read the battery report from <code>powercfg /batteryreport</code>: about 68% of the original capacity left</span></li>
+                                        <li><span lang="de">Passende Ersatzlüfter über die Teilenummern im Service-Handbuch bestimmt</span><span lang="en">Found matching replacement fans by their part numbers in the service manual</span></li>
+                                        <li><span lang="de">Prozessortakt untersucht: Turbo Boost, Speed Shift und C-States im BIOS geprüft</span><span lang="en">Looked into CPU clock behaviour: checked Turbo Boost, Speed Shift and C-states in the BIOS</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <ul class="tags" aria-label="Themen / Topics"><li>Hardware</li><li><span lang="de">Wärmeleitpaste</span><span lang="en">Thermal paste</span></li><li>Putty</li><li>powercfg</li><li>BIOS</li></ul>
+                        </div>
+                    </article>
+
+                    <div class="project-pair">
+                        <!-- Wallpaper design -->
+                        <article class="project reveal" style="--d:.05s" aria-labelledby="p-wall">
+                            <figure class="project-media device-media">
+                                <div class="laptop">
+                                    <div class="laptop-lid">
+                                        <img src="img/projects/wallpaper-1400.webp" srcset="img/projects/wallpaper-800.webp 800w, img/projects/wallpaper-1400.webp 1400w" sizes="(max-width: 860px) 86vw, 24rem" width="1400" height="788" loading="lazy" decoding="async" alt="Wallpaper: eine graue Spirale wie eine Muschel auf hellgrauem Verlauf">
+                                    </div>
+                                    <div class="laptop-base" aria-hidden="true"></div>
+                                </div>
+                                <figcaption><span lang="de">Auf meinem Laptop – nach einem Foto vom Bildschirm</span><span lang="en">On my laptop – from a photo of the screen</span></figcaption>
+                            </figure>
+                            <div class="project-body">
+                                <p class="kicker"><span lang="de">Design · Python</span><span lang="en">Design · Python</span></p>
+                                <h3 id="p-wall"><span lang="de">Wallpaper-Serie „Mein Stil“</span><span lang="en">Wallpaper series “My style”</span></h3>
+                                <p>
+                                    <span lang="de">Ich wollte Hintergründe, die genau zu mir passen: eine große, ruhige Form, nur Schwarz, Weiß und Grau, Licht von einer Seite, scharfe Kanten und eine Spirale nach dem goldenen Schnitt. Stil und Auswahl kommen von mir, gerendert wurde mit Python-Code (NumPy), den ich zusammen mit Claude geschrieben habe – in Full HD und 4K, dazu Animationen als Endlosschleife.</span>
+                                    <span lang="en">I wanted backgrounds that fit me exactly: one large, calm shape, only black, white and grey, light from one side, sharp edges and a spiral based on the golden ratio. The style and the choices are mine; it was rendered with Python code (NumPy) that I wrote together with Claude – in Full HD and 4K, plus seamless looping animations.</span>
+                                </p>
+                                <p class="note"><span lang="de">Dieselbe Formensprache steckt auch in dieser Website.</span><span lang="en">The same visual language runs through this website.</span></p>
+                                <ul class="tags" aria-label="Themen / Topics"><li>Art Direction</li><li>Python</li><li>NumPy</li><li>4K</li></ul>
+                            </div>
+                        </article>
+
+                        <!-- Projekt Bankai -->
+                        <article class="project reveal" style="--d:.12s" aria-labelledby="p-bankai">
+                            <figure class="project-media bankai">
+                                <div class="bk" aria-hidden="true">
+                                    <div class="bk-bar"><span class="bk-brand">Projekt Bankai</span><span class="bk-sync"><i></i>sync</span></div>
+                                    <div class="bk-modes"><span>Minimum</span><span>Leicht</span><span class="on">Shikai</span><span>Bankai</span></div>
+                                    <div class="bk-main">
+                                        <svg class="bk-ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42"/><circle class="bk-arc" cx="50" cy="50" r="42" pathLength="100"/><text x="50" y="49">25:00</text><text class="bk-sub" x="50" y="63">Fokus</text></svg>
+                                        <ul class="bk-list">
+                                            <li class="done">IT-Kurs: ein Modul</li>
+                                            <li class="done">Praxis in der VM</li>
+                                            <li>Bewerbung nachfassen</li>
+                                            <li>Thema laut auf Deutsch</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bk-week"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="now"></i><i></i><i></i></div>
+                                </div>
+                                <figcaption><span lang="de">Schema der Oberfläche</span><span lang="en">Sketch of the interface</span></figcaption>
+                            </figure>
+                            <div class="project-body">
+                                <p class="kicker"><span lang="de">Web-App · Planung</span><span lang="en">Web app · planning</span></p>
+                                <h3 id="p-bankai">Projekt Bankai</h3>
+                                <p>
+                                    <span lang="de">Meine eigene Lern-App für den Weg zur Ausbildung, gebaut zusammen mit Claude. Sie läuft im Browser auf PC und Handy und gleicht sich zwischen beiden ab.</span>
+                                    <span lang="en">My own learning app for the road to the apprenticeship, built together with Claude. It runs in the browser on PC and phone and stays in sync between both.</span>
+                                </p>
+                                <ul class="checks">
+                                    <li><span lang="de">Wochenplan bis August 2027 mit Tagesmodi</span><span lang="en">Weekly plan up to August 2027 with day modes</span></li>
+                                    <li><span lang="de">Bewerbungs-Tracker mit Phasen und Erinnerungen</span><span lang="en">Application tracker with stages and reminders</span></li>
+                                    <li><span lang="de">Vokabel- und Interview-Trainer mit Sprachausgabe</span><span lang="en">Vocabulary and interview trainer with speech output</span></li>
+                                    <li><span lang="de">Spickzettel: Subnetting, Windows, Linux, SQL</span><span lang="en">Cheat sheets: subnetting, Windows, Linux, SQL</span></li>
+                                </ul>
+                                <p class="note"><span lang="de">Der Name kommt aus dem Anime Bleach – Bankai ist dort die höchste Stufe. Die App ist privat, weil meine eigenen Daten darin stehen; im Gespräch zeige ich sie gern.</span><span lang="en">The name comes from the anime Bleach, where Bankai is the highest level. The app is private because my own data is in it – I'm happy to show it in an interview.</span></p>
+                                <ul class="tags" aria-label="Themen / Topics"><li>HTML · CSS · JS</li><li>Sync</li><li><span lang="de">Planung</span><span lang="en">Planning</span></li></ul>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <span class="f hide-sm" style="right:3%;top:3%;--dur:18s" aria-hidden="true"><span>P = U · I</span></span>
+                <span class="f mono hide-sm" style="left:1%;bottom:4%;--dur:20s;--del:-7s" aria-hidden="true"><span>powercfg /batteryreport</span></span>
             </section>
 
             <!-- ================= Terminal ================= -->
@@ -911,10 +518,15 @@
                         <button type="button" data-cmd="help">help</button>
                         <button type="button" data-cmd="whoami">whoami</button>
                         <button type="button" data-cmd="plan">plan</button>
+                        <button type="button" data-cmd="projekte">projekte</button>
+                        <button type="button" data-cmd="lebenslauf">lebenslauf</button>
+                        <button type="button" data-cmd="subnet 192.168.10.0/26">subnet</button>
+                        <button type="button" data-cmd="sysinfo">sysinfo</button>
                         <button type="button" data-cmd="coffee">coffee</button>
                         <button type="button" data-cmd="ping hamburg">ping hamburg</button>
                         <button type="button" data-cmd="hire bohdan">hire bohdan</button>
                     </div>
+                    <p class="term-hint"><kbd>/</kbd> <span lang="de">springt ins Terminal · probieren Sie</span><span lang="en">jumps into the terminal · try</span> <code>ls</code>, <code>cd projekte</code>, <code>sha256sum lebenslauf.pdf</code></p>
                 </div>
                 <span class="f mono hide-sm" style="right:3%;top:5%;--dur:15s" aria-hidden="true"><span>1 + 1 = 10</span></span>
                 <span class="f mono hide-sm" style="left:2%;bottom:8%;--dur:21s;--del:-5s" aria-hidden="true"><span>while (true) { learn(); }</span></span>
@@ -925,16 +537,19 @@
         <section class="contact" id="contacts" data-shape="ring" aria-labelledby="contact-title">
             <div class="wrap">
                 <h2 id="contact-title" class="sheen reveal"><span lang="de">Lass uns reden.</span><span lang="en">Let's talk.</span></h2>
-                <p class="contact-intro reveal" style="--d:.08s">
+                <div class="contact-lead reveal" style="--d:.08s">
+                <span class="avatar"><img src="img/avatar-240.webp" width="240" height="240" loading="lazy" alt="Bohdan, ganz ohne Studiolicht"><i aria-hidden="true"></i></span>
+                <p class="contact-intro">
                     <span lang="de">Sie bieten eine Ausbildung, ein Praktikum oder einen Probetag an? Am besten erreichen Sie mich per E-Mail.</span>
                     <span lang="en">Do you offer an apprenticeship, an internship or a trial day? Email is the best way to reach me.</span>
                 </p>
+                </div>
                 <div class="contact-orbs">
-                    <a class="orb-link reveal" style="--d:.12s" href="mailto:krasokhade@gmail.com">
+                    <a class="orb-link reveal mail-link" style="--d:.12s" href="#contacts" data-u="krasokhade" data-d="gmail.com">
                         <span class="orb"><span class="orb-ring" style="--spin:38s"></span>
                             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3.8 7l8.2 6 8.2-6"/></svg>
                         </span>
-                        <span class="orb-text"><small>E-Mail</small><span class="value">krasokhade@gmail.com</span></span>
+                        <span class="orb-text"><small>E-Mail</small><span class="value mail-text">krasokhade<span class="at"> (at) </span>gmail.com</span></span>
                     </a>
                     <a class="orb-link reveal" style="--d:.2s" href="https://www.linkedin.com/in/bohdan-krasokha" target="_blank" rel="noopener">
                         <span class="orb"><span class="orb-ring" style="--spin:52s"></span>
@@ -949,10 +564,20 @@
                         <span class="orb-text"><small>GitHub</small><span class="value">github.com/skv1ce</span></span>
                     </a>
                 </div>
-                <button class="copy reveal" style="--d:.34s" type="button" id="copy-mail">
-                    <span class="copy-label"><span lang="de">E-Mail-Adresse kopieren</span><span lang="en">Copy email address</span></span>
-                    <span class="ok-label"><span lang="de">Kopiert ✓</span><span lang="en">Copied ✓</span></span>
-                </button>
+                <div class="contact-actions reveal" style="--d:.34s">
+                    <button class="copy" type="button" id="copy-mail">
+                        <span class="copy-label"><span lang="de">E-Mail-Adresse kopieren</span><span lang="en">Copy email address</span></span>
+                        <span class="ok-label"><span lang="de">Kopiert ✓</span><span lang="en">Copied ✓</span></span>
+                    </button>
+                    <a class="copy" href="bohdan-krasokha.vcf" download>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><circle cx="12" cy="10" r="2.6"/><path d="M7.8 17c.7-2 2.3-3 4.2-3s3.5 1 4.2 3"/></svg>
+                        <span lang="de">Kontakt speichern</span><span lang="en">Save contact</span>
+                    </a>
+                    <a class="copy cv-link" href="Lebenslauf_Bohdan_Krasokha.pdf" data-en="CV_Bohdan_Krasokha_EN.pdf" download>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></svg>
+                        <span lang="de">Lebenslauf (PDF)</span><span lang="en">CV (PDF)</span>
+                    </a>
+                </div>
                 <span class="f hide-sm" style="right:6%;top:-1rem;--dur:17s" aria-hidden="true"><span>e<sup>iπ</sup> + 1 = 0</span></span>
             </div>
         </section>
@@ -964,1047 +589,6 @@
             <span><span lang="de">Design und Inhalt von mir, Code zusammen mit Claude (KI) –</span><span lang="en">Design and content by me, code together with Claude (AI) –</span> <a href="https://github.com/skv1ce/cv-website" target="_blank" rel="noopener"><span lang="de">Quellcode auf GitHub</span><span lang="en">source on GitHub</span></a></span>
         </div>
     </footer>
-
-    <!-- ================= Language switch ================= -->
-    <script>
-        (function () {
-            var buttons = document.querySelectorAll('[data-set-lang]');
-            var titles = {
-                de: 'Bohdan Krasokha – Ausbildung Fachinformatiker Systemintegration',
-                en: 'Bohdan Krasokha – Apprenticeship in IT System Integration'
-            };
-            var switching = false;
-            function show(lang) {
-                document.documentElement.lang = lang;
-                document.title = titles[lang];
-                buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.setLang === lang ? 'true' : 'false'); });
-                document.dispatchEvent(new CustomEvent('langchange', { detail: lang }));
-                window.dispatchEvent(new Event('resize'));
-            }
-            // The text blurs out, the language swaps, the text comes back: no jump, no flash
-            buttons.forEach(function (b) {
-                b.addEventListener('click', function () {
-                    var lang = b.dataset.setLang;
-                    if (lang === document.documentElement.lang || switching) return;
-                    switching = true;
-                    buttons.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-                    document.body.classList.add('lang-swap');
-                    setTimeout(function () {
-                        // Keep the same spot of the same section under the header, even if the text gets shorter
-                        var line = 80, anchor = null, ratio = 0;
-                        document.querySelectorAll('[data-shape]').forEach(function (sec) {
-                            var r = sec.getBoundingClientRect();
-                            if (!anchor && r.top <= line && r.bottom > line) { anchor = sec; ratio = (line - r.top) / r.height; }
-                        });
-                        show(lang);
-                        if (anchor) {
-                            var nr = anchor.getBoundingClientRect();
-                            window.scrollBy(0, nr.top - (line - ratio * nr.height));
-                        }
-                        try { localStorage.setItem('site-lang', lang); } catch (e) {}
-                        requestAnimationFrame(function () {
-                            document.body.classList.remove('lang-swap');
-                            switching = false;
-                        });
-                    }, 220);
-                });
-            });
-            show(document.documentElement.lang);
-        })();
-    </script>
-
-    <!-- ================= Smooth travel to a section ================= -->
-    <script>
-        /*
-         * Clicking "Kontakt aufnehmen", "Meinen Plan ansehen" or a menu link glides there
-         * with an ease-in-out curve. The particle field stretches into streaks on the way,
-         * and on arrival the heading settles in and a pulse runs through the field.
-         */
-        (function () {
-            var running = null;
-            function ease(p) { return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; }
-
-            function arrive(target) {
-                target.classList.remove('arrive');
-                void target.offsetWidth;
-                target.classList.add('arrive');
-                var h = target.querySelector('h2') || target;
-                var r = h.getBoundingClientRect();
-                window.dispatchEvent(new CustomEvent('fieldpulse', { detail: { x: r.left + Math.min(r.width, 320) / 2, y: r.top + r.height / 2 } }));
-            }
-
-            function go(target) {
-                var startY = window.scrollY;
-                var maxY = document.documentElement.scrollHeight - window.innerHeight;
-                var endY = target === document.body ? 0 : Math.max(0, Math.min(maxY, target.getBoundingClientRect().top + startY - 8));
-                var dist = endY - startY;
-                if (Math.abs(dist) < 2) { arrive(target); return; }
-                var dur = Math.min(1600, Math.max(900, 650 + Math.abs(dist) * .22));
-                var t0 = performance.now(), id = {};
-                running = id;
-                (function stepScroll(now) {
-                    if (running !== id) return;
-                    var p = Math.min(1, (now - t0) / dur);
-                    window.scrollTo(0, startY + dist * ease(p));
-                    if (p < 1) requestAnimationFrame(stepScroll);
-                    else { running = null; if (target !== document.body) arrive(target); }
-                })(t0);
-            }
-
-            function cancel() { running = null; }
-            window.addEventListener('wheel', cancel, { passive: true });
-            window.addEventListener('touchstart', cancel, { passive: true });
-            window.addEventListener('keydown', cancel);
-
-            document.addEventListener('click', function (e) {
-                var a = e.target.closest('a[href^="#"]');
-                if (!a || a.classList.contains('skip') || e.metaKey || e.ctrlKey) return;
-                var id = a.getAttribute('href').slice(1);
-                var target = id === 'top' ? document.body : document.getElementById(id);
-                if (!target) return;
-                e.preventDefault();
-                try { history.replaceState(null, '', '#' + id); } catch (err) {}
-                go(target);
-            });
-        })();
-    </script>
-
-    <!-- ================= Page interactions: header, buttons, reveals, tilt, formulas ================= -->
-    <script>
-        (function () {
-            var calm = false;
-            var mouse = window.matchMedia('(hover: hover)').matches;
-
-            // Glass header after the first scroll
-            var header = document.getElementById('site-header');
-            function onScrollHeader() { header.classList.toggle('scrolled', window.scrollY > 8); }
-            window.addEventListener('scroll', onScrollHeader, { passive: true });
-            onScrollHeader();
-
-            // Button fill starts where the pointer enters
-            document.querySelectorAll('.fillable').forEach(function (el) {
-                function at(e) {
-                    var r = el.getBoundingClientRect();
-                    el.style.setProperty('--x', ((e.clientX - r.left) / r.width * 100) + '%');
-                    el.style.setProperty('--y', ((e.clientY - r.top) / r.height * 100) + '%');
-                }
-                el.addEventListener('pointerenter', at);
-                el.addEventListener('pointerleave', at);
-            });
-
-            // Fade things in when they scroll into view
-            var reveals = document.querySelectorAll('.reveal, .tree');
-            if ('IntersectionObserver' in window && !calm) {
-                var io = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (e) {
-                        if (e.isIntersecting) {
-                            e.target.classList.add('in');
-                            e.target.dispatchEvent(new CustomEvent('revealed'));
-                            io.unobserve(e.target);
-                        }
-                    });
-                }, { threshold: .15, rootMargin: '0px 0px -8% 0px' });
-                reveals.forEach(function (el) { io.observe(el); });
-            } else {
-                reveals.forEach(function (el) { el.classList.add('in'); });
-            }
-
-            // Cards lean towards the pointer
-            if (!calm && mouse) {
-                document.querySelectorAll('.tilt').forEach(function (el) {
-                    el.addEventListener('pointermove', function (e) {
-                        var r = el.getBoundingClientRect();
-                        el.style.setProperty('--ry', (((e.clientX - r.left) / r.width - .5) * 7) + 'deg');
-                        el.style.setProperty('--rx', (-((e.clientY - r.top) / r.height - .5) * 7) + 'deg');
-                    });
-                    el.addEventListener('pointerleave', function () {
-                        el.style.setProperty('--ry', '0deg');
-                        el.style.setProperty('--rx', '0deg');
-                    });
-                });
-            }
-
-            // Formulas: slight depth when scrolling, brighter when the pointer comes close
-            var formulas = Array.prototype.slice.call(document.querySelectorAll('.f'));
-            var px = -9999, py = -9999, pending = false;
-            function updateFormulas() {
-                pending = false;
-                var H = window.innerHeight;
-                formulas.forEach(function (f, i) {
-                    var r = f.getBoundingClientRect();
-                    if (r.bottom < -100 || r.top > H + 100) return;
-                    var depth = .06 + (i % 3) * .04;
-                    if (!calm) f.style.setProperty('--py', ((r.top + r.height / 2 - H / 2) * -depth).toFixed(1) + 'px');
-                    var d = Math.hypot(r.left + r.width / 2 - px, r.top + r.height / 2 - py);
-                    f.style.setProperty('--glow', Math.max(0, 1 - d / 260).toFixed(2));
-                });
-            }
-            function queue() { if (!pending) { pending = true; requestAnimationFrame(updateFormulas); } }
-            window.addEventListener('scroll', queue, { passive: true });
-            window.addEventListener('pointermove', function (e) { px = e.clientX; py = e.clientY; queue(); }, { passive: true });
-            queue();
-        })();
-    </script>
-
-    <!-- ================= Copy email ================= -->
-    <script>
-        (function () {
-            var btn = document.getElementById('copy-mail'), mail = 'krasokhade@gmail.com', timer;
-            function done() { btn.classList.add('ok'); clearTimeout(timer); timer = setTimeout(function () { btn.classList.remove('ok'); }, 1800); }
-            function fallback() {
-                var t = document.createElement('textarea');
-                t.value = mail; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
-                document.body.appendChild(t); t.select();
-                try { document.execCommand('copy'); } catch (e) {}
-                t.remove(); done();
-            }
-            btn.addEventListener('click', function () {
-                try { navigator.clipboard.writeText(mail).then(done, fallback); } catch (e) { fallback(); }
-            });
-        })();
-    </script>
-
-    <!-- ================= Orbits around the photo ================= -->
-    <script>
-        (function () {
-            var core = document.getElementById('core');
-            var pace = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? .55 : 1;
-            var chips = Array.prototype.slice.call(core.querySelectorAll('.chip'));
-            var backs = core.querySelectorAll('.orbits.back ellipse');
-            var fronts = core.querySelectorAll('.orbits.front path');
-
-            // Same ellipses as in the SVG (viewBox units: core width = 200). Their tilt rocks slowly.
-            var orbits = [
-                { rx: 98, ry: 29, base: -16, wob: 6, wf: .12, speed: .15, tilt: 0 },
-                { rx: 88, ry: 26, base: 22, wob: 7, wf: -.1, speed: -.12, tilt: 0 }
-            ];
-            var data = chips.map(function (el) {
-                return { el: el, o: orbits[+el.dataset.orbit], phase: parseFloat(el.dataset.phase), w: 0, h: 0 };
-            });
-            var t0 = performance.now(), visible = true;
-
-            function measure() { data.forEach(function (d) { d.w = d.el.offsetWidth; d.h = d.el.offsetHeight; }); }
-
-            function frame(now) {
-                if (visible && !document.hidden) {
-                    var t = (now - t0) / 1000 * pace;
-                    orbits.forEach(function (o, j) {
-                        var deg = o.base + Math.sin(t * o.wf + j) * o.wob;
-                        o.tilt = deg * Math.PI / 180;
-                        backs[j].setAttribute('transform', 'rotate(' + deg.toFixed(2) + ')');
-                        fronts[j].setAttribute('transform', 'rotate(' + deg.toFixed(2) + ')');
-                    });
-                    var size = core.clientWidth, k = size / 200, c = size / 2;
-                    var intro = Math.min(1, Math.max(0, (t - .8) / 1.2));
-                    data.forEach(function (d) {
-                        var a = d.phase + t * d.o.speed;
-                        var x = Math.cos(a) * d.o.rx, y = Math.sin(a) * d.o.ry;
-                        var X = x * Math.cos(d.o.tilt) - y * Math.sin(d.o.tilt);
-                        var Y = x * Math.sin(d.o.tilt) + y * Math.cos(d.o.tilt);
-                        var front = Math.sin(a);                      // lower half of the ellipse is in front
-                        var s = .82 + (front + 1) * .1;
-                        d.el.style.transform = 'translate(' + (c + X * k - d.w / 2).toFixed(1) + 'px,' + (c + Y * k - d.h / 2).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
-                        d.el.style.opacity = ((.35 + (front + 1) * .325) * intro).toFixed(3);
-                        d.el.style.zIndex = front > 0 ? 4 : 1;
-                    });
-                }
-                requestAnimationFrame(frame);
-            }
-
-            if ('IntersectionObserver' in window) {
-                new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(core);
-            }
-            window.addEventListener('resize', measure);
-            document.addEventListener('langchange', measure);
-            if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
-            measure();
-            requestAnimationFrame(frame);
-        })();
-    </script>
-
-    <!-- ================= Plan tree ================= -->
-    <script>
-        (function () {
-            var tree = document.getElementById('tree');
-            var svg = document.getElementById('tree-lines');
-            var nodes = Array.prototype.slice.call(tree.querySelectorAll('.node'));
-            var byId = {}, stageOf = {};
-            Array.prototype.forEach.call(tree.querySelectorAll('.stage'), function (st, i) {
-                Array.prototype.forEach.call(st.querySelectorAll('.node'), function (n) { stageOf[n.id] = i; n.style.setProperty('--stage', i); });
-            });
-            nodes.forEach(function (n) { byId[n.id] = n; });
-            var NS = 'http://www.w3.org/2000/svg';
-            var edges = [];
-
-            function box(el) {
-                var t = tree.getBoundingClientRect(), r = el.getBoundingClientRect();
-                return { l: r.left - t.left, r: r.right - t.left, t: r.top - t.top, b: r.bottom - t.top,
-                         cx: r.left - t.left + r.width / 2, cy: r.top - t.top + r.height / 2 };
-            }
-
-            function draw() {
-                svg.textContent = '';
-                edges = [];
-                var across = window.innerWidth > 1080;
-                if (!across) return;            // stacked layout uses one clean spine instead (CSS)
-                var settled = tree.classList.contains('settled');
-                nodes.forEach(function (from) {
-                    (from.dataset.to || '').split(' ').filter(Boolean).forEach(function (id) {
-                        var to = byId[id];
-                        var a = box(from), b = box(to), d;
-                        if (across) {
-                            var mx = (a.r + b.l) / 2;
-                            d = 'M' + a.r + ' ' + a.cy + 'C' + mx + ' ' + a.cy + ' ' + mx + ' ' + b.cy + ' ' + b.l + ' ' + b.cy;
-                        } else {
-                            var my = (a.b + b.t) / 2;
-                            d = 'M' + a.cx + ' ' + a.b + 'C' + a.cx + ' ' + my + ' ' + b.cx + ' ' + my + ' ' + b.cx + ' ' + b.t;
-                        }
-                        var live = from.classList.contains('done') || from.classList.contains('now') || from.id === 'n-job';
-                        var path = document.createElementNS(NS, 'path');
-                        path.setAttribute('d', d);
-                        path.setAttribute('class', 'edge ' + ((from.classList.contains('done') || from.classList.contains('now')) ? 'solid' : 'dashed'));
-                        if (!settled) path.style.transitionDelay = (stageOf[id] * .17) + 's';
-                        svg.appendChild(path);
-                        var flow = null;
-                        if (live) {
-                            flow = document.createElementNS(NS, 'path');
-                            flow.setAttribute('d', d);
-                            flow.setAttribute('pathLength', '100');
-                            flow.setAttribute('class', 'flow');
-                            flow.style.animationDelay = (-Math.random() * 3) + 's';
-                            if (!settled) flow.style.transitionDelay = (stageOf[id] * .17 + .3) + 's';
-                            svg.appendChild(flow);
-                        }
-                        edges.push({ from: from.id, to: id, path: path, flow: flow });
-                    });
-                });
-            }
-
-            tree.addEventListener('revealed', function () {
-                setTimeout(function () {
-                    tree.classList.add('settled');
-                    edges.forEach(function (e) { e.path.style.transitionDelay = ''; if (e.flow) e.flow.style.transitionDelay = ''; });
-                }, 1800);
-            });
-
-            function focus(start) {
-                var seen = {}, queue = [start.id];
-                while (queue.length) {
-                    var id = queue.shift();
-                    if (seen[id]) continue;
-                    seen[id] = true;
-                    (byId[id].dataset.to || '').split(' ').filter(Boolean).forEach(function (t) { queue.push(t); });
-                }
-                tree.classList.add('focus');
-                nodes.forEach(function (n) { n.classList.toggle('lit', !!seen[n.id]); });
-                edges.forEach(function (e) {
-                    var on = seen[e.from] && seen[e.to];
-                    e.path.classList.toggle('lit', on);
-                    if (e.flow) e.flow.classList.toggle('lit', on);
-                });
-            }
-            function blur() {
-                tree.classList.remove('focus');
-                nodes.forEach(function (n) { n.classList.remove('lit'); });
-                edges.forEach(function (e) { e.path.classList.remove('lit'); if (e.flow) e.flow.classList.remove('lit'); });
-            }
-            nodes.forEach(function (n) {
-                n.addEventListener('pointerenter', function () { if (tree.classList.contains('settled') || !document.documentElement.classList.contains('js')) focus(n); });
-                n.addEventListener('pointerleave', blur);
-                n.addEventListener('focus', function () { focus(n); });
-                n.addEventListener('blur', blur);
-            });
-
-            window.addEventListener('resize', draw);
-            window.addEventListener('load', draw);
-            if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
-            if (window.ResizeObserver) new ResizeObserver(draw).observe(tree);
-            draw();
-        })();
-    </script>
-
-    <!-- ================= Terminal ================= -->
-    <script>
-        (function () {
-            var out = document.getElementById('term-out');
-            var form = document.getElementById('term-form');
-            var input = document.getElementById('term-in');
-            var wrap = document.getElementById('term-wrap');
-            var history = [], pos = 0, busy = false, started = false;
-
-            function L() { return document.documentElement.lang === 'en' ? 'en' : 'de'; }
-            function T(de, en) { return L() === 'en' ? en : de; }
-
-            function line(text, cls) {
-                var el = document.createElement('div');
-                if (cls) el.className = cls;
-                el.textContent = text;
-                out.appendChild(el);
-                out.scrollTop = out.scrollHeight;
-                return el;
-            }
-
-            function printAll(lines, done) {
-                var i = 0;
-                busy = true;
-                (function next() {
-                    if (i >= lines.length) { busy = false; if (done) done(); return; }
-                    var l = lines[i++];
-                    if (typeof l === 'function') l(); else line(l[0], l[1]);
-                    setTimeout(next, 40);
-                })();
-            }
-
-            function neofetch() {
-                var wrapEl = document.createElement('div');
-                wrapEl.className = 'neo';
-                var art = document.createElement('div');
-                art.className = 'neo-art';
-                art.textContent =
-                    '     .-""""-.\n' +
-                    '   .\'  .--.  \'.\n' +
-                    '  /   /  _ \\   \\\n' +
-                    ' |   |  (_) |   |\n' +
-                    '  \\   \'.__.\'   /\n' +
-                    '   \'.        .\'\n' +
-                    '     \'-....-\'';
-                var info = document.createElement('div');
-                info.className = 'neo-info';
-                info.textContent = T(
-                    'bohdan@hamburg\n--------------\nOS:       Mensch, Version 2026\nStandort: Hamburg\nZiel:     Fachinformatiker SI, 2027\nDeutsch:  B1 ✓  B2 lädt …\nLernt:    Linux, Netzwerke, Python\nKaffee:   ausreichend\nUptime:   neugierig seit der Kindheit',
-                    'bohdan@hamburg\n--------------\nOS:       Human, version 2026\nLocation: Hamburg\nGoal:     IT specialist SI, 2027\nGerman:   B1 ✓  B2 loading …\nLearning: Linux, networking, Python\nCoffee:   sufficient\nUptime:   curious since childhood'
-                );
-                wrapEl.appendChild(art);
-                wrapEl.appendChild(info);
-                out.appendChild(wrapEl);
-                out.scrollTop = out.scrollHeight;
-            }
-
-            function progress(label, after) {
-                var el = line('', 'hi');
-                var n = 0;
-                busy = true;
-                var t = setInterval(function () {
-                    n += 10;
-                    el.textContent = label + ' [' + '█'.repeat(n / 10) + '░'.repeat(10 - n / 10) + '] ' + n + '%';
-                    out.scrollTop = out.scrollHeight;
-                    if (n >= 100) { clearInterval(t); busy = false; after(); }
-                }, 130);
-            }
-
-            function mailLink() {
-                var el = document.createElement('div');
-                var a = document.createElement('a');
-                a.href = 'mailto:krasokhade@gmail.com?subject=' + encodeURIComponent(T('Ausbildung / Praktikum', 'Apprenticeship / internship'));
-                a.textContent = T('E-Mail an Bohdan schreiben', 'Write Bohdan an email');
-                el.appendChild(a);
-                out.appendChild(el);
-                out.scrollTop = out.scrollHeight;
-            }
-
-            var commands = {
-                help: function () {
-                    printAll([
-                        [T('Verfügbare Befehle:', 'Available commands:'), 'dim'],
-                        ['  whoami        ' + T('wer ich bin', 'who I am')],
-                        ['  neofetch      ' + T('Systeminfo, aber über mich', 'system info, but about me')],
-                        ['  plan          ' + T('mein Weg bis 2027', 'my path to 2027')],
-                        ['  skills        ' + T('was ich kann', 'what I can do')],
-                        ['  ping <ort>    ' + T('z. B. ping hamburg', 'e.g. ping hamburg')],
-                        ['  coffee        ' + T('wichtig', 'important')],
-                        ['  hire bohdan   ' + T('der beste Befehl', 'the best command')],
-                        ['  kontakt       ' + T('so erreichen Sie mich', 'how to reach me')],
-                        ['  clear         ' + T('aufräumen', 'tidy up')],
-                        [T('Tipp: Tab ergänzt Befehle, ↑ holt den letzten zurück.', 'Tip: Tab completes commands, ↑ brings back the last one.'), 'dim']
-                    ]);
-                },
-                whoami: function () {
-                    printAll([
-                        ['Bohdan Krasokha', 'hi'],
-                        [T('Hamburg. Angehender Fachinformatiker für Systemintegration.', 'Hamburg. Future IT specialist for system integration.')],
-                        [T('Baut PCs, lernt Netzwerke, hat diese Seite gebaut.', 'Builds PCs, learns networking, built this site.')],
-                        [T('Schwäche: vergisst die Zeit, wenn das Problem gut ist.', 'Weakness: forgets the time when the problem is good.'), 'dim']
-                    ]);
-                },
-                neofetch: neofetch,
-                plan: function () {
-                    printAll([
-                        ['[✓] ' + T('Deutsch B1 (DTZ)', 'German B1 (DTZ)')],
-                        ['[▸] ' + T('Orientierungsschule', 'Orientation school')],
-                        ['[▸] Google IT Support (Coursera)'],
-                        ['[ ] ' + T('Nebenjob', 'Part-time job')],
-                        ['    ├─ ' + T('Deutsch B2', 'German B2')],
-                        ['    ├─ Python – CS50P (Harvard)'],
-                        ['    └─ Cisco Networking Basics'],
-                        ['[ ] ' + T('Praktikum', 'Internship')],
-                        ['[★] ' + T('Ausbildung FISI – August 2027', 'Apprenticeship FISI – August 2027'), 'hi']
-                    ]);
-                },
-                skills: function () {
-                    printAll([
-                        [T('kann:    Windows, PC-Hardware, Heimnetz, cmd/PowerShell, HTML/CSS', 'can:      Windows, PC hardware, home network, cmd/PowerShell, HTML/CSS')],
-                        [T('lernt:   Linux, Netzwerke, Windows Server & AD, Python', 'learning: Linux, networking, Windows Server & AD, Python')],
-                        [T('extra:   After Effects, Alight Motion, Mathe', 'extra:    After Effects, Alight Motion, maths')]
-                    ]);
-                },
-                kontakt: function () {
-                    printAll([
-                        ['E-Mail:   krasokhade@gmail.com'],
-                        ['LinkedIn: linkedin.com/in/bohdan-krasokha'],
-                        ['GitHub:   github.com/skv1ce'],
-                        mailLink
-                    ]);
-                },
-                coffee: function () {
-                    printAll([
-                        ['      ( (', 'dim'],
-                        ['       ) )', 'dim'],
-                        ['    ........'],
-                        ['    |      |]'],
-                        ['    \\      /'],
-                        ['     `----\''],
-                        [T('Kaffee wird gebrüht … Fehler 418: Ich bin eine Teekanne.', 'Brewing coffee … Error 418: I\'m a teapot.'), 'hi'],
-                        [T('(Ein echter HTTP-Statuscode. Kein Witz. Okay, ein bisschen.)', '(A real HTTP status code. No joke. Well, a little.)'), 'dim']
-                    ]);
-                },
-                hire: function () {
-                    progress(T('Bewerbung wird geladen', 'Loading application'), function () {
-                        printAll([
-                            [T('Fertig. Motivation: 100 %. Pünktlichkeit: vom Bau gelernt.', 'Done. Motivation: 100%. Punctuality: learned on construction sites.')],
-                            [T('Nächster Schritt:', 'Next step:'), 'dim'],
-                            mailLink
-                        ]);
-                    });
-                },
-                ping: function (arg) {
-                    var host = arg || 'hamburg';
-                    line('PING ' + host + ' (10.20.27.8): 56 data bytes', 'dim');
-                    var n = 0;
-                    busy = true;
-                    var t = setInterval(function () {
-                        n++;
-                        line('64 bytes from ' + host + ': icmp_seq=' + n + ' ttl=64 time=' + (8 + Math.random() * 9).toFixed(1) + ' ms');
-                        if (n === 3) {
-                            clearInterval(t);
-                            busy = false;
-                            line(T('3 gesendet, 3 empfangen, 0 % Verlust. Verbindung steht – schreiben Sie mir.', '3 sent, 3 received, 0% loss. Link is up – write to me.'), 'dim');
-                        }
-                    }, 380);
-                },
-                sudo: function () { line(T('Netter Versuch. Admin-Rechte gibt es erst in der Ausbildung.', 'Nice try. Admin rights come with the apprenticeship.')); },
-                rm: function () { line(T('Nicht auf meinem Server. Backups sind wichtig – das lerne ich gerade.', 'Not on my server. Backups matter – that\'s what I\'m learning.')); },
-                exit: function () { line(T('Es gibt keinen Ausgang. Nur den Kontakt-Button.', 'There is no exit. Only the contact button.')); },
-                wetter: function () { line(T('Hamburg: Regen. Überraschung.', 'Hamburg: rain. Surprise.')); },
-                clear: function () { out.textContent = ''; }
-            };
-            commands.contact = commands.kontakt;
-            commands.weather = commands.wetter;
-            var names = Object.keys(commands);
-
-            function run(raw) {
-                var cmd = raw.trim();
-                if (!cmd || busy) return;
-                history.push(cmd); pos = history.length;
-                line('gast@bohdan:~$ ' + cmd, 'cmd');
-                var parts = cmd.split(/\s+/);
-                var word = parts[0].toLowerCase();
-                var arg = parts.slice(1).join(' ');
-                if (commands[word]) { commands[word](arg); return; }
-                var guess = names.filter(function (n) { return n[0] === word[0]; })[0];
-                line(T('Befehl nicht gefunden: ', 'Command not found: ') + word +
-                     (guess ? T(' – meinten Sie "' + guess + '"?', ' – did you mean "' + guess + '"?') : T(' – tippe "help".', ' – type "help".')), 'dim');
-            }
-
-            // Types a command letter by letter, then runs it
-            function typeAndRun(cmd, after) {
-                busy = true;
-                var el = line('gast@bohdan:~$ ', 'cmd');
-                var caret = document.createElement('span');
-                caret.className = 'caret';
-                el.appendChild(caret);
-                var i = 0;
-                (function next() {
-                    if (i < cmd.length) {
-                        caret.insertAdjacentText('beforebegin', cmd[i++]);
-                        setTimeout(next, 70 + Math.random() * 60);
-                    } else {
-                        setTimeout(function () {
-                            caret.remove();
-                            busy = false;
-                            commands[cmd]();
-                            if (after) after();
-                        }, 250);
-                    }
-                })();
-            }
-
-            function start() {
-                if (started) return;
-                started = true;
-                out.textContent = '';
-                var calm = !document.documentElement.classList.contains('js');
-                if (calm) {
-                    neofetch();
-                    line(T('Willkommen! Tippe "help" oder nutze die Knöpfe unten.', 'Welcome! Type "help" or use the buttons below.'), 'dim');
-                    return;
-                }
-                setTimeout(function () {
-                    typeAndRun('neofetch', function () {
-                        line(T('Willkommen! Tippe "help" oder nutze die Knöpfe unten.', 'Welcome! Type "help" or use the buttons below.'), 'dim');
-                    });
-                }, 500);
-            }
-
-            form.addEventListener('submit', function (e) { e.preventDefault(); run(input.value); input.value = ''; });
-            input.addEventListener('keydown', function (e) {
-                if (e.key === 'ArrowUp' && pos > 0) { pos--; input.value = history[pos]; e.preventDefault(); }
-                else if (e.key === 'ArrowDown') { pos = Math.min(history.length, pos + 1); input.value = history[pos] || ''; e.preventDefault(); }
-                else if (e.key === 'Tab' && input.value) {
-                    var m = names.filter(function (n) { return n.indexOf(input.value.toLowerCase()) === 0; });
-                    if (m.length) { input.value = m[0] + (m[0] === 'hire' ? ' bohdan' : ''); e.preventDefault(); }
-                }
-            });
-            document.querySelectorAll('[data-cmd]').forEach(function (b) {
-                b.addEventListener('click', function () { start(); run(b.dataset.cmd); });
-            });
-
-            if (wrap.classList.contains('in')) start();
-            wrap.addEventListener('revealed', start);
-            if (!document.documentElement.classList.contains('js')) start();
-            document.addEventListener('langchange', function () {
-                if (started && out.children.length <= 3 && !busy) { started = false; start(); }
-            });
-        })();
-    </script>
-
-    <!-- ================= Math figures: golden spiral, tesseract, caffeine ================= -->
-    <script>
-        (function () {
-            var calm = false;
-            var pace = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? .55 : 1;
-            var figs = Array.prototype.slice.call(document.querySelectorAll('canvas[data-fig]')).map(function (c) {
-                return { c: c, ctx: c.getContext('2d'), type: c.dataset.fig, vis: false, w: 0, boost: 0, target: 0 };
-            });
-            var t0 = performance.now();
-
-            function size(f) {
-                var d = Math.min(window.devicePixelRatio || 1, 2);
-                f.w = f.c.clientWidth || 200;
-                f.c.width = f.w * d; f.c.height = f.w * d;
-                f.ctx.setTransform(d, 0, 0, d, 0, 0);
-            }
-
-            // ---- Golden spiral built from Fibonacci squares ----
-            var sq = (function () {
-                var fib = [1, 1, 2, 3, 5, 8, 13], dirs = ['up', 'right', 'down', 'left'];
-                var list = [{ x: 0, y: 0, s: 1, d: 'up' }], minX = 0, minY = 0, maxX = 1, maxY = 1;
-                for (var i = 1; i < fib.length; i++) {
-                    var s = fib[i], d = dirs[i % 4], q;
-                    if (d === 'right') { q = { x: maxX, y: minY }; maxX += s; }
-                    else if (d === 'down') { q = { x: minX, y: maxY }; maxY += s; }
-                    else if (d === 'left') { q = { x: minX - s, y: minY }; minX -= s; }
-                    else { q = { x: minX, y: minY - s }; minY -= s; }
-                    q.s = s; q.d = d; list.push(q);
-                }
-                return { list: list, cx: (minX + maxX) / 2, cy: (minY + maxY) / 2, span: Math.hypot(maxX - minX, maxY - minY) };
-            })();
-            var arcAt = {
-                up:    function (q) { return [q.x + q.s, q.y + q.s, Math.PI, Math.PI * 1.5]; },
-                right: function (q) { return [q.x, q.y + q.s, -Math.PI / 2, 0]; },
-                down:  function (q) { return [q.x, q.y, 0, Math.PI / 2]; },
-                left:  function (q) { return [q.x + q.s, q.y, Math.PI / 2, Math.PI]; }
-            };
-
-            function golden(f, t) {
-                var g = f.ctx, w = f.w, k = w * .9 / sq.span;
-                g.clearRect(0, 0, w, w);
-                g.save();
-                g.translate(w / 2, w / 2);
-                g.rotate(t * .09);
-                g.scale(k, k);
-                g.translate(-sq.cx, -sq.cy);
-                g.lineWidth = 1 / k;
-                g.strokeStyle = 'rgba(255,255,255,.16)';
-                sq.list.forEach(function (q) { g.strokeRect(q.x, q.y, q.s, q.s); });
-
-                // Draw the spiral bit by bit, hold it, start again
-                var total = 0;
-                sq.list.forEach(function (q) { total += q.s; });
-                var cycle = (t % 10) / 6;
-                var p = Math.min(1, cycle) * total, fade = cycle > 1.45 ? Math.max(0, 1 - (cycle - 1.45) * 4) : 1;
-                g.strokeStyle = 'rgba(255,255,255,' + (.9 * fade).toFixed(3) + ')';
-                g.lineWidth = 1.6 / k;
-                g.beginPath();
-                var done = 0, end = null;
-                for (var i = 0; i < sq.list.length && done < p; i++) {
-                    var q = sq.list[i], a = arcAt[q.d](q);
-                    var part = Math.min(1, (p - done) / q.s);
-                    var a1 = a[2] + (a[3] - a[2]) * part;
-                    g.arc(a[0], a[1], q.s, a[2], a1);
-                    end = [a[0] + Math.cos(a1) * q.s, a[1] + Math.sin(a1) * q.s];
-                    done += q.s;
-                }
-                g.stroke();
-                if (end) {
-                    g.fillStyle = 'rgba(255,255,255,' + fade.toFixed(3) + ')';
-                    g.beginPath(); g.arc(end[0], end[1], 2.6 / k, 0, Math.PI * 2); g.fill();
-                }
-                g.restore();
-            }
-
-            // ---- Tesseract: a 4D cube turned in two planes and projected ----
-            var tv = [], te = [];
-            for (var i = 0; i < 16; i++) tv.push([(i & 1) ? 1 : -1, (i & 2) ? 1 : -1, (i & 4) ? 1 : -1, (i & 8) ? 1 : -1]);
-            for (var a = 0; a < 16; a++) for (var b = a + 1; b < 16; b++) {
-                var diff = 0;
-                for (var j = 0; j < 4; j++) if (tv[a][j] !== tv[b][j]) diff++;
-                if (diff === 1) te.push([a, b]);
-            }
-            function tesseract(f, t) {
-                var g = f.ctx, w = f.w, s = w * .44;
-                g.clearRect(0, 0, w, w);
-                var a1 = t * .42, a2 = t * .28, a3 = .5 + Math.sin(t * .18) * .3;
-                var p = tv.map(function (v) {
-                    var x = v[0], y = v[1], z = v[2], ww = v[3], c, sn, n;
-                    c = Math.cos(a1); sn = Math.sin(a1); n = x * c - ww * sn; ww = x * sn + ww * c; x = n;   // XW
-                    c = Math.cos(a2); sn = Math.sin(a2); n = y * c - z * sn; z = y * sn + z * c; y = n;      // YZ
-                    c = Math.cos(a3); sn = Math.sin(a3); n = x * c - z * sn; z = x * sn + z * c; x = n;      // XZ
-                    var k4 = 1.6 / (3 - ww); x *= k4; y *= k4; z *= k4;
-                    var k3 = 2.4 / (4 - z);
-                    return [w / 2 + x * k3 * s, w / 2 + y * k3 * s, z];
-                });
-                g.lineWidth = 1;
-                te.forEach(function (e) {
-                    var A = p[e[0]], B = p[e[1]];
-                    var depth = ((A[2] + B[2]) / 2 + 1.2) / 2.4;
-                    g.strokeStyle = 'rgba(255,255,255,' + (.15 + Math.max(0, Math.min(1, depth)) * .55).toFixed(3) + ')';
-                    g.beginPath(); g.moveTo(A[0], A[1]); g.lineTo(B[0], B[1]); g.stroke();
-                });
-                g.fillStyle = '#fff';
-                p.forEach(function (q) { g.beginPath(); g.arc(q[0], q[1], 1.8, 0, Math.PI * 2); g.fill(); });
-            }
-
-            // ---- Caffeine: the flat molecule turning in 3D ----
-            var atoms = [
-                ['C', -.866, -.5], ['N', 0, -1], ['C', .866, -.5], ['N', .866, .5], ['C', 0, 1], ['C', -.866, .5],   // 6-ring: C4 N3 C2 N1 C6 C5
-                ['N', -1.817, .809], ['C', -2.405, 0], ['N', -1.817, -.809],                                      // 5-ring: N7 C8 N9
-                ['O', 1.732, -1], ['O', 0, 2],                                                                    // C2=O, C6=O
-                ['C', 1.732, 1], ['C', 0, -2], ['C', -2.35, 1.66]                                                 // methyl groups
-            ];
-            var bonds = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0],[5,6],[6,7],[7,8],[8,0],[2,9],[4,10],[3,11],[1,12],[6,13]];
-            var doubles = { '2-9': 1, '4-10': 1, '7-8': 1, '0-5': 1 };
-            atoms.forEach(function (a) { a[1] += .45; });
-            function caffeine(f, t) {
-                var g = f.ctx, w = f.w, s = w * .17;
-                g.clearRect(0, 0, w, w);
-                var ry = Math.sin(t * .38) * .85, rx = .35 + Math.sin(t * .27) * .3, rz = t * .14;
-                var p = atoms.map(function (a) {
-                    var x = a[1], y = a[2], z = 0, n;
-                    n = x * Math.cos(rz) - y * Math.sin(rz); y = x * Math.sin(rz) + y * Math.cos(rz); x = n;
-                    n = x * Math.cos(ry) - z * Math.sin(ry); z = x * Math.sin(ry) + z * Math.cos(ry); x = n;
-                    n = y * Math.cos(rx) - z * Math.sin(rx); z = y * Math.sin(rx) + z * Math.cos(rx); y = n;
-                    var k = 5 / (5 - z);
-                    return [w / 2 + x * k * s, w / 2 + y * k * s, z, a[0]];
-                });
-                bonds.forEach(function (b) {
-                    var A = p[b[0]], B = p[b[1]];
-                    var al = .25 + ((A[2] + B[2]) / 2 + 2.5) / 5 * .5;
-                    g.strokeStyle = 'rgba(255,255,255,' + al.toFixed(3) + ')';
-                    g.lineWidth = 1.1;
-                    g.beginPath(); g.moveTo(A[0], A[1]); g.lineTo(B[0], B[1]); g.stroke();
-                    if (doubles[b[0] + '-' + b[1]]) {
-                        var dx = B[1] - A[1], dy = A[0] - B[0], l = Math.hypot(dx, dy) || 1;
-                        dx = dx / l * 3; dy = dy / l * 3;
-                        g.beginPath(); g.moveTo(A[0] + dx, A[1] + dy); g.lineTo(B[0] + dx, B[1] + dy); g.stroke();
-                    }
-                });
-                p.slice().sort(function (a, b) { return a[2] - b[2]; }).forEach(function (q) {
-                    var r = q[3] === 'O' ? 4.6 : q[3] === 'N' ? 4 : 2.8;
-                    var al = .45 + (q[2] + 2.5) / 5 * .55;
-                    g.fillStyle = q[3] === 'C' ? 'rgba(255,255,255,' + al.toFixed(3) + ')' : '#000';
-                    g.strokeStyle = 'rgba(255,255,255,' + al.toFixed(3) + ')';
-                    g.lineWidth = 1.3;
-                    g.beginPath(); g.arc(q[0], q[1], r, 0, Math.PI * 2); g.fill(); g.stroke();
-                });
-            }
-
-            var draw = { golden: golden, tesseract: tesseract, caffeine: caffeine };
-
-            figs.forEach(function (f) {
-                size(f);
-                f.c.parentNode.addEventListener('pointerenter', function () { f.target = 1; });
-                f.c.parentNode.addEventListener('pointerleave', function () { f.target = 0; });
-                f.local = 0;
-            });
-
-            if (calm) { figs.forEach(function (f) { draw[f.type](f, 4); }); }
-            else {
-                if ('IntersectionObserver' in window) {
-                    var io = new IntersectionObserver(function (entries) {
-                        entries.forEach(function (e) { figs.forEach(function (f) { if (f.c === e.target) f.vis = e.isIntersecting; }); });
-                    });
-                    figs.forEach(function (f) { io.observe(f.c); });
-                } else figs.forEach(function (f) { f.vis = true; });
-
-                var last = performance.now();
-                (function loop(now) {
-                    var dt = Math.min(.05, (now - last) / 1000); last = now;
-                    figs.forEach(function (f) {
-                        f.boost += (f.target - f.boost) * .06;
-                        f.local += dt * pace * (1 + f.boost * 2.5);                 // spins faster under the pointer
-                        if (f.vis && !document.hidden) draw[f.type](f, f.local);
-                    });
-                    requestAnimationFrame(loop);
-                })(last);
-            }
-            window.addEventListener('resize', function () { figs.forEach(function (f) { size(f); if (calm) draw[f.type](f, 4); }); });
-        })();
-    </script>
-
-    <!-- ================= Particle field ================= -->
-    <script>
-        /*
-         * Six particle figures, each living in its own part of the page and scrolling with
-         * it like any other content: a galaxy round the photo, waves behind "Über mich",
-         * a slowly turning globe round the goal, a DNA helix behind the skills, a dot grid
-         * behind the terminal and an atom next to the contact. Nothing follows the visitor.
-         * Each point hums gently on its own. The mouse only parts the points softly, a click
-         * sends a small ripple. Only figures that are on screen are calculated and drawn.
-         * If the system asks for less motion, everything runs at about half speed.
-         */
-        (function () {
-            var canvas = document.getElementById('field');
-            var ctx = canvas.getContext('2d');
-            var pace = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? .55 : 1;
-            var LEVELS = 16, GOLD = Math.PI * (3 - Math.sqrt(5));
-            var W, H, dpr, small, m;
-            var tSim = 0, lastT = performance.now();
-            var mx = -9999, my = -9999, active = false, ripples = [];
-
-            function q(sel) { return document.querySelector(sel); }
-            var defs = [
-                { kind: 'spiral', anchor: q('#core') },
-                { kind: 'waves',  anchor: q('#story') },
-                { kind: 'sphere', anchor: q('#n-goal') },
-                { kind: 'helix',  anchor: q('#skills .skills') },
-                { kind: 'grid',   anchor: q('#terminal') },
-                { kind: 'atom',   anchor: q('#contacts') }
-            ];
-            var systems = [];
-
-            function countFor(d) {
-                if (d.kind === 'grid') {
-                    d.gap = small ? 26 : 32;
-                    d.cols = Math.ceil(W / d.gap) + 1;
-                    d.rows = Math.ceil(d.anchor.offsetHeight / d.gap) + 1;
-                    return d.cols * d.rows;
-                }
-                var big = { spiral: 1100, waves: 720, sphere: 820, helix: 700, atom: 680 };
-                var low = { spiral: 600, waves: 380, sphere: 460, helix: 340, atom: 380 };
-                return (small ? low : big)[d.kind];
-            }
-
-            function build(d, old) {
-                var n = countFor(d);
-                if (old && old.n === n) return old;
-                var s = { def: d, n: n, born: old ? old.born : false,
-                    OX: new Float32Array(n), OY: new Float32Array(n), VX: new Float32Array(n), VY: new Float32Array(n),
-                    S: new Float32Array(n), PX: new Float32Array(n), PY: new Float32Array(n), A: new Float32Array(n),
-                    LV: new Uint8Array(n), SZ: new Float32Array(n) };
-                for (var i = 0; i < n; i++) s.S[i] = Math.random();
-                return s;
-            }
-
-            function setup() {
-                dpr = Math.min(window.devicePixelRatio || 1, 2);
-                W = window.innerWidth; H = window.innerHeight; small = W < 760; m = Math.min(W, H);
-                canvas.width = W * dpr; canvas.height = H * dpr;
-                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-                systems = defs.map(function (d, i) { return build(d, systems[i]); });
-            }
-
-            // Where a figure sits on screen right now; null when it is far off screen
-            function frame(s) {
-                var r = s.def.anchor.getBoundingClientRect(), k = s.def.kind, f = { r: r };
-                if (k === 'spiral') { f.x = r.left + r.width / 2; f.y = r.top + r.height / 2; f.R = r.width * (small ? .66 : .86); f.top = f.y - f.R; f.bottom = f.y + f.R; }
-                else if (k === 'sphere') { f.x = r.left + r.width / 2; f.y = r.top + r.height / 2; f.R = small ? m * .42 : m * .37; f.top = f.y - f.R; f.bottom = f.y + f.R; }
-                else if (k === 'helix') { f.y = r.top + r.height / 2; f.amp = small ? 50 : Math.min(110, H * .15); f.top = f.y - f.amp - 40; f.bottom = f.y + f.amp + 40; }
-                else if (k === 'atom') { f.x = small ? W * .5 : W * .76; f.y = r.top + r.height * .42; f.R = small ? m * .42 : m * .36; f.top = f.y - f.R; f.bottom = f.y + f.R; }
-                else { f.top = r.top; f.bottom = r.bottom; }
-                return (f.bottom < -60 || f.top > H + 60) ? null : f;
-            }
-
-            function place(s, f, t) {
-                var n = s.n, S = s.S, PX = s.PX, PY = s.PY, A = s.A, k = s.def.kind, i, u, r, a;
-                if (k === 'spiral') {
-                    var r0 = f.R * .35, R = f.R * (1 + Math.sin(t * .4) * .025);
-                    for (i = 0; i < n; i++) {
-                        u = i / n; r = r0 + (R - r0) * Math.sqrt(u);
-                        a = i * GOLD + t * .16 * (2.4 - 2 * u);            // inner arms a little faster
-                        PX[i] = f.x + Math.cos(a) * r; PY[i] = f.y + Math.sin(a) * r * .9;
-                        A[i] = .22 + (1 - u) * .58;
-                    }
-                } else if (k === 'waves') {
-                    var rows = small ? 9 : 13, per = Math.ceil(n / rows), rr = f.r;
-                    for (i = 0; i < n; i++) {
-                        var row = Math.floor(i / per), j = i % per, x = (j / (per - 1)) * W * 1.1 - W * .05;
-                        PX[i] = x;
-                        PY[i] = rr.top + rr.height * (.2 + .68 * row / rows) + Math.sin(x * .005 + t * .55 + row * .42) * (26 + row * 2) + Math.sin(x * .012 - t * .35) * 6;
-                        A[i] = .1 + (row / rows) * .3;
-                    }
-                } else if (k === 'sphere') {
-                    var SR = f.R * (1 + Math.sin(t * .5) * .02), ay = t * .25, ax = .35 + Math.sin(t * .2) * .15;
-                    var cY = Math.cos(ay), sY = Math.sin(ay), cX = Math.cos(ax), sX = Math.sin(ax);
-                    for (i = 0; i < n; i++) {
-                        var yy = 1 - (i / (n - 1)) * 2, rq = Math.sqrt(1 - yy * yy), th = i * GOLD;
-                        var x3 = Math.cos(th) * rq, z3 = Math.sin(th) * rq;
-                        var xr = x3 * cY - z3 * sY, zr = x3 * sY + z3 * cY;
-                        var yr = yy * cX - zr * sX, zt = yy * sX + zr * cX;
-                        PX[i] = f.x + xr * SR; PY[i] = f.y + yr * SR;
-                        A[i] = .1 + (zt + 1) * .33;
-                    }
-                } else if (k === 'helix') {
-                    var wave = small ? 240 : 420, x0 = -W * .02, x1 = W * 1.02, rungs = small ? 18 : 34;
-                    for (i = 0; i < n; i++) {
-                        var kind = i % 5, sp = i / n;
-                        if (kind < 2) {
-                            var hx = x0 + sp * (x1 - x0), ph = hx / wave * Math.PI * 2 + t * .45 + (kind ? Math.PI : 0);
-                            PX[i] = hx; PY[i] = f.y + Math.sin(hx * .003 + t * .35) * 16 + Math.sin(ph) * f.amp;
-                            A[i] = .14 + (Math.cos(ph) + 1) * .28;
-                        } else {
-                            var qx = Math.floor(sp * rungs) / rungs, rx = x0 + qx * (x1 - x0);
-                            var p0 = rx / wave * Math.PI * 2 + t * .45, axis = f.y + Math.sin(rx * .003 + t * .35) * 16;
-                            var w = ((kind - 2) + S[i]) / 3, ya = axis + Math.sin(p0) * f.amp, yb = axis + Math.sin(p0 + Math.PI) * f.amp;
-                            PX[i] = rx; PY[i] = ya + (yb - ya) * w;
-                            A[i] = .09 + Math.abs(Math.cos(p0)) * .18;
-                        }
-                    }
-                } else if (k === 'grid') {
-                    var d = s.def, gr = f.r, cxg = W / 2, cyg = gr.top + gr.height / 2;
-                    for (i = 0; i < n; i++) {
-                        var gx = (i % d.cols) * d.gap, gy = gr.top + Math.floor(i / d.cols) * d.gap;
-                        var wv = Math.sin(Math.hypot(gx - cxg, gy - cyg) * .02 - t * 1.4);
-                        PX[i] = gx; PY[i] = gy + wv * 6;
-                        A[i] = .07 + (wv + 1) * .11;
-                    }
-                } else if (k === 'atom') {
-                    for (i = 0; i < n; i++) {
-                        if (i % 12 === 0) {
-                            var nr = Math.sqrt(S[i]) * f.R * .1, na = i * GOLD + t * .5;
-                            PX[i] = f.x + Math.cos(na) * nr; PY[i] = f.y + Math.sin(na) * nr; A[i] = .7;
-                            continue;
-                        }
-                        var band = i % 3, tilt = band * Math.PI / 3 + t * .05;
-                        var ang = (i / n) * Math.PI * 8 + t * (.6 + band * .15);
-                        var ox = Math.cos(ang) * f.R, oy = Math.sin(ang) * f.R * .34;
-                        PX[i] = f.x + ox * Math.cos(tilt) - oy * Math.sin(tilt);
-                        PY[i] = f.y + ox * Math.sin(tilt) + oy * Math.cos(tilt);
-                        A[i] = .18 + (Math.sin(ang) + 1) * .26;
-                    }
-                }
-                // A gentle hum on every point, like molecules
-                for (i = 0; i < n; i++) {
-                    var f1 = .25 + S[i] * .45, amp = 1 + S[i] * 2.2;
-                    PX[i] += Math.cos(t * f1 + S[i] * 20) * amp;
-                    PY[i] += Math.sin(t * f1 * 1.13 + S[i] * 31) * amp;
-                }
-            }
-
-            // Offsets from the figure: pushed by the mouse or a ripple, always springing back home
-            function physics(s) {
-                var n = s.n, OX = s.OX, OY = s.OY, VX = s.VX, VY = s.VY, PX = s.PX, PY = s.PY, SZ = s.SZ, i;
-                if (!s.born) {
-                    s.born = true;
-                    for (i = 0; i < n; i++) {
-                        var a = Math.random() * Math.PI * 2, d = 120 + Math.random() * 380;
-                        OX[i] = Math.cos(a) * d; OY[i] = Math.sin(a) * d;
-                    }
-                }
-                var R = 95, R2 = R * R;
-                for (i = 0; i < n; i++) {
-                    var ox = OX[i], oy = OY[i], vx = VX[i] - ox * .045, vy = VY[i] - oy * .045;
-                    var px = PX[i] + ox, py = PY[i] + oy;
-                    if (active) {
-                        var dx = px - mx, dy = py - my, d2 = dx * dx + dy * dy;
-                        if (d2 < R2 && d2 > 1) { var dd = Math.sqrt(d2), f = 1 - dd / R; f = f * f * 1.3; vx += dx / dd * f; vy += dy / dd * f; }
-                    }
-                    for (var w = 0; w < ripples.length; w++) {
-                        var rp = ripples[w], ex = px - rp.x, ey = py - rp.y, ed = Math.sqrt(ex * ex + ey * ey) || 1, band = Math.abs(ed - rp.r);
-                        if (band < 36) { var p = (1 - band / 36) * rp.power; vx += ex / ed * p; vy += ey / ed * p; }
-                    }
-                    vx *= .86; vy *= .86;
-                    OX[i] = ox + vx; OY[i] = oy + vy; VX[i] = vx; VY[i] = vy;
-                    PX[i] = px + vx; PY[i] = py + vy;
-                    SZ[i] = Math.min(1, (Math.abs(vx) + Math.abs(vy)) * .08);   // speed, used for brightness
-                }
-            }
-
-            function draw(s) {
-                var n = s.n, PX = s.PX, PY = s.PY, A = s.A, S = s.S, LV = s.LV, SZ = s.SZ, i, l;
-                var fade = small ? (s.def.kind === 'spiral' ? .85 : .55) : 1;
-                for (i = 0; i < n; i++) {
-                    var a = Math.min(.999, (A[i] * (.6 + S[i] * .5) + SZ[i] * .35) * fade);
-                    LV[i] = (a * LEVELS) | 0;
-                }
-                for (l = 1; l < LEVELS; l++) {
-                    ctx.beginPath();
-                    for (i = 0; i < n; i++) if (LV[i] === l) { var z = 1.1 + S[i] * 1.1; ctx.rect(PX[i] - z / 2, PY[i] - z / 2, z, z); }
-                    ctx.fillStyle = 'rgba(255,255,255,' + ((l + .5) / LEVELS).toFixed(3) + ')';
-                    ctx.fill();
-                }
-            }
-
-            function loop(now) {
-                if (document.hidden) return;
-                var dt = Math.min(.05, (now - lastT) / 1000) * pace;
-                lastT = now; tSim += dt;
-                ctx.clearRect(0, 0, W, H);
-                for (var j = 0; j < systems.length; j++) {
-                    var s = systems[j], f = frame(s);
-                    if (!f) continue;
-                    place(s, f, tSim);
-                    physics(s);
-                    draw(s);
-                }
-                for (var r = ripples.length - 1; r >= 0; r--) {
-                    ripples[r].r += 600 * dt; ripples[r].power *= .93;
-                    if (ripples[r].power < .04) ripples.splice(r, 1);
-                }
-                requestAnimationFrame(loop);
-            }
-
-            // Mouse only: on a phone a finger is scrolling, not playing with the particles
-            window.addEventListener('pointermove', function (e) {
-                if (e.pointerType !== 'mouse') return;
-                mx = e.clientX; my = e.clientY; active = true;
-            }, { passive: true });
-            window.addEventListener('pointerdown', function (e) {
-                if (e.pointerType !== 'mouse' || e.target.closest('a, button, input, .terminal')) return;
-                ripples.push({ x: e.clientX, y: e.clientY, r: 0, power: 3.2 });
-                if (ripples.length > 3) ripples.shift();
-            }, { passive: true });
-            window.addEventListener('fieldpulse', function (e) {
-                ripples.push({ x: e.detail.x, y: e.detail.y, r: 0, power: 2.6 });
-            });
-            document.addEventListener('pointerleave', function () { active = false; });
-            document.addEventListener('mouseleave', function () { active = false; });
-
-            var timer, lastW = 0, lastH = 0;
-            window.addEventListener('resize', function () {
-                clearTimeout(timer);
-                timer = setTimeout(function () {
-                    // The language switch also fires resize: only rebuild what really changed
-                    if (window.innerWidth !== lastW || window.innerHeight !== lastH) { lastW = window.innerWidth; lastH = window.innerHeight; }
-                    setup();
-                }, 150);
-            });
-            document.addEventListener('visibilitychange', function () {
-                if (!document.hidden) { lastT = performance.now(); requestAnimationFrame(loop); }
-            });
-
-            setup();
-            requestAnimationFrame(loop);
-        })();
-    </script>
+    <script src="js/main.js" defer></script>
 </body>
 </html>

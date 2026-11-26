@@ -1,0 +1,67 @@
+
+     .-""""-.
+   .'  .--.  '.     BOHDAN KRASOKHA
+  /   /  _ \   \    Future IT specialist for system integration
+ |   |  (_) |   |   Hamburg · looking for an apprenticeship from Aug 2027
+  \   '.__.'   /
+   '.        .'     krasokhade@gmail.com
+     '-....-'       https://skv1ce.github.io/cv-website/
+
+------------------------------------------------------------------------
+ ABOUT ME
+------------------------------------------------------------------------
+ 19, living in Hamburg since August 2025, curious about anything that
+ blinks, computes or has a network cable. I build PCs, set up networks
+ and serviced my own laptop. Now I want to turn that curiosity into a
+ profession.
+
+ Goal:    apprenticeship "Fachinformatiker Systemintegration", 08/2027
+ After:   know networks, servers and user accounts so well that people
+          call me when nothing works anymore.
+
+------------------------------------------------------------------------
+ EXPERIENCE
+------------------------------------------------------------------------
+ Helper at a construction company (Poland)
+   - insulated façades, helped put up scaffolding, mixed concrete
+   - learned: start early, pull together, finish a job properly
+ School IT internship (Ukraine)
+   - first look at IT basics
+ Self-study: networking & Linux (since 2026)
+   - IPv4/IPv6, OSI model, troubleshooting from layer 1 up
+   - Linux: terminal, file system, permissions, what the kernel does
+   - next: a homelab (Ubuntu Server, Windows Server, AD)
+
+------------------------------------------------------------------------
+ EDUCATION
+------------------------------------------------------------------------
+ ongoing    Google IT Support Professional Certificate (Coursera)
+ since 10/26 Career orientation & application coaching (MOVE), Hamburg
+ 01–09/26   German integration course – DTZ B1:
+            speaking 100/100 · listening/reading 40/45 · writing 18/20
+ until 06/25 School leaving certificate after 11 grades, Ukraine
+
+------------------------------------------------------------------------
+ SKILLS
+------------------------------------------------------------------------
+ can:     Windows, PC hardware, laptop service, home network,
+          cmd/PowerShell, HTML/CSS/JS, Git
+ learning: networking (IPv4/IPv6, DNS, DHCP, subnetting), Linux,
+          Windows Server & Active Directory, Bash/PowerShell/Python
+ languages: Ukrainian (native), Russian, English B2, German B1
+
+------------------------------------------------------------------------
+ PROJECTS
+------------------------------------------------------------------------
+ [hw]   laptop service MSI GE75: Arctic MX-2 + TG Putty Pro, battery report
+ [web]  this website – HTML, CSS, JS, no templates, with AI (Claude)
+ [app]  Projekt Bankai – my own learning app: plan, tracker, trainers
+ [art]  wallpaper series "My style" – Python/NumPy, Full HD + 4K
+
+------------------------------------------------------------------------
+ $ hire bohdan
+ Loading application [##########] 100 %
+ Next step: an invitation to an interview. Looking forward to it :)
+------------------------------------------------------------------------
+ PDF: https://skv1ce.github.io/cv-website/CV_Bohdan_Krasokha_EN.pdf
+

@@ -1,0 +1,67 @@
+
+     .-""""-.
+   .'  .--.  '.     BOHDAN KRASOKHA
+  /   /  _ \   \    Angehender Fachinformatiker für Systemintegration
+ |   |  (_) |   |   Hamburg · sucht einen Ausbildungsplatz ab August 2027
+  \   '.__.'   /
+   '.        .'     krasokhade@gmail.com
+     '-....-'       https://skv1ce.github.io/cv-website/
+
+------------------------------------------------------------------------
+ KURZ ÜBER MICH
+------------------------------------------------------------------------
+ 19 Jahre alt, seit August 2025 in Hamburg, neugierig auf alles, was
+ blinkt, rechnet oder ein Netzwerkkabel hat. Ich baue PCs, richte
+ Netzwerke ein und habe meinen Laptop selbst gewartet. Jetzt möchte ich
+ aus dieser Neugier einen Beruf machen.
+
+ Ziel:    Ausbildung Fachinformatiker für Systemintegration, 08/2027
+ Danach:  Netzwerke, Server und Benutzerkonten so gut beherrschen, dass
+          man mich ruft, wenn gar nichts mehr geht.
+
+------------------------------------------------------------------------
+ ERFAHRUNG
+------------------------------------------------------------------------
+ Helfer in einem Bauunternehmen (Polen)
+   - Fassaden gedämmt, Gerüste mit aufgebaut, Beton gemischt
+   - gelernt: früh anfangen, anpacken, sauber fertig machen
+ Schulisches IT-Praktikum (Ukraine)
+   - erster Einblick in IT-Grundlagen
+ Selbststudium Netzwerke & Linux (seit 2026)
+   - IPv4/IPv6, OSI-Modell, Fehlersuche von Layer 1 an
+   - Linux: Terminal, Dateisystem, Rechte, Aufgabe des Kernels
+   - als Nächstes: Homelab (Ubuntu Server, Windows Server, AD)
+
+------------------------------------------------------------------------
+ BILDUNG
+------------------------------------------------------------------------
+ läuft      Google IT Support Professional Certificate (Coursera)
+ seit 10/26 Berufliche Orientierung & Bewerbungscoaching (MOVE), Hamburg
+ 01–09/26   Integrationskurs Deutsch – DTZ B1:
+            Sprechen 100/100 · Hören/Lesen 40/45 · Schreiben 18/20
+ bis 06/25  Schulabschluss nach 11 Klassen, Ukraine
+
+------------------------------------------------------------------------
+ KENNTNISSE
+------------------------------------------------------------------------
+ kann:    Windows, PC-Hardware, Laptop-Wartung, Heimnetz, cmd/PowerShell,
+          HTML/CSS/JS, Git
+ lernt:   Netzwerke (IPv4/IPv6, DNS, DHCP, Subnetting), Linux,
+          Windows Server & Active Directory, Bash/PowerShell/Python
+ Sprachen: Ukrainisch (Mutterspr.), Russisch, Englisch B2, Deutsch B1
+
+------------------------------------------------------------------------
+ PROJEKTE
+------------------------------------------------------------------------
+ [hw]   Laptop-Wartung MSI GE75: Arctic MX-2 + TG Putty Pro, Akku-Report
+ [web]  diese Website – HTML, CSS, JS, ohne Vorlagen, mit KI (Claude)
+ [app]  Projekt Bankai – eigene Lern-App mit Plan, Tracker, Trainer
+ [art]  Wallpaper-Serie „Mein Stil“ – Python/NumPy, Full HD + 4K
+
+------------------------------------------------------------------------
+ $ hire bohdan
+ Bewerbung wird geladen [##########] 100 %
+ Nächster Schritt: Einladung zum Gespräch. Ich freue mich :)
+------------------------------------------------------------------------
+ PDF: https://skv1ce.github.io/cv-website/Lebenslauf_Bohdan_Krasokha.pdf
+
