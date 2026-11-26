@@ -53,3 +53,8 @@ HTML, CSS, JavaScript – ohne Bibliotheken.
 
 Repository klonen und im Ordner einen kleinen Webserver starten, z. B. `python -m http.server`, dann http://localhost:8000 öffnen.
 (Direktes Öffnen von `index.html` funktioniert auch, nur lädt der Browser die Schriften dann nicht.)
+
+
+## Status
+
+Die Seite wird laufend weiterentwickelt.
