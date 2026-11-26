@@ -317,7 +317,10 @@
                 }
                 g.putImageData(id, 0, 0);
                 g.globalCompositeOperation = 'destination-in';
-                var rg = g.createRadialGradient(d / 2, d / 2, d / 2 * .7, d / 2, d / 2, d / 2 * .93);
+                var vg = g.createLinearGradient(0, d * .62, 0, d * .98);   // shoulders melt into the black
+                vg.addColorStop(0, 'rgba(0,0,0,1)'); vg.addColorStop(1, 'rgba(0,0,0,0)');
+                g.fillStyle = vg; g.fillRect(0, 0, d, d);
+                var rg = g.createRadialGradient(d / 2, d * .45, d / 2 * .78, d / 2, d * .45, d / 2 * 1.05);
                 rg.addColorStop(0, 'rgba(0,0,0,1)'); rg.addColorStop(1, 'rgba(0,0,0,0)');
                 g.fillStyle = rg; g.fillRect(0, 0, d, d);
                 return c;
@@ -329,13 +332,14 @@
             for (var gy = 0; gy < d; gy += step) for (var gx = 0; gx < d; gx += step) {
                 var x = Math.min(d - 1, gx + Math.random() * step) | 0, y = Math.min(d - 1, gy + Math.random() * step) | 0;
                 var dx = x - d / 2, dy = y - d / 2, r = Math.sqrt(dx * dx + dy * dy) / (d / 2);
-                if (r < .64 || r > 1.02) continue;
-                var u = (r - .64) / .38;
+                if (y > d * .42) continue;                                 // hair only: nothing from face, neck, shoulders
+                if (r < .6 || r > 1.02) continue;
+                var u = (r - .6) / .42;
                 if (Math.random() > 1 - u * .45) continue;          // thinner towards the outside
                 var i4 = (y * d + x) * 4;
                 if (data[i4 + 3] < 110) continue;                       // no particles from the empty background
                 var lum = (data[i4] * .299 + data[i4 + 1] * .587 + data[i4 + 2] * .114) / 255;
-                list.push({ a: Math.atan2(dy, dx), r: r * R, u: u, lum: .1 + lum * .62, ph: Math.random() * 6.283, sp: .6 + Math.random() * .8, z: .8 + Math.random() * .9 });
+                list.push({ a: Math.atan2(dy, dx), r: r * R, u: u, lum: .08 + lum * .45, ph: Math.random() * 6.283, sp: .6 + Math.random() * .8, z: .8 + Math.random() * .9 });
             }
             P = list;
             return true;
@@ -362,8 +366,8 @@
                 for (var i = 0; i < P.length; i++) {
                     var p = P[i], u2 = p.u * p.u;
                     var down = Math.max(0, Math.sin(p.a));                                              // less spray below the chin
-                    var out = u2 * R * (.4 - down * .16) * (.55 + .45 * Math.sin(t * .5 * p.sp + p.ph)) * spread;
-                    var ang = p.a + (u2 * .5 + u2 * .25 * Math.sin(t * .3 + p.ph)) * spread;   // a slight spiral twist
+                    var out = u2 * R * .16 * (.55 + .45 * Math.sin(t * .5 * p.sp + p.ph)) * spread;
+                    var ang = p.a + (u2 * .12 * Math.sin(t * .3 + p.ph)) * spread;             // a soft drift, no swirl
                     var rr = p.r + out;
                     var x = C + Math.cos(ang) * rr, y = C + Math.sin(ang) * rr;
                     var alpha = p.lum * (1 - p.u * .7 * spread) * (assemble > .9 && p.u < .25 ? .4 : 1);
@@ -445,7 +449,9 @@
                     var s = .82 + (front + 1) * .1;
                     d.el.style.transform = 'translate(' + (c + X * k - d.w / 2).toFixed(1) + 'px,' + (c + Y * k - d.h / 2).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
                     d.el.style.opacity = ((.35 + (front + 1) * .325) * intro).toFixed(3);
-                    d.el.style.zIndex = front > 0 ? 4 : 1;
+                    var nearFace = Math.hypot(X, Y + 4) < 40;                 // inside the head area
+                    d.el.style.zIndex = front > 0 && !nearFace ? 4 : 1;
+                    if (nearFace) d.el.style.opacity = (parseFloat(d.el.style.opacity) * .25).toFixed(3);
                 });
             }
             requestAnimationFrame(frame);
