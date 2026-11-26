@@ -449,7 +449,8 @@
                     var s = .82 + (front + 1) * .1;
                     d.el.style.transform = 'translate(' + (c + X * k - d.w / 2).toFixed(1) + 'px,' + (c + Y * k - d.h / 2).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
                     d.el.style.opacity = ((.35 + (front + 1) * .325) * intro).toFixed(3);
-                    var nearFace = Math.hypot(X, Y + 4) < 40;                 // inside the head area
+                    var hw = d.w / 2 / k, hh = d.h / 2 / k;                    // the whole tag, not just its centre
+                    var nearFace = Math.abs(X) < 36 + hw && Y > -50 - hh && Y < 46 + hh;   // head and shoulders area
                     d.el.style.zIndex = front > 0 && !nearFace ? 4 : 1;
                     if (nearFace) d.el.style.opacity = (parseFloat(d.el.style.opacity) * .25).toFixed(3);
                 });
