@@ -270,10 +270,9 @@
     })();
 
 /* ==========================================================
-   Portrait: the edge of the photo dissolves into particles,
-   the same square dots as the galaxy around it. They breathe and
-   swirl a little; under the pointer (or a tap) they come home and
-   the photo turns from black-and-white to colour.
+   Portrait: a cut-out bust (head, neck, shoulders) in soft studio light,
+   with a faint halo of the same square dots as the galaxy along the hair.
+   Under the pointer (or a tap) the halo settles and the colour comes up.
    If anything is missing (old browser, file://), the normal round photo stays.
    ========================================================== */
     (function () {
@@ -286,6 +285,7 @@
         var LEVELS = 22, coreGray, coreColor, P = null, size = 0, dpr = 1, R = 0, C = 0;
         var t = 0, last = performance.now(), visible = true, assemble = 0, target = 0, colour = 0;
 
+        var D = 0, OX = 0, OY = 0;
         function build() {
             var w = wrap.offsetWidth;                          // layout size: not affected by the intro scale animation
             if (!w) return false;
@@ -294,52 +294,47 @@
             size = Math.round(css * dpr);
             cv.width = cv.height = size;
             C = size / 2; R = w / 2 * dpr;
+            // The bust is drawn a bit larger than the ring and lower, so neck and shoulders show
+            D = Math.round(R * 2 * 1.3); OX = C - D / 2; OY = C - D / 2 + D * .06;
 
-            // The photo drawn into a square the size of the circle
-            var src = document.createElement('canvas'), d = Math.round(R * 2);
+            var src = document.createElement('canvas'), d = D;
             src.width = src.height = d;
             var sg = src.getContext('2d');
             sg.drawImage(img, 0, 0, d, d);
             var data = sg.getImageData(0, 0, d, d).data;     // throws on file:// (tainted): we fall back
 
-            // Core: solid in the middle, fading out towards the edge
-            function core(gray) {
+            // Photo, slightly muted to sit in the black-and-white page; full colour on hover
+            function core(k) {
                 var c = document.createElement('canvas');
                 c.width = c.height = d;
                 var g = c.getContext('2d');
-                var id = g.createImageData(d, d), o = id.data, k = gray ? .55 : 0;
+                var id = g.createImageData(d, d), o = id.data;
                 for (var i = 0; i < o.length; i += 4) {
                     var y = data[i] * .299 + data[i + 1] * .587 + data[i + 2] * .114;
                     o[i] = data[i] + (y - data[i]) * k;
                     o[i + 1] = data[i + 1] + (y - data[i + 1]) * k;
                     o[i + 2] = data[i + 2] + (y - data[i + 2]) * k;
-                    o[i + 3] = data[i + 3];               // the photo is a cut-out: keep its transparency
+                    o[i + 3] = data[i + 3];               // cut-out with the shoulder fade already in the file
                 }
                 g.putImageData(id, 0, 0);
-                g.globalCompositeOperation = 'destination-in';
-                var vg = g.createLinearGradient(0, d * .62, 0, d * .98);   // shoulders melt into the black
-                vg.addColorStop(0, 'rgba(0,0,0,1)'); vg.addColorStop(1, 'rgba(0,0,0,0)');
-                g.fillStyle = vg; g.fillRect(0, 0, d, d);
-                var rg = g.createRadialGradient(d / 2, d * .45, d / 2 * .78, d / 2, d * .45, d / 2 * 1.05);
-                rg.addColorStop(0, 'rgba(0,0,0,1)'); rg.addColorStop(1, 'rgba(0,0,0,0)');
-                g.fillStyle = rg; g.fillRect(0, 0, d, d);
                 return c;
             }
-            coreGray = core(true); coreColor = core(false);
+            coreGray = core(.3); coreColor = core(0);
 
-            // Particles: sampled from the ring where the core fades out
-            var step = Math.max(2, Math.round(2.5 * dpr)), list = [];
-            for (var gy = 0; gy < d; gy += step) for (var gx = 0; gx < d; gx += step) {
+            // Particles: a faint halo only along the outline of the hair
+            var step = Math.max(2, Math.round(2.5 * dpr)), off = Math.round(5 * dpr), list = [];
+            var hx = d * .49, hy = d * .38;
+            function A(x, y) { return x < 0 || y < 0 || x >= d || y >= d ? 0 : data[(y * d + x) * 4 + 3]; }
+            for (var gy = 0; gy < d * .5; gy += step) for (var gx = 0; gx < d; gx += step) {
                 var x = Math.min(d - 1, gx + Math.random() * step) | 0, y = Math.min(d - 1, gy + Math.random() * step) | 0;
-                var dx = x - d / 2, dy = y - d / 2, r = Math.sqrt(dx * dx + dy * dy) / (d / 2);
-                if (y > d * .42) continue;                                 // hair only: nothing from face, neck, shoulders
-                if (r < .6 || r > 1.02) continue;
-                var u = (r - .6) / .42;
-                if (Math.random() > 1 - u * .45) continue;          // thinner towards the outside
+                if (A(x, y) < 120) continue;
+                var dx = x - hx, dy = y - hy, len = Math.sqrt(dx * dx + dy * dy) || 1;
+                var nx = dx / len, ny = dy / len;
+                if (A((x + nx * off) | 0, (y + ny * off) | 0) > 40) continue;       // keep only the outer edge
+                if (Math.random() > .55) continue;
                 var i4 = (y * d + x) * 4;
-                if (data[i4 + 3] < 110) continue;                       // no particles from the empty background
                 var lum = (data[i4] * .299 + data[i4 + 1] * .587 + data[i4 + 2] * .114) / 255;
-                list.push({ a: Math.atan2(dy, dx), r: r * R, u: u, lum: .08 + lum * .45, ph: Math.random() * 6.283, sp: .6 + Math.random() * .8, z: .8 + Math.random() * .9 });
+                list.push({ x: x, y: y, nx: nx, ny: ny, lum: .12 + lum * .5, ph: Math.random() * 6.283, sp: .6 + Math.random() * .8, z: .7 + Math.random() * .8, u: Math.random() });
             }
             P = list;
             return true;
@@ -352,25 +347,25 @@
                 assemble += (target - assemble) * .07;
                 colour += (target - colour) * .05;
                 ctx.clearRect(0, 0, size, size);
-                // the photo: black-and-white, colour fades in on hover
-                var d = R * 2, o = C - R, breathe = 1 + Math.sin(t * .7) * .012 * (1 - assemble);
+                // soft studio light behind the shoulders, so the dark shirt does not vanish in the black
+                var gl = ctx.createRadialGradient(C, OY + D * .45, 0, C, OY + D * .45, D * .62);
+                gl.addColorStop(0, 'rgba(255,255,255,.11)'); gl.addColorStop(.55, 'rgba(255,255,255,.04)'); gl.addColorStop(1, 'rgba(255,255,255,0)');
+                ctx.fillStyle = gl; ctx.fillRect(0, 0, size, size);
+                var breathe = 1 + Math.sin(t * .7) * .008 * (1 - assemble);
                 ctx.save();
-                ctx.translate(C, C); ctx.scale(breathe, breathe); ctx.translate(-C, -C);
-                ctx.globalAlpha = 1; ctx.drawImage(coreGray, o, o, d, d);
-                if (colour > .01) { ctx.globalAlpha = colour; ctx.drawImage(coreColor, o, o, d, d); }
+                ctx.translate(C, OY + D); ctx.scale(breathe, breathe); ctx.translate(-C, -(OY + D));
+                ctx.globalAlpha = 1; ctx.drawImage(coreGray, OX, OY, D, D);
+                if (colour > .01) { ctx.globalAlpha = colour; ctx.drawImage(coreColor, OX, OY, D, D); }
                 ctx.restore();
                 ctx.globalAlpha = 1;
-                // the dissolving edge, grouped by brightness so it is cheap to draw
+                // the halo, grouped by brightness so it is cheap to draw
                 var spread = 1 - assemble, paths = [];
                 for (var l = 0; l < LEVELS; l++) paths.push([]);
                 for (var i = 0; i < P.length; i++) {
-                    var p = P[i], u2 = p.u * p.u;
-                    var down = Math.max(0, Math.sin(p.a));                                              // less spray below the chin
-                    var out = u2 * R * .16 * (.55 + .45 * Math.sin(t * .5 * p.sp + p.ph)) * spread;
-                    var ang = p.a + (u2 * .12 * Math.sin(t * .3 + p.ph)) * spread;             // a soft drift, no swirl
-                    var rr = p.r + out;
-                    var x = C + Math.cos(ang) * rr, y = C + Math.sin(ang) * rr;
-                    var alpha = p.lum * (1 - p.u * .7 * spread) * (assemble > .9 && p.u < .25 ? .4 : 1);
+                    var p = P[i];
+                    var out = (2 + p.u * 14) * dpr * (.5 + .5 * Math.sin(t * .5 * p.sp + p.ph)) * spread;
+                    var x = OX + p.x + p.nx * out, y = OY + p.y + p.ny * out;
+                    var alpha = p.lum * (1 - p.u * .6 * spread) * .8;
                     var lv = Math.min(LEVELS - 1, (alpha * LEVELS) | 0);
                     if (lv > 0) paths[lv].push(x, y, p.z * dpr);
                 }
@@ -450,9 +445,12 @@
                     d.el.style.transform = 'translate(' + (c + X * k - d.w / 2).toFixed(1) + 'px,' + (c + Y * k - d.h / 2).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
                     d.el.style.opacity = ((.35 + (front + 1) * .325) * intro).toFixed(3);
                     var hw = d.w / 2 / k, hh = d.h / 2 / k;                    // the whole tag, not just its centre
-                    var nearFace = Math.abs(X) < 36 + hw && Y > -50 - hh && Y < 46 + hh;   // head and shoulders area
-                    d.el.style.zIndex = front > 0 && !nearFace ? 4 : 1;
-                    if (nearFace) d.el.style.opacity = (parseFloat(d.el.style.opacity) * .25).toFixed(3);
+                    // How far the tag is outside the head box (negative = over the face): fade smoothly
+                    var outX = Math.abs(X) - (40 + hw), outY = Math.max(-55 - hh - Y, Y - (36 + hh));
+                    var out = Math.max(outX, outY), fade = Math.min(1, Math.max(0, out / 14));
+                    var nearBody = Math.abs(X) < 60 + hw && Y > 28 - hh && Y < 72 + hh;    // neck and shoulders
+                    d.el.style.zIndex = front > 0 && out > 0 && !nearBody ? 4 : 1;
+                    d.el.style.opacity = (parseFloat(d.el.style.opacity) * fade).toFixed(3);
                 });
             }
             requestAnimationFrame(frame);
