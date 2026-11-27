@@ -4,7 +4,7 @@
  * immediately when online; without internet the last seen version still works.
  * Only this site's own files are cached – nothing from anywhere else.
  */
-const CACHE = 'bk-cv-2026-11-27d';
+const CACHE = 'bk-cv-2026-11-27e';
 const CORE = [
     './', './index.html', './404.html', './css/style.css', './js/main.js', './manifest.webmanifest',
     './img/portrait-720.webp', './img/portrait-400.webp', './img/avatar-240.webp',
