@@ -382,6 +382,9 @@
         }
 
         function start() {
+            // Round photo with its own background looks calmer and more professional than the particle cut-out
+            var USE_FX = false;
+            if (!USE_FX) return;
             try { if (!build()) return; } catch (e) { return; }      // keep the plain photo
             wrap.classList.add('fx-on');
             requestAnimationFrame(frame);
